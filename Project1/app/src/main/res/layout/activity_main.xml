@@ -1,56 +1,80 @@
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--xmlns:tools="http://schemas.android.com/tools"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--android:orientation="vertical"-->
-<!--tools:context=".MainActivity">-->
-<!--<TextView-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:background="@android:color/holo_red_dark"-->
-<!--    android:textSize="30sp"-->
-<!--    android:text="Hello! Please enter your name"-->
-<!--    android:gravity="center"-->
-<!--    />-->
-
-
-
-<!--<TextView-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:background="@android:color/holo_blue_bright"-->
-<!--    android:text="This example is boring." />-->
-<!--<TextView-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:background="@android:color/holo_green_light"-->
-<!--    android:text="But is it really?" />-->
-
-
-<!--</LinearLayout>-->
-
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:layout_margin="16dp">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:textSize="20sp"
-        android:background="@android:color/holo_blue_bright"
         android:gravity="center_horizontal"
-        android:id="@+id/hello_text"
-        android:text="Hello Please enter your first and last name" />
-    <TextView
+        android:layout_marginTop="200dp"
+        android:orientation="vertical" android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:background="@android:color/holo_blue_bright"
+            android:gravity="center_horizontal"
+            android:id="@+id/hello_text"
+            android:text="Hello Please enter your first and last name" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:textSize="20sp"
-        android:background="@android:color/holo_blue_bright"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:text="Hello Please enter your first and last name" />
+        android:orientation="horizontal" android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:text="First: " />
+
+        <EditText
+            android:id="@+id/firstName_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/secondary_text_light"
+            android:text="ex: john" />
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center_horizontal"
+                android:text="Last: " />
+
+            <EditText
+                android:id="@+id/lastName_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ex: Smith" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/button_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:onClick="button_submit_clicked"
+            />
+        <TextView
+            android:id="@+id/display_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:text=" " />
+    </LinearLayout>
 </RelativeLayout>
