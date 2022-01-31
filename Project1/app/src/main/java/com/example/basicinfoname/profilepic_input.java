@@ -31,7 +31,7 @@ public class profilepic_input extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name_input);
+        setContentView(R.layout.activity_profilepic_input);
 
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_submit);
