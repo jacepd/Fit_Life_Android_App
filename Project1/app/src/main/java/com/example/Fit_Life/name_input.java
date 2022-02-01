@@ -50,7 +50,7 @@ public class name_input extends AppCompatActivity
                 String last = mLast_input.getText().toString();
                 TextView tv = (TextView)findViewById(R.id.display_text);
                 String mFullName = first + " " + last;
-                tv.setText(first + " " + last);
+                tv.setText(mFullName);
 
                 if (mFullName.matches("")) {
                     //Complain that there's no text
@@ -59,7 +59,7 @@ public class name_input extends AppCompatActivity
                 else {
                     //Start an activity and pass the EditText string to it.
                     Intent messageIntent = new Intent(this, body_info_input.class);
-                    messageIntent.putExtra("ET_STRING", first + " " + last);
+                    messageIntent.putExtra("ET_STRING", mFullName);
                     this.startActivity(messageIntent);
                 }
 

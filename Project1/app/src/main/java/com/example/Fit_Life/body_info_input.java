@@ -60,8 +60,6 @@ public class body_info_input extends AppCompatActivity
                 String age = mAge.getText().toString();
                 String weight = mWeight.getText().toString();
                 String height = mHeight.getText().toString();
-
-
                 String outStr = mFullNameReceived + " " + age + " " + weight + " " + height;
 
                 //Start an activity and pass the EditText string to it.
