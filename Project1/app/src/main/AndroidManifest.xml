@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicInfoName">
         <activity
+            android:name="com.example.Fit_Life.profile_pic_input"
+            android:exported="false" />
+        <activity
             android:name="com.example.Fit_Life.location_input"
             android:exported="false" />
         <activity
