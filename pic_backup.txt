@@ -1,4 +1,4 @@
-package com.example.basicinfoname;
+package com.example.Fit_Life;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.basicinfoname.R;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
@@ -22,6 +24,7 @@ public class profilepic_input extends AppCompatActivity
         implements View.OnClickListener {
 
     private Button mButtonSubmit;
+    private String mProfileStr;
     Bitmap mThumbnailImage;
     //Define a global intent variable
     Intent mDisplayIntent;
@@ -32,6 +35,20 @@ public class profilepic_input extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilepic_input);
+
+        //Get the intent that created this activity.
+        Intent receivedIntent = getIntent();
+
+        //Get the string data
+        mProfileStr = receivedIntent.getStringExtra("ET_STRING");
+
+        if(mProfileStr.matches("")){
+            Toast.makeText(profilepic_input.this, "Empty string received", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(profilepic_input.this, mProfileStr, Toast.LENGTH_SHORT).show();
+        }
+
 
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_submit);

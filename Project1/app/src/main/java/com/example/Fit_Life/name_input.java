@@ -1,12 +1,16 @@
-package com.example.basicinfoname;
+package com.example.Fit_Life;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.basicinfoname.R;
 
 public class name_input extends AppCompatActivity
         implements View.OnClickListener{
@@ -45,7 +49,20 @@ public class name_input extends AppCompatActivity
                 String first = mFirst_input.getText().toString();
                 String last = mLast_input.getText().toString();
                 TextView tv = (TextView)findViewById(R.id.display_text);
+                String mFullName = first + " " + last;
                 tv.setText(first + " " + last);
+
+                if (mFullName.matches("")) {
+                    //Complain that there's no text
+                    Toast.makeText(name_input.this, "Enter a name first!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    //Start an activity and pass the EditText string to it.
+                    Intent messageIntent = new Intent(this, body_info_input.class);
+                    messageIntent.putExtra("ET_STRING", first + " " + last);
+                    this.startActivity(messageIntent);
+                }
+
         }
     }
 }

@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_body_info_input.xml" value="0.19375" />
         <entry key="app/src/main/res/layout/activity_heightweightinput.xml" value="0.28372497558593757" />
+        <entry key="app/src/main/res/layout/activity_location_input.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_location_picture.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_name_input.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_profilepic_input.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_profilePic_input.xml" value="0.1484375" />
+        <entry key="app/src/main/res/layout/activity_profilepic_input.xml" value="0.1" />
       </map>
     </option>
   </component>

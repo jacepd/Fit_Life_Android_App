@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicInfoName">
         <activity
-            android:name=".location_input"
+            android:name="com.example.Fit_Life.location_input"
             android:exported="false" />
         <activity
-            android:name=".body_info_input"
+            android:name="com.example.Fit_Life.body_info_input"
             android:exported="false" />
         <activity
-            android:name=".name_input"
+            android:name="com.example.Fit_Life.name_input"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

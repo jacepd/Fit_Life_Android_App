@@ -19,7 +19,7 @@
             android:background="@android:color/holo_blue_bright"
             android:gravity="center_horizontal"
             android:id="@+id/hello_text"
-            android:text="Next, Please enter your zipcode so we can provide relevant location information" />
+            android:text="Please enter your zipcode so we can provide relevant location information" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -36,15 +36,14 @@
                 android:text="Zipcode: " />
 
             <EditText
-                android:id="@+id/firstName_input"
+                android:id="@+id/zipcode_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/secondary_text_light"
                 android:text="84102" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/button_submit"
+            android:id="@+id/button_loc_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
