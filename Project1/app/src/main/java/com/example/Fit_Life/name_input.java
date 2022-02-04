@@ -1,8 +1,11 @@
 package com.example.Fit_Life;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,14 +21,13 @@ public class name_input extends AppCompatActivity
     private Button mButtonSubmit;
     private EditText mFirst_input;
     private EditText mLast_input;
-    private String mFirstName;
-    private String mLastName;
-    private String mDisplayText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_input);
+
+        setTitle("Fit Life App");
 
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_submit);
@@ -48,9 +50,7 @@ public class name_input extends AppCompatActivity
 
                 String first = mFirst_input.getText().toString();
                 String last = mLast_input.getText().toString();
-                TextView tv = (TextView)findViewById(R.id.display_text);
                 String mFullName = first + " " + last;
-                tv.setText(mFullName);
 
                 if (mFullName.matches("")) {
                     //Complain that there's no text

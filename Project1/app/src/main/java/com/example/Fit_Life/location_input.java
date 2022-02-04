@@ -26,6 +26,8 @@ public class location_input extends AppCompatActivity
         //Get the intent that created this activity.
         Intent receivedIntent = getIntent();
 
+        setTitle("Fit Life App");
+
         //Get the string data
         mProfileStr = receivedIntent.getStringExtra("ET_STRING");
 

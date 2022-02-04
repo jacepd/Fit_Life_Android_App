@@ -10,13 +10,15 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginTop="200dp"
-        android:orientation="vertical" android:layout_weight="1">
+        android:background="@drawable/info_background"
+        android:orientation="vertical"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:background="@android:color/holo_blue_bright"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:id="@+id/hello_text"
             android:text="Click to add a profile picture" />
@@ -28,12 +30,16 @@
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal" android:layout_weight="1">
-            <Button
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Go"
+                android:text="GO"
                 android:onClick="button_submit_clicked"
+                android:background="@drawable/info_button"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
                 />
         </LinearLayout>
     </LinearLayout>

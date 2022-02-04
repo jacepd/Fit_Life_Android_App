@@ -29,6 +29,9 @@ public class body_info_input extends AppCompatActivity
         //Get the intent that created this activity.
         Intent receivedIntent = getIntent();
 
+        setTitle("Fit Life App");
+
+
         //Get the string data
         mFullNameReceived = receivedIntent.getStringExtra("ET_STRING");
 

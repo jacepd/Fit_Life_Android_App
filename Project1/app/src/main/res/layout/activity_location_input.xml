@@ -10,15 +10,15 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginTop="200dp"
+        android:background="@drawable/info_background"
         android:orientation="vertical" android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:background="@android:color/holo_blue_bright"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:id="@+id/hello_text"
             android:text="Please enter your zipcode so we can provide relevant location information" />
 
         <LinearLayout
@@ -40,15 +40,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="84102" />
-        </LinearLayout>
 
-        <Button
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:gravity="center_horizontal"
+            android:text="TO DO: get location from maps " />
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_loc_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="10dp"
             android:text="Next"
+            android:layout_marginBottom="10dp"
             android:onClick="button_submit_clicked"
+            android:background="@drawable/info_button"
+            android:textColor="@color/white"
             />
     </LinearLayout>
 </RelativeLayout>
