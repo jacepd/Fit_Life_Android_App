@@ -61,11 +61,16 @@ public class profile_pic_input extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_submit: {
+
+                Toast.makeText(profile_pic_input.this, "Yay!", Toast.LENGTH_SHORT).show();
+
                 //The button press should open a camera
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (cameraIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
                 }
+
+
             }
         }
     }

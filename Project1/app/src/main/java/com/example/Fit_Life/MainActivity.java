@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity
     private Button mViewWeather;
     private Button mViewHikes;
 
+    private String allDatastr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +25,18 @@ public class MainActivity extends AppCompatActivity
 
         // Get the intent that created this activity.
         Intent receivedIntent = getIntent();
+
+        setTitle("Fit Life - Home");
+
+        allDatastr = receivedIntent.getStringExtra("ET_STRING");
+
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            // case R.id.mViewMyInfo:
+            // case R.id.:
             // case default:
         }
     }
