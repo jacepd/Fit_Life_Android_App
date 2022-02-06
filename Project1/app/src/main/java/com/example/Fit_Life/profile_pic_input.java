@@ -33,30 +33,6 @@ public class profile_pic_input extends AppCompatActivity
     private Button mButtonSubmit;
     private String mProfileStr;
 
-//    ActivityResultLauncher<Intent> mGetContent = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-//            new ActivityResultCallback<ActivityResult>() {
-//
-//                @Override
-//                public void onActivityResult(Uri uri) {
-////                    super.onActivityResult(requestCode, resultCode, data);
-////                    if (requestCode==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
-////                        //Get the bitmap
-////                        Bundle extras = data.getExtras();
-////                        mThumbnailImage = (Bitmap) extras.get("data");
-////
-////                        //Open a file and write to it
-////                        if(isExternalStorageWritable()){
-////                            String filePathString = saveImage(mThumbnailImage);
-////                            mDisplayIntent.putExtra("imagePath",filePathString);
-////                        }
-////                        else{
-////                            Toast.makeText(this,"External storage not writable.", Toast.LENGTH_SHORT).show();
-////                        }
-////
-////                    }
-//                }
-//            });
-
     ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -64,6 +40,23 @@ public class profile_pic_input extends AppCompatActivity
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent intent = result.getData();
                         // Handle the Intent
+
+                        //Get the bitmap
+                        Bundle extras = intent.getExtras();
+                        mThumbnailImage = (Bitmap) extras.get("data");
+
+                        //Open a file and write to it
+                        if(isExternalStorageWritable()){
+                            String filePathString = saveImage(mThumbnailImage);
+                            mDisplayIntent.putExtra("imagePath",filePathString);
+                        }
+                        else {
+                            Toast.makeText(profile_pic_input.this, "External storage not writable.", Toast.LENGTH_SHORT).show();
+                        }
+
+                        Intent messageIntent = new Intent(profile_pic_input.this, MainActivity.class);
+                        messageIntent.putExtra("ET_STRING", mThumbnailImage);
+                        startActivity(messageIntent);
                     }
                 }
             });
@@ -108,41 +101,10 @@ public class profile_pic_input extends AppCompatActivity
         switch (view.getId()) {
             case R.id.button_submit: {
 
-//                Toast.makeText(profile_pic_input.this, "Yay!", Toast.LENGTH_SHORT).show();
-//
-//                //The button press should open a camera
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-//                    startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-//
-//                }
-
-
 
                 mStartForResult.launch(cameraIntent);
-
-
             }
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
-            //Get the bitmap
-            Bundle extras = data.getExtras();
-            mThumbnailImage = (Bitmap) extras.get("data");
-
-            //Open a file and write to it
-            if(isExternalStorageWritable()){
-                String filePathString = saveImage(mThumbnailImage);
-                mDisplayIntent.putExtra("imagePath",filePathString);
-            }
-            else{
-                Toast.makeText(this,"External storage not writable.", Toast.LENGTH_SHORT).show();
-            }
-
         }
     }
 
