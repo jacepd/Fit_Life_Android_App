@@ -1,10 +1,16 @@
 package com.example.Fit_Life;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -19,12 +25,50 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.EventListener;
 
 public class profile_pic_input extends AppCompatActivity
         implements View.OnClickListener {
 
     private Button mButtonSubmit;
     private String mProfileStr;
+
+//    ActivityResultLauncher<Intent> mGetContent = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//
+//                @Override
+//                public void onActivityResult(Uri uri) {
+////                    super.onActivityResult(requestCode, resultCode, data);
+////                    if (requestCode==REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+////                        //Get the bitmap
+////                        Bundle extras = data.getExtras();
+////                        mThumbnailImage = (Bitmap) extras.get("data");
+////
+////                        //Open a file and write to it
+////                        if(isExternalStorageWritable()){
+////                            String filePathString = saveImage(mThumbnailImage);
+////                            mDisplayIntent.putExtra("imagePath",filePathString);
+////                        }
+////                        else{
+////                            Toast.makeText(this,"External storage not writable.", Toast.LENGTH_SHORT).show();
+////                        }
+////
+////                    }
+//                }
+//            });
+
+    ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent intent = result.getData();
+                        // Handle the Intent
+                    }
+                }
+            });
+
+
     Bitmap mThumbnailImage;
     //Define a global intent variable
     Intent mDisplayIntent;
@@ -40,6 +84,8 @@ public class profile_pic_input extends AppCompatActivity
         Intent receivedIntent = getIntent();
 
         setTitle("Fit Life App");
+
+
 
         //Get the string data
         mProfileStr = receivedIntent.getStringExtra("ET_STRING");
@@ -62,13 +108,18 @@ public class profile_pic_input extends AppCompatActivity
         switch (view.getId()) {
             case R.id.button_submit: {
 
-                Toast.makeText(profile_pic_input.this, "Yay!", Toast.LENGTH_SHORT).show();
-
-                //The button press should open a camera
+//                Toast.makeText(profile_pic_input.this, "Yay!", Toast.LENGTH_SHORT).show();
+//
+//                //The button press should open a camera
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-                }
+//                if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+//                    startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+//
+//                }
+
+
+
+                mStartForResult.launch(cameraIntent);
 
 
             }
