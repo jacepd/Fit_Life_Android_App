@@ -69,9 +69,9 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/profile_photo"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:layout_alignParentRight="true"
-        android:src="@android:color/holo_orange_light" />
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

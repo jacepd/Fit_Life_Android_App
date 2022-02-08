@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.basicinfoname.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
@@ -37,7 +38,7 @@ public class profile_pic_input extends AppCompatActivity
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
+//                    if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent intent = result.getData();
                         // Handle the Intent
 
@@ -45,19 +46,25 @@ public class profile_pic_input extends AppCompatActivity
                         Bundle extras = intent.getExtras();
                         mThumbnailImage = (Bitmap) extras.get("data");
 
-                        //Open a file and write to it
-                        if(isExternalStorageWritable()){
-                            String filePathString = saveImage(mThumbnailImage);
-                            mDisplayIntent.putExtra("imagePath",filePathString);
-                        }
-                        else {
-                            Toast.makeText(profile_pic_input.this, "External storage not writable.", Toast.LENGTH_SHORT).show();
-                        }
+                    ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                    mThumbnailImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                    byte[] byteArray = bStream.toByteArray();
+
+
+                    //Open a file and write to it
+//                        if(isExternalStorageWritable()){
+//                            String filePathString = saveImage(mThumbnailImage);
+//                            mDisplayIntent.putExtra("imagePath",filePathString);
+//                        }
+//                        else {
+//                            Toast.makeText(profile_pic_input.this, "External storage not writable.", Toast.LENGTH_SHORT).show();
+//                        }
 
                         Intent messageIntent = new Intent(profile_pic_input.this, MainActivity.class);
-                        messageIntent.putExtra("ET_STRING", mThumbnailImage);
+                        messageIntent.putExtra("ET_STRING", mProfileStr);
+                        messageIntent.putExtra("ET_IMAGE", byteArray);
                         startActivity(messageIntent);
-                    }
+//                    }
                 }
             });
 
