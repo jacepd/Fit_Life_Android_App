@@ -3,7 +3,7 @@
     <solid android:color="#90caf9"/>
     <stroke
         android:width="3dp"
-        android:color="#90caf9" />
+        android:color="@color/colorPrimary"/>
 
 <!--    //specify gradient-->
 <!--    <gradient-->
