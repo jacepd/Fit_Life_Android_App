@@ -18,7 +18,7 @@
             android:layout_width="155dp"
             android:layout_height="155dp"
             card_view:cardCornerRadius="250dp"
-            card_view:cardBackgroundColor="@color/white">
+            card_view:cardBackgroundColor="@color/colorAccent">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
@@ -64,9 +64,8 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:background="@drawable/info_button"
-            android:onClick="button_weather"
             android:text="Go to Weather"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorAccent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_hikes"
@@ -74,10 +73,9 @@
             android:layout_height="100dp"
             android:layout_margin="10dp"
             android:text="Go to Hikes Near Me"
-            android:onClick="button_hikes"
             android:background="@drawable/info_button"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/colorAccent"
             />
     </LinearLayout>
     <LinearLayout
@@ -95,9 +93,8 @@
             android:layout_height="100dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/info_button"
-            android:onClick="button_hikes"
             android:text="Go to BMI Calculator"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorAccent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_view_my_info"
@@ -105,10 +102,9 @@
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:text="Go to my info!"
-            android:onClick="button_hikes"
             android:background="@drawable/info_button"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/colorAccent"
             />
     </LinearLayout>
 
@@ -126,9 +122,8 @@
             android:layout_height="100dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/info_button"
-            android:onClick="button_hikes"
             android:text="Go to My Goals!"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorAccent" />
     </LinearLayout>
 
     </LinearLayout>

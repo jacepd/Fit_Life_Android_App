@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -45,6 +46,16 @@ public class profile_pic_input extends AppCompatActivity
                         //Get the bitmap
                         Bundle extras = intent.getExtras();
                         mThumbnailImage = (Bitmap) extras.get("data");
+
+                    //Open a file and write to it
+                    if(isExternalStorageWritable()){
+//                        String filePathString = saveImage(mThumbnailImage);
+//                        mDisplayIntent.putExtra("imagePath",filePathString);
+                    }
+                    else{
+                        Toast.makeText(profile_pic_input.this,"External storage not writable.",Toast.LENGTH_SHORT).show();
+                    }
+
 
                     ByteArrayOutputStream bStream = new ByteArrayOutputStream();
                     mThumbnailImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
@@ -120,19 +131,24 @@ public class profile_pic_input extends AppCompatActivity
         String root = Environment.getExternalStorageDirectory().toString();
         File myDir = new File(root + "/saved_images");
         myDir.mkdirs();
+        //System.out.println(myDir.mkdirs());
 
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String fname = "Thumbnail_"+ timeStamp +".jpg";
+        //String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        //String fname = "Thumbnail_"+ timeStamp +".jpg";
+        String fname = "profilePic.jpg";
 
+        Toast.makeText(this,"Made it here 1!",Toast.LENGTH_SHORT).show();
         File file = new File(myDir, fname);
         if (file.exists()) file.delete ();
         try {
+            Toast.makeText(this,"Made it here 2!",Toast.LENGTH_SHORT).show();
             FileOutputStream out = new FileOutputStream(file);
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
             Toast.makeText(this,"file saved!",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
+            Toast.makeText(this,"Failed!",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 

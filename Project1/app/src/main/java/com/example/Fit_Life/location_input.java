@@ -1,7 +1,9 @@
 package com.example.Fit_Life;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -53,11 +55,15 @@ public class location_input extends AppCompatActivity
         switch (view.getId()) {
             case R.id.button_loc_submit:
 
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+
                 //Error checking: ????
 
                 String zipcode = mZipcode.getText().toString();
                 String outStr = mProfileStr + " " + zipcode;
-
+                
                 //Start an activity and pass the EditText string to it.
                 Intent messageIntent = new Intent(this, profile_pic_input.class);
                 messageIntent.putExtra("ET_STRING", outStr);

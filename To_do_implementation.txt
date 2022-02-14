@@ -1,0 +1,37 @@
+To Do:
+
+-Error checking 
+	- valid name inputs (numbers symbols ect)
+	- 
+
+-Remove default values (rick Sanchez, weight, ect.)
+
+-life cycle aware
+
+-save to file
+
+-selection drop downs or spinselection (only keyboard input can be name)
+
+-zipcode page --> instead of entering zip code get current location or user search on map 
+
+-save info to file 
+
+-hikes page
+
+-BMI page maybe a dial meter that animates and then tell you your clarification (normal, overweight, obese, ect)
+
+-weather page
+
+-goals page
+
+-info page
+
+-"make tests"
+
+Required Docs:
+
+-app diagram 
+
+-layout sketch
+
+-test documentation (see project description)	

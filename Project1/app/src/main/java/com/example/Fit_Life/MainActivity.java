@@ -1,11 +1,15 @@
 package com.example.Fit_Life;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.example.basicinfoname.R;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +23,7 @@ public class MainActivity extends AppCompatActivity
     private Button mViewMyInfo;
     private Button mViewWeather;
     private Button mViewHikes;
+    private Button mViewGoals;
     private Button mBMICalculator;
     private ImageView mProfilePic;
 
@@ -46,11 +51,22 @@ public class MainActivity extends AppCompatActivity
         mBMICalculator = (Button) findViewById(R.id.button_BMI_Calculator);
         mBMICalculator.setOnClickListener(this);
 
+        mViewHikes = (Button) findViewById(R.id.button_hikes);
+        mViewHikes.setOnClickListener(this);
+
+        mViewWeather = (Button) findViewById(R.id.button_weather);
+        mViewWeather.setOnClickListener(this);
+
+        mViewMyInfo = (Button) findViewById(R.id.button_view_my_info);
+        mViewMyInfo.setOnClickListener(this);
+
+        mViewGoals = (Button) findViewById(R.id.button_Fitness_Goals);
+        mViewGoals.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-        System.out.println("Made it");
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
                 String[] data = allDatastr.split(" ");
@@ -59,6 +75,15 @@ public class MainActivity extends AppCompatActivity
                 double result = (weight / (height * height)) * 703;
                 Toast.makeText(this, "BMI: " + result, Toast.LENGTH_SHORT).show();
             // case default:
+            case R.id.button_hikes:
+
+                //We have to grab the search term and construct a URI object from it.
+                //pull location from file
+                Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q=" + "hikes");
+
+                //Create the implicit intent
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, searchUri);
+                startActivity(mapIntent);
         }
     }
 }
