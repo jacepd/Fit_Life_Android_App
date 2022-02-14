@@ -14,6 +14,8 @@ To Do:
 
 -zipcode page --> instead of entering zip code get current location or user search on map 
 
+https://www.geeksforgeeks.org/how-to-get-user-location-in-android/
+
 -save info to file 
 
 -hikes page
