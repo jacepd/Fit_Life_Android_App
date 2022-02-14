@@ -63,7 +63,7 @@ public class location_input extends AppCompatActivity
 
                 String zipcode = mZipcode.getText().toString();
                 String outStr = mProfileStr + " " + zipcode;
-                
+
                 //Start an activity and pass the EditText string to it.
                 Intent messageIntent = new Intent(this, profile_pic_input.class);
                 messageIntent.putExtra("ET_STRING", outStr);

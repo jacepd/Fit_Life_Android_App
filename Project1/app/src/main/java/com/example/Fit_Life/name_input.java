@@ -2,7 +2,9 @@ package com.example.Fit_Life;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -36,6 +38,9 @@ public class name_input extends AppCompatActivity
         //Get the EditText
         mFirst_input = (EditText) findViewById(R.id.firstName_input);
         mLast_input = (EditText) findViewById(R.id.lastName_input);
+
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE}, 55);
     }
 
     @Override
