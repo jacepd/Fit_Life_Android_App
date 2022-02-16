@@ -50,8 +50,8 @@ public class profile_pic_input extends AppCompatActivity
 
                     //Open a file and write to it
                     if(isExternalStorageWritable()){
-//                        String filePathString = saveImage(mThumbnailImage);
-//                        mDisplayIntent.putExtra("imagePath",filePathString);
+                        String filePathString = saveImage(mThumbnailImage);
+                        mDisplayIntent.putExtra("imagePath",filePathString);
                     }
                     else{
                         Toast.makeText(profile_pic_input.this,"External storage not writable.",Toast.LENGTH_SHORT).show();
@@ -129,9 +129,13 @@ public class profile_pic_input extends AppCompatActivity
 
     private String saveImage(Bitmap finalBitmap) {
 
-        String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(root + "/saved_images");
+        //String root = Environment.getExternalStorageDirectory().toString();
+        //File myDir = new File(root + "/saved_images");
+        //myDir.mkdirs();
+
+        File myDir = new File(Environment.getExternalStorageDirectory()+File.separator+"images");
         myDir.mkdirs();
+
         //System.out.println(myDir.mkdirs());
 
         //String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

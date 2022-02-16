@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity
                 double height = Double.parseDouble(data[4]) * 12;
                 double result = (weight / (height * height)) * 703;
                 Toast.makeText(this, "BMI: " + result, Toast.LENGTH_SHORT).show();
+                break;
             // case default:
             case R.id.button_hikes:
 
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity
                 //Create the implicit intent
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, searchUri);
                 startActivity(mapIntent);
+                break;
         }
     }
 }
