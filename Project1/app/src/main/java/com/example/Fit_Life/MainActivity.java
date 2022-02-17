@@ -86,6 +86,13 @@ public class MainActivity extends AppCompatActivity
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, searchUri);
                 startActivity(mapIntent);
                 break;
+            case R.id.button_weather:
+
+                Intent messageIntent = new Intent(this, weather_output.class);
+                messageIntent.putExtra("ET_STRING", allDatastr);
+                this.startActivity(messageIntent);
+
+                break;
         }
     }
 }
