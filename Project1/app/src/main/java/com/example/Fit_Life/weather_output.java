@@ -24,10 +24,12 @@ public class weather_output extends AppCompatActivity {
             Fragment weatherFragment = getSupportFragmentManager().findFragmentByTag("weather_frag");
         }
         else {
-            WeatherFragment weatherFragment = new WeatherFragment();
-            FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-            fTrans.replace(R.id.fl_frag_weather, weatherFragment, "weather_frag");
-            fTrans.commit();
+
+            //tony commented this out because it was not compiling
+         //   WeatherFragment weatherFragment = new WeatherFragment();
+         //   FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+         //   fTrans.replace(R.id.fl_frag_weather, weatherFragment, "weather_frag");
+         //   fTrans.commit();
         }
 
 

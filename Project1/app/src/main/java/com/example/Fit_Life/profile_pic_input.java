@@ -10,6 +10,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -65,7 +66,7 @@ public class profile_pic_input extends AppCompatActivity
 
                     //Open a file and write to it
 //                        if(isExternalStorageWritable()){
-//                            String filePathString = saveImage(mThumbnailImage);
+                            String filePathString = saveImage(mThumbnailImage);
 //                            mDisplayIntent.putExtra("imagePath",filePathString);
 //                        }
 //                        else {
@@ -129,9 +130,9 @@ public class profile_pic_input extends AppCompatActivity
 
     private String saveImage(Bitmap finalBitmap) {
 
-        String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(root + "/saved_images");
-        myDir.mkdirs();
+        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //File myDir = new File(root + "/saved_images");
+        //myDir.mkdir();
 
         // File myDir = new File(Environment.getExternalStorageDirectory()+File.separator+"images");
         // myDir.mkdirs();
