@@ -24,7 +24,7 @@ import java.util.List;
 public class location_input extends AppCompatActivity
         implements View.OnClickListener {
 
-    private String mProfileStr;
+    //private String mProfileStr;
     private EditText mZipcode;
     private Button mButtonSubmit;
     //private FusedLocationProviderClient fusedLocationClient;
@@ -36,19 +36,20 @@ public class location_input extends AppCompatActivity
         setContentView(R.layout.activity_location_input);
        // fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        //Get the intent that created this activity.
-        Intent receivedIntent = getIntent();
-
         setTitle("Fit Life App");
 
-        //Get the string data
-        mProfileStr = receivedIntent.getStringExtra("ET_STRING");
-
-        if (mProfileStr.matches("")) {
-            Toast.makeText(location_input.this, "Empty string received", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(location_input.this, mProfileStr, Toast.LENGTH_SHORT).show();
-        }
+          //commenting out intent bundle stuff. No need for it because now we save to files
+//        //Get the intent that created this activity.
+//        Intent receivedIntent = getIntent();
+//
+//        //Get the string data
+//        mProfileStr = receivedIntent.getStringExtra("ET_STRING");
+//
+//        if (mProfileStr.matches("")) {
+//            Toast.makeText(location_input.this, "Empty string received", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(location_input.this, mProfileStr, Toast.LENGTH_SHORT).show();
+//        }
 
 
         //eventually add option to enter zip code or ask user to pull current location from phones
@@ -89,11 +90,11 @@ public class location_input extends AppCompatActivity
                 //tony was here
                 //getLastLocation();
                 String zipcode = mZipcode.getText().toString();
-                String outStr = mProfileStr + " " + zipcode;
+                //String outStr = mProfileStr + " " + zipcode;
 
                 //Start an activity and pass the EditText string to it.
                 Intent messageIntent = new Intent(this, profile_pic_input.class);
-                messageIntent.putExtra("ET_STRING", outStr);
+                //messageIntent.putExtra("ET_STRING", outStr);
                 this.startActivity(messageIntent);
 
 
@@ -148,11 +149,11 @@ public class location_input extends AppCompatActivity
         double latitude = bestLocation.getLatitude();
 
         String zipcode = mZipcode.getText().toString();
-        String outStr = mProfileStr + " " + zipcode;
+        //String outStr = mProfileStr + " " + zipcode;
 
         //Start an activity and pass the EditText string to it.
         Intent messageIntent = new Intent(this, profile_pic_input.class);
-        messageIntent.putExtra("ET_STRING", outStr);
+        //messageIntent.putExtra("ET_STRING", outStr);
         this.startActivity(messageIntent);
     }
 

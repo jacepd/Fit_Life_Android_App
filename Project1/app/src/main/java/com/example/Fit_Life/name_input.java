@@ -61,18 +61,22 @@ public class name_input extends AppCompatActivity
 
                 //Error checking:
                 // make sure its a valid name and it's a string
+                //Even better, don't even let them input any non string
                 // account for weird last names with spaces and hyphens
 
                 String first = mFirst_input.getText().toString();
                 String last = mLast_input.getText().toString();
-                String mFullName = first + " " + last;
                 ArrayList<String> myList = new ArrayList<String>();
                 myList.add(first);
                 myList.add(last);
 
-                if (mFullName.matches("")) {
+                if (first.matches("")) {
                     //Complain that there's no text
-                    Toast.makeText(name_input.this, "Enter a name first!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(name_input.this, "Enter a first name!", Toast.LENGTH_SHORT).show();
+                }
+                else if (last.matches("") ) {
+                    //Complain that there's no text
+                    Toast.makeText(name_input.this, "Enter a last name!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     //Start an activity and pass the EditText string to it.
@@ -80,7 +84,8 @@ public class name_input extends AppCompatActivity
                     helperMethods.saveData(myList, this, false);
 
                     Intent messageIntent = new Intent(this, body_info_input.class);
-                    messageIntent.putExtra("ET_STRING", mFullName);
+                    //String mFullName = first + " " + last;
+                    //messageIntent.putExtra("ET_STRING", mFullName);
                     this.startActivity(messageIntent);
                 }
 

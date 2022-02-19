@@ -33,17 +33,17 @@ public class body_info_input extends AppCompatActivity
 
 
         //Get the intent that created this activity.
-        Intent receivedIntent = getIntent();
+        //Intent receivedIntent = getIntent();
 
         //Get the string data
-        mFullNameReceived = receivedIntent.getStringExtra("ET_STRING");
-
-        if(mFullNameReceived.matches("")){
-            Toast.makeText(body_info_input.this, "Empty string received", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(body_info_input.this, mFullNameReceived, Toast.LENGTH_SHORT).show();
-        }
+//        mFullNameReceived = receivedIntent.getStringExtra("ET_STRING");
+//
+//        if(mFullNameReceived.matches("")){
+//            Toast.makeText(body_info_input.this, "Empty string received", Toast.LENGTH_SHORT).show();
+//        }
+//        else{
+//            Toast.makeText(body_info_input.this, mFullNameReceived, Toast.LENGTH_SHORT).show();
+//        }
 
         //change to number picker later with date of birth instead of age input
         mAge    = (EditText) findViewById(R.id.age_input);
@@ -68,7 +68,7 @@ public class body_info_input extends AppCompatActivity
                 String weight = mWeight.getText().toString();
                 String height = mHeight.getText().toString();
                 String sex = mSex.getText().toString();
-                String outStr = mFullNameReceived + " " + age + " " + weight + " " + height + " " + sex;
+
 
 
                 ArrayList<String> myList = new ArrayList<String>();
@@ -76,12 +76,12 @@ public class body_info_input extends AppCompatActivity
                 myList.add(weight);
                 myList.add(height);
                 myList.add(sex);
-
-
                 helperMethods.saveData(myList, this, true);
+
                 //Start an activity and pass the EditText string to it.
                 Intent messageIntent = new Intent(this, location_input.class);
-                messageIntent.putExtra("ET_STRING", outStr);
+                //String outStr = mFullNameReceived + " " + age + " " + weight + " " + height + " " + sex;
+                //messageIntent.putExtra("ET_STRING", outStr);
                 this.startActivity(messageIntent);
 
         }
