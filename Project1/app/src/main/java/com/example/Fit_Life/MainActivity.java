@@ -11,11 +11,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
@@ -36,17 +39,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Get the intent that created this activity.
-        Intent receivedIntent = getIntent();
-
         setTitle("Fit Life - Home");
-
-        allDatastr = receivedIntent.getStringExtra("ET_STRING");
-        byte[] byteArray = getIntent().getByteArrayExtra("ET_IMAGE");
-        image = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-
-        mProfilePic = (ImageView) findViewById(R.id.profile_photo);
-        mProfilePic.setImageBitmap(image);
 
         mBMICalculator = (Button) findViewById(R.id.button_BMI_Calculator);
         mBMICalculator.setOnClickListener(this);
@@ -63,6 +56,25 @@ public class MainActivity extends AppCompatActivity
         mViewGoals = (Button) findViewById(R.id.button_Fitness_Goals);
         mViewGoals.setOnClickListener(this);
 
+        mProfilePic = (ImageView) findViewById(R.id.profile_photo);
+
+        //This takes the picture from the recieved intent, but now commented out. Now it and takes
+        //the picture from the saved file.
+
+        // Get the intent that created this activity.
+        //Intent receivedIntent = getIntent();
+        //allDatastr = receivedIntent.getStringExtra("ET_STRING");
+        //byte[] byteArray = getIntent().getByteArrayExtra("ET_IMAGE");
+        //image = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        //mProfilePic.setImageBitmap(image);
+
+        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        String fname = "profilePic.jpg";
+
+        File file = new File(myDir, fname);
+        Bitmap bMap = BitmapFactory.decodeFile(file.toString());
+
+        mProfilePic.setImageBitmap(bMap);
     }
 
     @Override
@@ -75,7 +87,6 @@ public class MainActivity extends AppCompatActivity
                 double result = (weight / (height * height)) * 703;
                 Toast.makeText(this, "BMI: " + result, Toast.LENGTH_SHORT).show();
                 break;
-            // case default:
             case R.id.button_hikes:
 
                 //We have to grab the search term and construct a URI object from it.
