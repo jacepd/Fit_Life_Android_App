@@ -120,9 +120,7 @@ public class profile_pic_input extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_submit: {
-
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
                 mStartForResult.launch(cameraIntent);
             }
         }
@@ -130,24 +128,12 @@ public class profile_pic_input extends AppCompatActivity
 
     private String saveImage(Bitmap finalBitmap) {
 
-        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        //File myDir = new File(root + "/saved_images");
-        //myDir.mkdir();
-
-        // File myDir = new File(Environment.getExternalStorageDirectory()+File.separator+"images");
-        // myDir.mkdirs();
-
-        //System.out.println(myDir.mkdirs());
-
-        //String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        //String fname = "Thumbnail_"+ timeStamp +".jpg";
+        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         String fname = "profilePic.jpg";
 
-        Toast.makeText(this,"Made it here 1!",Toast.LENGTH_SHORT).show();
         File file = new File(myDir, fname);
         if (file.exists()) file.delete ();
         try {
-            Toast.makeText(this,"Made it here 2!",Toast.LENGTH_SHORT).show();
             FileOutputStream out = new FileOutputStream(file);
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();

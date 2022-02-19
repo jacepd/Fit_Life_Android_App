@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.basicinfoname.R;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
 public class name_input extends AppCompatActivity
         implements View.OnClickListener{
@@ -56,6 +66,9 @@ public class name_input extends AppCompatActivity
                 String first = mFirst_input.getText().toString();
                 String last = mLast_input.getText().toString();
                 String mFullName = first + " " + last;
+                ArrayList<String> myList = new ArrayList<String>();
+                myList.add(first);
+                myList.add(last);
 
                 if (mFullName.matches("")) {
                     //Complain that there's no text
@@ -63,6 +76,9 @@ public class name_input extends AppCompatActivity
                 }
                 else {
                     //Start an activity and pass the EditText string to it.
+
+                    helperMethods.saveData(myList, this, false);
+
                     Intent messageIntent = new Intent(this, body_info_input.class);
                     messageIntent.putExtra("ET_STRING", mFullName);
                     this.startActivity(messageIntent);
@@ -70,4 +86,10 @@ public class name_input extends AppCompatActivity
 
         }
     }
+
+
+
+
+
+
 }

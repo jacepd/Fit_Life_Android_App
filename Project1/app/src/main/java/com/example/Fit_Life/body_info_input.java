@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.basicinfoname.R;
 
+import java.util.ArrayList;
+
 public class body_info_input extends AppCompatActivity
         implements View.OnClickListener{
 
@@ -20,17 +22,18 @@ public class body_info_input extends AppCompatActivity
     private EditText mAge;
     private EditText mHeight;
     private EditText mWeight;
+    private EditText mSex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_body_info_input);
 
-        //Get the intent that created this activity.
-        Intent receivedIntent = getIntent();
-
         setTitle("Fit Life App");
 
+
+        //Get the intent that created this activity.
+        Intent receivedIntent = getIntent();
 
         //Get the string data
         mFullNameReceived = receivedIntent.getStringExtra("ET_STRING");
@@ -46,6 +49,7 @@ public class body_info_input extends AppCompatActivity
         mAge    = (EditText) findViewById(R.id.age_input);
         mWeight = (EditText) findViewById(R.id.weight_input);
         mHeight = (EditText) findViewById(R.id.height_input);
+        mSex = (EditText) findViewById(R.id.sex_input);
 
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_submit);
@@ -63,8 +67,18 @@ public class body_info_input extends AppCompatActivity
                 String age = mAge.getText().toString();
                 String weight = mWeight.getText().toString();
                 String height = mHeight.getText().toString();
-                String outStr = mFullNameReceived + " " + age + " " + weight + " " + height;
+                String sex = mSex.getText().toString();
+                String outStr = mFullNameReceived + " " + age + " " + weight + " " + height + " " + sex;
 
+
+                ArrayList<String> myList = new ArrayList<String>();
+                myList.add(age);
+                myList.add(weight);
+                myList.add(height);
+                myList.add(sex);
+
+
+                helperMethods.saveData(myList, this, true);
                 //Start an activity and pass the EditText string to it.
                 Intent messageIntent = new Intent(this, location_input.class);
                 messageIntent.putExtra("ET_STRING", outStr);
