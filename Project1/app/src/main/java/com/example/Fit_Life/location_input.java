@@ -38,8 +38,8 @@ public class location_input extends AppCompatActivity
     private Button mButtonSubmit;
     private FusedLocationProviderClient fusedLocationClient;
     private ActivityResultLauncher<String[]> locationPermissionRequest;
-    private double mlongitude = 10;
-    private double mlatitude = 15;
+    private double mlongitude = -111.8421;
+    private double mlatitude = 40.7649;
 
 
     @Override
@@ -58,6 +58,7 @@ public class location_input extends AppCompatActivity
         mButtonSubmit = (Button) findViewById(R.id.button_loc_submit);
         mButtonSubmit.setOnClickListener(this);
 
+        /*
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ContextCompat.checkSelfPermission(
@@ -86,8 +87,10 @@ public class location_input extends AppCompatActivity
                 location_input.this.mlatitude = location.getLatitude();
             }
         });
-    }
 
+ */
+    }
+/*
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
@@ -112,14 +115,10 @@ public class location_input extends AppCompatActivity
                 }
                 return;
         }
-        // Other 'case' lines to check for other
-        // permissions this app might request.
     }
+*/
 
 
-
-
-    @SuppressLint("MissingPermission")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
