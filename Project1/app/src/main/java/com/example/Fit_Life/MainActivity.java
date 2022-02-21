@@ -91,6 +91,9 @@ public class MainActivity extends AppCompatActivity
 
                 //We have to grab the search term and construct a URI object from it.
                 //pull location from file
+
+
+
                 Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q=" + "hikes");
 
                 //Create the implicit intent
