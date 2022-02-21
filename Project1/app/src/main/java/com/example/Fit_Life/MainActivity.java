@@ -4,21 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.basicinfoname.R;
+import com.google.android.gms.common.util.IOUtils;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.FileUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Dictionary;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
@@ -30,8 +40,16 @@ public class MainActivity extends AppCompatActivity
     private Button mBMICalculator;
     private ImageView mProfilePic;
 
-    private String allDatastr;
-    private Bitmap image;
+    private String allDataStr;
+
+    private String firstName;
+    private String lastName;
+    private int age;
+    private int weight;
+    private int height;
+    private String sex;
+    private String latitude;
+    private String longitude;
 
 
     @Override
@@ -69,30 +87,48 @@ public class MainActivity extends AppCompatActivity
         //mProfilePic.setImageBitmap(image);
 
         File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-        String fname = "profilePic.jpg";
+        String imFilename = "profilePic.jpg";
 
-        File file = new File(myDir, fname);
-        Bitmap bMap = BitmapFactory.decodeFile(file.toString());
+        File imagefile = new File(myDir, imFilename);
+        Bitmap bMap = BitmapFactory.decodeFile(imagefile.toString());
 
+        String fname = "userData.txt";
+        File userInfoFile = new File(myDir, fname);
+
+        allDataStr = helperMethods.readData(userInfoFile);
+
+        String[] datas = allDataStr.split(",");
+        firstName = datas[0];
+        lastName = datas[1];
+        age = Integer.parseInt(datas[2]);
+        weight = Integer.parseInt(datas[3]);
+        height = Integer.parseInt(datas[4]);
+        sex = datas[5];
+        latitude = datas[6];
+        longitude = datas[7];
         mProfilePic.setImageBitmap(bMap);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
-                String[] data = allDatastr.split(" ");
-                double weight = Double.parseDouble(data[3]);
-                double height = Double.parseDouble(data[4]) * 12;
-                double result = (weight / (height * height)) * 703;
+                double tHeight = height * 12;
+                double result = (weight / (tHeight * tHeight)) * 703;
+                result = helperMethods.round(result,1);
                 Toast.makeText(this, "BMI: " + result, Toast.LENGTH_SHORT).show();
+
+                Intent messageIntentBMI = new Intent(this, weather_output.class);
+                messageIntentBMI.putExtra("BMI", result);
+                this.startActivity(messageIntentBMI);
+
                 break;
+
             case R.id.button_hikes:
 
                 //We have to grab the search term and construct a URI object from it.
                 //pull location from file
-
-
 
                 Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q=" + "hikes");
 
@@ -103,7 +139,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.button_weather:
 
                 Intent messageIntent = new Intent(this, weather_output.class);
-                messageIntent.putExtra("ET_STRING", allDatastr);
+                messageIntent.putExtra("ET_STRING", allDataStr);
                 this.startActivity(messageIntent);
 
                 break;
