@@ -48,7 +48,8 @@
                 android:id="@+id/firstName_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rick" />
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
+                android:hint="John" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -68,7 +69,8 @@
                 android:id="@+id/lastName_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sanchez" />
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
+                android:hint="Cena" />
         </LinearLayout>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_submit"
