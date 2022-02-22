@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity
     private String lastName;
     private int age;
     private int weight;
-    private int height;
+    private int heightFeet;
+    private int heightInches;
     private String sex;
     private String latitude;
     private String longitude;
@@ -102,10 +103,11 @@ public class MainActivity extends AppCompatActivity
         lastName = datas[1];
         age = Integer.parseInt(datas[2]);
         weight = Integer.parseInt(datas[3]);
-        height = Integer.parseInt(datas[4]);
-        sex = datas[5];
-        latitude = datas[6];
-        longitude = datas[7];
+        heightFeet = Integer.parseInt(datas[4]);
+        heightInches = Integer.parseInt(datas[5]);
+        sex = datas[6];
+        latitude = datas[7];
+        longitude = datas[8];
         mProfilePic.setImageBitmap(bMap);
     }
 
@@ -114,7 +116,8 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
-                double tHeight = height * 12;
+                double tHeight = heightFeet * 12;
+                tHeight += heightInches;
                 double result = (weight / (tHeight * tHeight)) * 703;
                 result = helperMethods.round(result,1);
                 Toast.makeText(this, "BMI: " + result, Toast.LENGTH_SHORT).show();

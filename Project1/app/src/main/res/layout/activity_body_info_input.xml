@@ -8,124 +8,155 @@
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
         android:background="@drawable/info_background"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="28sp"
             android:gravity="center_horizontal"
-            android:text="Now," />
+            android:text="Now,"
+            android:textSize="28sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="25sp"
             android:gravity="center_horizontal"
-            android:text="Some info about your body" />
+            android:text="Some info about your body"
+            android:textSize="25sp" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="horizontal" android:layout_weight="1">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:gravity="center_horizontal"
-                android:text="Age: " />
+                android:text="Age: "
+                android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/age_input"
+            <NumberPicker
+                android:id="@+id/ageNumberPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="21" />
+                android:scaleY=".8" />
+
+
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout4"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="horizontal" android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:gravity="center_horizontal"
-                android:text="Weight: " />
+            android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/weight_input"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="150" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:gravity="center_horizontal"
-                android:text=" lbs" />
+                android:text="Weight: "
+                android:textSize="20sp" />
+
+            <NumberPicker
+                android:id="@+id/weightNumberPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleY=".8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text=" lbs"
+                android:textSize="20sp" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="horizontal" android:layout_weight="1">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:gravity="center_horizontal"
-                android:text="Height: " />
+                android:text="Height: "
+                android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/height_input"
+            <NumberPicker
+                android:id="@+id/heightFeetNumberPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="6" />
+                android:scaleY=".8" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text=" ' "
+                android:textSize="20sp" />
+            <NumberPicker
+                android:id="@+id/heightInchesNumberPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleY=".8" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text=" &quot; "
+                android:textSize="20sp" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout5"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="horizontal" android:layout_weight="1">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:gravity="center_horizontal"
-                android:text="Sex: " />
+                android:text="Sex: "
+                android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/sex_input"
+            <NumberPicker
+                android:id="@+id/sexNumberPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="M" />
+                android:scaleY=".8" />
         </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
-            android:onClick="button_submit_clicked"
             android:layout_marginBottom="10dp"
             android:background="@drawable/info_button"
-            android:textColor="@color/colorAccent"
-            />
+            android:onClick="button_submit_clicked"
+            android:text="Next"
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
 </RelativeLayout>
