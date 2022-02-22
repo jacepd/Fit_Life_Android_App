@@ -1,11 +1,17 @@
 package com.example.Fit_Life;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -13,7 +19,11 @@ import android.widget.Toast;
 
 import com.example.basicinfoname.R;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //https://www.youtube.com/watch?v=dWq5CJDBDVE for the number picker
 
@@ -22,6 +32,7 @@ public class body_info_input extends AppCompatActivity
 
     private String mFullNameReceived;
     private Button mButtonSubmit;
+    private EditText mDatePicker;
 
     private NumberPicker mAgeNumberPicker;
     private NumberPicker mWeightNumberPicker;
@@ -65,19 +76,25 @@ public class body_info_input extends AppCompatActivity
         mButtonSubmit = (Button) findViewById(R.id.button_submit);
         mButtonSubmit.setOnClickListener(this);
 
+        mDatePicker = (EditText) findViewById(R.id.datePicker);
+        mDatePicker.setInputType(InputType.TYPE_NULL);
+        mDatePicker.setOnClickListener(this);
 
-        //age number picker
-        mAgeNumberPicker = (NumberPicker) findViewById(R.id.ageNumberPicker);
-        mAgeNumberPicker.setMinValue(1);
-        mAgeNumberPicker.setMaxValue(150);
-        mAgeNumberPicker.setValue(22);
-        selectedAge = mAgeNumberPicker.getValue();
-        mAgeNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
-                selectedAge = newVal;
-            }
-        });
+
+
+
+//        //age number picker
+//        mAgeNumberPicker = (NumberPicker) findViewById(R.id.ageNumberPicker);
+//        mAgeNumberPicker.setMinValue(1);
+//        mAgeNumberPicker.setMaxValue(150);
+//        mAgeNumberPicker.setValue(22);
+//        selectedAge = mAgeNumberPicker.getValue();
+//        mAgeNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//            @Override
+//            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+//                selectedAge = newVal;
+//            }
+//        });
 
         //weight number picker
         mWeightNumberPicker = (NumberPicker) findViewById(R.id.weightNumberPicker);
@@ -140,13 +157,53 @@ public class body_info_input extends AppCompatActivity
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View view)
     {
         switch (view.getId()) {
+            case R.id.datePicker:
+                DatePickerDialog picker;
+
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                mDatePicker.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                picker.updateDate(1996, 11, 25);
+                picker.show();
+
+                break;
+
+
+
+
             case R.id.button_submit:
 
                 //Error checking: ????
+                if (mDatePicker.getText().toString().matches("")) {
+                    //Complain that there's no text
+                    Toast.makeText(body_info_input.this, "Select birthdate!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String[] datas = mDatePicker.getText().toString().split("/");
+                int xday = Integer.parseInt(datas[0]);
+                int xmonth = Integer.parseInt(datas[1]);
+                int xyear = Integer.parseInt(datas[2]);
+
+                LocalDate today = LocalDate.now(); // Today's date is 10th Jan 2022
+                LocalDate birthday = LocalDate.of(xyear, xmonth, xday); // Birth date
+                Period p = Period.between(birthday, today);
+                selectedAge = p.getYears();
+
 
                 String age = String.valueOf(selectedAge);
                 String weight = String.valueOf(selectedWeight);
@@ -169,7 +226,7 @@ public class body_info_input extends AppCompatActivity
                 //String outStr = mFullNameReceived + " " + age + " " + weight + " " + height + " " + sex;
                 //messageIntent.putExtra("ET_STRING", outStr);
                 this.startActivity(messageIntent);
-
+                break;
         }
     }
 }

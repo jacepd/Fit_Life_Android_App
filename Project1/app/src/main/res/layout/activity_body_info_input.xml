@@ -32,10 +32,10 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
+            android:background="@drawable/info_button"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -43,109 +43,169 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Age: "
+                android:text="Date of Birth: "
                 android:textSize="20sp" />
 
-            <NumberPicker
-                android:id="@+id/ageNumberPicker"
+            <EditText
+                android:id="@+id/datePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleY=".8" />
+                android:hint="Enter Date" />
+
+            <!--            <NumberPicker-->
+            <!--                android:id="@+id/ageNumberPicker"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:scaleY=".8" -->
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/info_button"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text="Weight: "
-                android:textSize="20sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Weight: "
+                    android:textSize="20sp" />
+            </LinearLayout>
 
             <NumberPicker
                 android:id="@+id/weightNumberPicker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleY=".8" />
+                android:layout_height="77dp"
+                android:scaleY="1" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text=" lbs"
-                android:textSize="20sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text=" lbs"
+                    android:textSize="20sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="1"
+            android:background="@drawable/info_button"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text="Height: "
-                android:textSize="20sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Height: "
+                    android:textSize="20sp" />
+            </LinearLayout>
 
             <NumberPicker
                 android:id="@+id/heightFeetNumberPicker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="124dp"
                 android:scaleY=".8" />
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text=" ' "
-                android:textSize="20sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center_vertical"
+                    android:text=" ' "
+                    android:textSize="30sp" />
+            </LinearLayout>
+
             <NumberPicker
                 android:id="@+id/heightInchesNumberPicker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="125dp"
                 android:scaleY=".8" />
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text=" &quot; "
-                android:textSize="20sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center_vertical"
+                    android:text=" &quot; "
+                    android:textSize="30dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
+            android:background="@drawable/info_button"
             android:gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
             android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:text="Sex: "
-                android:textSize="20sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Sex: "
+                    android:textSize="20dp" />
+            </LinearLayout>
 
             <NumberPicker
                 android:id="@+id/sexNumberPicker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleY=".8" />
+                android:layout_height="69dp"
+                android:scaleY="1" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
