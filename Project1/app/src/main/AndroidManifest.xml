@@ -19,6 +19,9 @@
             android:name="com.example.Fit_Life.myInfo_page"
             android:exported="false" />
         <activity
+            android:name="com.example.Fit_Life.goalsDisplay"
+            android:exported="false" />
+        <activity
             android:name="com.example.Fit_Life.bmi_page"
             android:exported="false" />
         <activity

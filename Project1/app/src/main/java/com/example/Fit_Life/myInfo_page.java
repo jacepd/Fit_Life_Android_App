@@ -43,7 +43,7 @@ public class myInfo_page extends AppCompatActivity
         mSex = (EditText) findViewById(R.id.sex_input);
         //mAge = (EditText) findViewById(R.id.age_input);
 
-        helperMethods.readData()
+        //helperMethods.readData()
 
 
 
