@@ -49,9 +49,10 @@ public class MainActivity extends AppCompatActivity
     private int heightFeet;
     private int heightInches;
     private String sex;
-    private String latitude;
-    private String longitude;
-
+    private float latitude;
+    private float longitude;
+    private String goal;
+    private String activityLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,8 +107,10 @@ public class MainActivity extends AppCompatActivity
         heightFeet = Integer.parseInt(datas[4]);
         heightInches = Integer.parseInt(datas[5]);
         sex = datas[6];
-        latitude = datas[7];
-        longitude = datas[8];
+        latitude = Float.parseFloat(datas[7]);
+        longitude = Float.parseFloat(datas[8]);
+        goal = datas[9];
+        activityLevel = datas[10];
         mProfilePic.setImageBitmap(bMap);
     }
 
@@ -144,6 +147,18 @@ public class MainActivity extends AppCompatActivity
                 Intent messageIntent = new Intent(this, weather_output.class);
                 //messageIntent.putExtra("ET_STRING", allDataStr);
                 this.startActivity(messageIntent);
+
+                break;
+
+            case R.id.button_Fitness_Goals:
+
+                if(goal.equals("NoGoalSelected")){
+                    Intent messageIntent2 = new Intent(this, goals_input.class);
+                    this.startActivity(messageIntent2);
+                }
+                else{
+
+                }
 
                 break;
         }
