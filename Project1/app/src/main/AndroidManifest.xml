@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicInfoName">
         <activity
+            android:name="com.example.Fit_Life.myInfo_page"
+            android:exported="false" />
+        <activity
             android:name="com.example.Fit_Life.bmi_page"
             android:exported="false" />
         <activity
