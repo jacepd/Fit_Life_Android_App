@@ -97,10 +97,7 @@ public class goals_input extends AppCompatActivity
                 datas[9] = goal;
                 datas[10] = activityLevel;
 
-                ArrayList<String> dataAsArrayList = new ArrayList<String>();
-                Collections.addAll(dataAsArrayList, datas);
-
-                helperMethods.saveData(dataAsArrayList, goals_input.this, false);
+                helperMethods.saveData(datas, goals_input.this, false);
 
                 Intent messageIntent = new Intent(goals_input.this, MainActivity.class);
                 this.startActivity(messageIntent);
