@@ -39,7 +39,7 @@ public class name_input extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_input);
 
-        setTitle("Fit Life App");
+        setTitle("Fit Life - User Set Up");
 
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_submit);

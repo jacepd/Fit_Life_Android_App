@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
                 result = helperMethods.round(result,1);
                 Toast.makeText(this, "BMI: " + result, Toast.LENGTH_SHORT).show();
 
-                Intent messageIntentBMI = new Intent(this, weather_output.class);
+                Intent messageIntentBMI = new Intent(this, bmi_page.class);
                 messageIntentBMI.putExtra("BMI", result);
                 this.startActivity(messageIntentBMI);
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.button_weather:
 
                 Intent messageIntent = new Intent(this, weather_output.class);
-                messageIntent.putExtra("ET_STRING", allDataStr);
+                //messageIntent.putExtra("ET_STRING", allDataStr);
                 this.startActivity(messageIntent);
 
                 break;
