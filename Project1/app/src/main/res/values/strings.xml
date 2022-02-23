@@ -12,9 +12,22 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    
+
     <string-array name="sex">
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <string-array name="activity">
+        <item>Sedentary</item>
+        <item>Active</item>
+    </string-array>
+
+    <string-array name="weightGoals">
+        <item>Gain</item>
+        <item>Loose</item>
+        <item>Maintain</item>
+    </string-array>
+
+
 </resources>
