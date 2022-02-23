@@ -87,11 +87,7 @@ public class goals_input extends AppCompatActivity
                 String goal = selectedGoal;
                 String activityLevel = selectedActivityLevel;
 
-                File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-                String fname = "userData.txt";
-                File userInfoFile = new File(myDir, fname);
-
-                String allDataStr = helperMethods.readData(userInfoFile);
+                String allDataStr = helperMethods.readData(this);
                 String[] datas = allDataStr.split(",");
 
                 datas[9] = goal;

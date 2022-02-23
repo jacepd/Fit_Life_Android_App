@@ -13,13 +13,17 @@ To Do:
 
 https://www.geeksforgeeks.org/how-to-get-user-location-in-android/
 
--BMI page maybe a dial meter that animates and then tell you your clarification (normal, overweight, obese, ect)
-
 -weather page
 
--goals page
+-drop downs instead of spin wheels
+	-sex
+	-goal
+	-activity level
 
--info page
+-add age to change info page
+
+-goals page (partial)
+
 
 -"make tests"
 

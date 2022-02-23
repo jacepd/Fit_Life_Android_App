@@ -80,7 +80,10 @@ public class helperMethods {
     }
 
 
-    public static String readData(File userInfoFile) {
+    public static String readData(Context c) {
+        File myDir = c.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        String fname = "userData.txt";
+        File userInfoFile = new File(myDir, fname);
         String str = "";
         try {
             BufferedReader reader = new BufferedReader(new FileReader(userInfoFile));

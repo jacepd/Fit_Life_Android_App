@@ -94,10 +94,9 @@ public class MainActivity extends AppCompatActivity
         File imagefile = new File(myDir, imFilename);
         Bitmap bMap = BitmapFactory.decodeFile(imagefile.toString());
 
-        String fname = "userData.txt";
-        File userInfoFile = new File(myDir, fname);
 
-        allDataStr = helperMethods.readData(userInfoFile);
+
+        allDataStr = helperMethods.readData(this);
 
         String[] datas = allDataStr.split(",");
         firstName = datas[0];
@@ -117,6 +116,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
+        Intent messageIntent;
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
                 double tHeight = heightFeet * 12;
@@ -125,9 +125,8 @@ public class MainActivity extends AppCompatActivity
                 result = helperMethods.round(result,1);
                 Toast.makeText(this, "BMI: " + result, Toast.LENGTH_SHORT).show();
 
-                Intent messageIntentBMI = new Intent(this, bmi_page.class);
-                messageIntentBMI.putExtra("BMI", result);
-                this.startActivity(messageIntentBMI);
+                messageIntent = new Intent(this, bmi_page.class);
+                this.startActivity(messageIntent);
 
                 break;
 
@@ -139,22 +138,29 @@ public class MainActivity extends AppCompatActivity
                 Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q=" + "hikes");
 
                 //Create the implicit intent
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, searchUri);
-                startActivity(mapIntent);
+                messageIntent = new Intent(Intent.ACTION_VIEW, searchUri);
+                startActivity(messageIntent);
                 break;
             case R.id.button_weather:
 
-                Intent messageIntent = new Intent(this, weather_output.class);
+                messageIntent = new Intent(this, weather_output.class);
                 //messageIntent.putExtra("ET_STRING", allDataStr);
                 this.startActivity(messageIntent);
 
                 break;
+            case R.id.button_view_my_info:
+
+                messageIntent = new Intent(this, myInfo_page.class);
+                this.startActivity(messageIntent);
+
+                break;
+
 
             case R.id.button_Fitness_Goals:
 
-                if(goal.equals("NoGoalSelected")){
-                    Intent messageIntent2 = new Intent(this, goals_input.class);
-                    this.startActivity(messageIntent2);
+                if(goal.equals("NoGoalSelected") || activityLevel.equals("NoActivityLevelSelected")){
+                    messageIntent = new Intent(this, goals_input.class);
+                    this.startActivity(messageIntent);
                 }
                 else{
 

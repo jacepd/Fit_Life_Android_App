@@ -1,14 +1,30 @@
 package com.example.Fit_Life;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.basicinfoname.R;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.ipsec.ike.exceptions.InvalidMajorVersionException;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class myInfo_page extends AppCompatActivity
         implements View.OnClickListener{
@@ -23,6 +39,51 @@ public class myInfo_page extends AppCompatActivity
     private EditText mActLvl;
     private EditText mAge;
     private EditText mSex;
+    private int dataSize;
+    private String[] datas;
+    private ImageView mProfilePic;
+    Bitmap mThumbnailImage;
+
+    ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+//                    if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent intent = result.getData();
+                    // Handle the Intent
+
+                    //Get the bitmap
+                    Bundle extras = intent.getExtras();
+                    mThumbnailImage = (Bitmap) extras.get("data");
+
+                    //Open a file and write to it
+                    if(isExternalStorageWritable()){
+                        // String filePathString = saveImage(mThumbnailImage);
+                        // mDisplayIntent.putExtra("imagePath",filePathString);
+                    }
+                    else{
+                        Toast.makeText(myInfo_page.this,"External storage not writable.",Toast.LENGTH_SHORT).show();
+                    }
+
+
+                    ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+                    mThumbnailImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+                    byte[] byteArray = bStream.toByteArray();
+
+
+                    //Open a file and write to it
+                    if(isExternalStorageWritable()){
+                        String filePathString = saveImage(mThumbnailImage);
+                    }
+                    else {
+                        Toast.makeText(myInfo_page.this, "External storage not writable.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    Intent messageIntent = new Intent(myInfo_page.this, myInfo_page.class);
+                    startActivity(messageIntent);
+//                    }
+                }
+            });
 
 
     @Override
@@ -32,6 +93,9 @@ public class myInfo_page extends AppCompatActivity
 
         mButtonSaveReturn = (Button) findViewById(R.id.button_return);
         mButtonSaveReturn.setOnClickListener(this);
+
+        mProfilePic = (ImageView) findViewById(R.id.profile_photo);
+        mProfilePic.setOnClickListener(this);
 
         mFirstName = (EditText) findViewById(R.id.firstName_input);
         mLastName = (EditText) findViewById(R.id.lastName_input);
@@ -43,22 +107,87 @@ public class myInfo_page extends AppCompatActivity
         mSex = (EditText) findViewById(R.id.sex_input);
         //mAge = (EditText) findViewById(R.id.age_input);
 
-        //helperMethods.readData()
+        String allDataStr = helperMethods.readData(this);
+        datas = allDataStr.split(",");
+        mFirstName.setText(datas[0]);
+        mLastName.setText(datas[1]);
+        //mAge.setText(datas[2]);
+        mWeight.setText(datas[3]);
+        mHeightFt.setText(datas[4]);
+        mHeightIn.setText(datas[5]);
+        mSex.setText(datas[6]);
+        mGoal.setText(datas[9]);
+        mActLvl.setText(datas[10]);
 
+        dataSize = datas.length;
 
+        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        String imFilename = "profilePic.jpg";
+
+        File imagefile = new File(myDir, imFilename);
+        Bitmap bMap = BitmapFactory.decodeFile(imagefile.toString());
+        mProfilePic.setImageBitmap(bMap);
 
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.profile_photo:
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                mStartForResult.launch(cameraIntent);
+                break;
             case R.id.button_return:
 
                 //save info to file
+                String[] newDatas = new String[dataSize];
+                newDatas[0] = mFirstName.getText().toString();
+                newDatas[1] = mLastName.getText().toString();
+                newDatas[2] = datas[2]; //age
+                newDatas[3] = mWeight.getText().toString();
+                newDatas[4] = mHeightFt.getText().toString();
+                newDatas[5] = mHeightIn.getText().toString();
+                newDatas[6] = mSex.getText().toString();
+                newDatas[7] = datas[7]; //lat
+                newDatas[8] = datas[8]; //long
+                newDatas[9] = mGoal.getText().toString();
+                newDatas[10] = mActLvl.getText().toString();
 
+                helperMethods.saveData(newDatas,this,false);
+                Toast.makeText(myInfo_page.this, "Information Updated", Toast.LENGTH_SHORT).show();
 
                 Intent messageIntent = new Intent(this, MainActivity.class);
                 this.startActivity(messageIntent);
+                break;
         }
+    }
+
+    private String saveImage(Bitmap finalBitmap) {
+
+        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+        String fname = "profilePic.jpg";
+
+        File file = new File(myDir, fname);
+        if (file.exists()) file.delete ();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+            Toast.makeText(this,"file saved!",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this,"Failed!",Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+        return file.getAbsolutePath();
+    }
+
+    private boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -34,10 +34,8 @@ public class bmi_page extends AppCompatActivity
         TextView mBMI_val = (TextView) findViewById(R.id.bmi_val);
         TextView mBMI_type = (TextView) findViewById(R.id.bmi_type);
 
-        String fname = "userData.txt";
-        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-        File userInfoFile = new File(myDir, fname);
-        String allDataStr = helperMethods.readData(userInfoFile);
+
+        String allDataStr = helperMethods.readData(this);
         String[] datas = allDataStr.split(",");
         double weight = Double.parseDouble(datas[3]);
         double heightFeet = Double.parseDouble(datas[4]);
