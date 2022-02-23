@@ -58,7 +58,7 @@
                 android:text="Activity? " />
 
             <NumberPicker
-                android:id="@+id/activityNumberPicker"
+                android:id="@+id/activityLevelNumberPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="77dp"
                 android:scaleY="1" />

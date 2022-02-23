@@ -131,6 +131,10 @@ public class location_input extends AppCompatActivity
                 ArrayList<String> myList = new ArrayList<>();
                 myList.add(slat);
                 myList.add(slong);
+
+                //this is for the goals, to put in off the bat that no goal is selected
+                myList.add("NoGoalSelected");
+                myList.add("NoActivityLevelSelected");
                 helperMethods.saveData(myList, this, true);
 
                 //tony was here
