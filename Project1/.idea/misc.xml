@@ -15,15 +15,15 @@
         <entry key="..\:/Users/jackm/github/cs4530/Project1/app/src/main/res/layout/fragment_weather.xml" value="0.36302083333333335" />
         <entry key="app/src/main/res/drawable-v24/info_background.xml" value="0.126" />
         <entry key="app/src/main/res/drawable-v24/info_button.xml" value="0.126" />
-        <entry key="app/src/main/res/drawable/bmi_result_field.xml" value="0.148" />
-        <entry key="app/src/main/res/layout/activity_bmi_page.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_bmi_page.xml" value="0.24395760825272556" />
         <entry key="app/src/main/res/layout/activity_body_info_input.xml" value="0.38389830508474576" />
+        <entry key="app/src/main/res/layout/activity_goals_display.xml" value="0.32979440024491313" />
         <entry key="app/src/main/res/layout/activity_goals_input.xml" value="0.25329165024449557" />
         <entry key="app/src/main/res/layout/activity_heightweightinput.xml" value="0.28372497558593757" />
         <entry key="app/src/main/res/layout/activity_location_input.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_location_picture.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_my_info_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4608200073242188" />
+        <entry key="app/src/main/res/layout/activity_my_info_page.xml" value="0.10219879150390626" />
         <entry key="app/src/main/res/layout/activity_name_input.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_profilePic_input.xml" value="0.1484375" />
         <entry key="app/src/main/res/layout/activity_profile_pic_input.xml" value="0.335" />
