@@ -6,48 +6,61 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.basicinfoname.R;
 
 import java.net.URL;
 
-public class weather_output extends AppCompatActivity {
+public class weather_output extends AppCompatActivity implements View.OnClickListener {
+
+    private Button mButtonReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTitle("Fit Life - Weather");
+
+        // API Key for Openweathermap: 01ff6680aad0a6ca59af4f7a60f42b04
+
+        // Practice API call for London looks like:
+        // http:api.openweathermap.org/data/2.5/weather?q=London,uk&appid=99ea8383701bd7481e5ea568772f739
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_output);
 
-        if(savedInstanceState!=null)
-        {
-            Fragment weatherFragment = getSupportFragmentManager().findFragmentByTag("weather_frag");
-        }
-        else {
+        String location = "Salt&Lake&City,us";
+        URL weatherDataURL = NetworkUtils.buildURLFromString(location);
 
-            //tony commented this out because it was not compiling
-         //   WeatherFragment weatherFragment = new WeatherFragment();
-         //   FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-         //   fTrans.replace(R.id.fl_frag_weather, weatherFragment, "weather_frag");
-         //   fTrans.commit();
+        String jsonWeatherData = null;
+        try {jsonWeatherData = NetworkUtils.getDataFromURL(weatherDataURL);}
+
+        catch (Exception e) {
+            e.printStackTrace();
         }
 
+        mButtonReturn = (Button) findViewById(R.id.button_return);
+        mButtonReturn.setOnClickListener(this);
+    }
 
-        Intent receivedIntent = getIntent();
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button_return:
 
-        setTitle("Fit Life - Home");
-
-        String recieved = receivedIntent.getStringExtra("ET_STRING");
-
-        String[] allData = recieved.split(" ");
-
-        String zipcode = allData[5];
-
-        String URL = "http://api.openweathermap.org/data/2.5/weather?q=";
-
-        URL weatherDataURL = NetworkUtils.buildURLFromString(zipcode);
-
-
-
+                Intent messageIntent = new Intent(this, MainActivity.class);
+                this.startActivity(messageIntent);
+                break;
+        }
     }
 }
+
+
+
+
+
+
+
