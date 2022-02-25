@@ -130,19 +130,9 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_hikes:
-
-                //We have to grab the search term and construct a URI object from it.
-                //pull location from file
-
-                Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q=" + "hikes");
-
-                //Create the implicit intent
-               // messageIntent = new Intent(Intent.ACTION_VIEW, searchUri);
-                //startActivity(messageIntent);
-
-
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("geo:0,0?q=Los+Angeles+CA+hikes"));
+                        Uri.parse("geo:0,0?q=" + city + " " + state + " " + "hikes"));
+
                 startActivity(intent);
 
                 break;
