@@ -92,9 +92,13 @@ public class name_input extends AppCompatActivity
         }
     }
 
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, name_input.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
+    }
+    
 
 }
