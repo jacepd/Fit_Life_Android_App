@@ -42,6 +42,8 @@ public class location_input extends AppCompatActivity
     private double mlongitude = -111.8421;
     private double mlatitude = 40.7649;
 
+    private boolean cameFromBackButton;
+
 
     @Override
     @TargetApi(Build.VERSION_CODES.M)
@@ -51,6 +53,15 @@ public class location_input extends AppCompatActivity
         setTitle("Fit Life App");
 
 
+        Intent receivedIntent = getIntent();
+        if (receivedIntent.hasExtra("BackButtonPressed")) {
+            cameFromBackButton = true;
+            Toast.makeText(this, "WAHHHOOOOO", Toast.LENGTH_SHORT).show();
+
+        }
+        else{
+            cameFromBackButton = false;
+        }
 
         //eventually add option to enter zip code or ask user to pull current location from phones
         mZipcode = (EditText) findViewById(R.id.zipcode_input);
@@ -142,13 +153,43 @@ public class location_input extends AppCompatActivity
                 String slat = Double.toString(mlatitude);
                 String slong = Double.toString(mlongitude);
                 ArrayList<String> myList = new ArrayList<>();
+
+                String allDataStr = helperMethods.readData(this);
+                String[] old_data = allDataStr.split(",");
+                if(cameFromBackButton){
+                    Toast.makeText(this, "WOOOOHOOOOO", Toast.LENGTH_SHORT).show();
+                    String firstName = old_data[0];
+                    String lastName = old_data[1];
+                    String age = old_data[2];
+                    String weight = old_data[3];
+                    String heightFeet = old_data[4];
+                    String heightInches = old_data[5];
+                    String sex = old_data[6];
+                    myList.add(firstName);
+                    myList.add(lastName);
+                    myList.add(age);
+                    myList.add(weight);
+                    myList.add(heightFeet);
+                    myList.add(heightInches);
+                    myList.add(sex);
+                }
+
                 myList.add(slat);
                 myList.add(slong);
 
-                //this is for the goals, to put in off the bat that no goal is selected
-                myList.add("NoGoalSelected");
-                myList.add("NoActivityLevelSelected");
-                helperMethods.saveData(myList, this, true);
+                if(cameFromBackButton){
+                    String goal = old_data[9];
+                    String activityLevel = old_data[10];
+                    myList.add(goal);
+                    myList.add(activityLevel);
+                    helperMethods.saveData(myList, this, false);
+                }
+                else{
+                    myList.add("NoGoalSelected");
+                    myList.add("NoActivityLevelSelected");
+                    helperMethods.saveData(myList, this, true);
+                }
+
 
                 //tony was here
                 String zipcode = mZipcode.getText().toString();

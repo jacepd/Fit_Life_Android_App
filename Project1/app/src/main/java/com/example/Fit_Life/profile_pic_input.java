@@ -152,4 +152,12 @@ public class profile_pic_input extends AppCompatActivity
         }
         return false;
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, location_input.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
+    }
 }
