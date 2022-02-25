@@ -80,7 +80,7 @@
                 android:background="@drawable/weather_result_field"
                 android:gravity="right"
                 android:padding="10dp"
-                android:text="50 F°"
+                android:text=""
                 android:textSize="25dp" />
 
         </LinearLayout>
@@ -96,11 +96,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_chance_of_rain"
+                android:id="@+id/tv_amount_of_rain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="Chance of Rain: "
+                android:text="Amount of Rain: "
                 android:textSize="25sp" />
 
             <TextView
