@@ -1,0 +1,143 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.basicinfoname"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+11-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:5:5-81
+11-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:5:22-78
+12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+12-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:6:5-79
+12-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:7:5-77
+13-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:7:22-74
+14    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+14-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:8:5-85
+14-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:8:22-82
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:9:5-81
+15-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:9:22-78
+16
+17    <application
+17-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:11:5-59:19
+18        android:allowBackup="true"
+18-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:12:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.5.0] /Users/benvanhoose/.gradle/caches/transforms-3/3d009a9472caec2ed4a541e9b7d8caa3/transformed/core-1.5.0/AndroidManifest.xml:24:18-86
+20        android:debuggable="true"
+21        android:icon="@mipmap/ic_launcher"
+21-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:13:9-43
+22        android:label="@string/app_name"
+22-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:14:9-41
+23        android:roundIcon="@mipmap/ic_launcher_round"
+23-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:15:9-54
+24        android:supportsRtl="true"
+24-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:16:9-35
+25        android:testOnly="true"
+26        android:theme="@style/Theme.BasicInfoName" >
+26-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:17:9-51
+27        <activity
+27-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:18:9-20:40
+28            android:name="com.example.Fit_Life.myInfo_page"
+28-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:19:13-60
+29            android:exported="false" />
+29-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:20:13-37
+30        <activity
+30-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:21:9-23:40
+31            android:name="com.example.Fit_Life.goalsDisplay"
+31-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:22:13-61
+32            android:exported="false" />
+32-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:23:13-37
+33        <activity
+33-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:24:9-26:40
+34            android:name="com.example.Fit_Life.bmi_page"
+34-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:25:13-57
+35            android:exported="false" />
+35-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:26:13-37
+36        <activity
+36-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:27:9-29:40
+37            android:name="com.example.Fit_Life.goals_input"
+37-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:28:13-60
+38            android:exported="false" />
+38-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:29:13-37
+39        <activity
+39-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:30:9-32:40
+40            android:name="com.example.Fit_Life.weather_output"
+40-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:31:13-63
+41            android:exported="false" /> <!-- <uses-permission -->
+41-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:32:13-37
+42        <!-- android:name="android.permission.WRITE_EXTERNAL_STORAGE" -->
+43        <!-- android:maxSdkVersion="Version code" /> -->
+44        <activity
+44-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:35:9-37:40
+45            android:name="com.example.Fit_Life.MainActivity"
+45-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:36:13-61
+46            android:exported="false" />
+46-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:37:13-37
+47        <activity
+47-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:38:9-40:40
+48            android:name="com.example.basicinfoname.user_home"
+48-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:39:13-38
+49            android:exported="false" />
+49-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:40:13-37
+50        <activity
+50-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:41:9-43:40
+51            android:name="com.example.Fit_Life.profile_pic_input"
+51-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:42:13-66
+52            android:exported="false" />
+52-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:43:13-37
+53        <activity
+53-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:44:9-46:40
+54            android:name="com.example.Fit_Life.location_input"
+54-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:45:13-63
+55            android:exported="false" />
+55-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:46:13-37
+56        <activity
+56-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:47:9-49:40
+57            android:name="com.example.Fit_Life.body_info_input"
+57-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:48:13-64
+58            android:exported="false" />
+58-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:49:13-37
+59        <activity
+59-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:50:9-58:20
+60            android:name="com.example.Fit_Life.name_input"
+60-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:51:13-59
+61            android:exported="true" >
+61-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:52:13-36
+62            <intent-filter>
+62-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:53:13-57:29
+63                <action android:name="android.intent.action.MAIN" />
+63-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:54:17-69
+63-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:54:25-66
+64
+65                <category android:name="android.intent.category.LAUNCHER" />
+65-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:56:17-77
+65-->/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/AndroidManifest.xml:56:27-74
+66            </intent-filter>
+67        </activity>
+68        <activity
+68-->[com.google.android.gms:play-services-base:17.0.0] /Users/benvanhoose/.gradle/caches/transforms-3/4a128cf89388fd5b6c15138c2e0d415a/transformed/play-services-base-17.0.0/AndroidManifest.xml:23:9-26:75
+69            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+69-->[com.google.android.gms:play-services-base:17.0.0] /Users/benvanhoose/.gradle/caches/transforms-3/4a128cf89388fd5b6c15138c2e0d415a/transformed/play-services-base-17.0.0/AndroidManifest.xml:24:13-79
+70            android:exported="false"
+70-->[com.google.android.gms:play-services-base:17.0.0] /Users/benvanhoose/.gradle/caches/transforms-3/4a128cf89388fd5b6c15138c2e0d415a/transformed/play-services-base-17.0.0/AndroidManifest.xml:25:13-37
+71            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+71-->[com.google.android.gms:play-services-base:17.0.0] /Users/benvanhoose/.gradle/caches/transforms-3/4a128cf89388fd5b6c15138c2e0d415a/transformed/play-services-base-17.0.0/AndroidManifest.xml:26:13-72
+72
+73        <meta-data
+73-->[com.google.android.gms:play-services-basement:17.0.0] /Users/benvanhoose/.gradle/caches/transforms-3/3a53d2a86f108d42780d7c81281ee019/transformed/play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+74            android:name="com.google.android.gms.version"
+74-->[com.google.android.gms:play-services-basement:17.0.0] /Users/benvanhoose/.gradle/caches/transforms-3/3a53d2a86f108d42780d7c81281ee019/transformed/play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+75            android:value="@integer/google_play_services_version" />
+75-->[com.google.android.gms:play-services-basement:17.0.0] /Users/benvanhoose/.gradle/caches/transforms-3/3a53d2a86f108d42780d7c81281ee019/transformed/play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+76    </application>
+77
+78</manifest>

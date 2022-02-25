@@ -30,11 +30,9 @@ import java.util.Calendar;
 public class body_info_input extends AppCompatActivity
         implements View.OnClickListener{
 
-    private String mFullNameReceived;
     private Button mButtonSubmit;
     private EditText mDatePicker;
 
-    private NumberPicker mAgeNumberPicker;
     private NumberPicker mWeightNumberPicker;
     private NumberPicker mHeightFeetNumberPicker;
     private NumberPicker mHeightInchesNumberPicker;
@@ -214,7 +212,8 @@ public class body_info_input extends AppCompatActivity
             case R.id.button_submit:
 
                 //Error checking: ????
-                if (mDatePicker.getText().toString().matches("")) {
+                String date = mDatePicker.getText().toString();
+                if (date.matches("") || date.split("/").length != 3 ) {
                     //Complain that there's no text
                     Toast.makeText(body_info_input.this, "Select birthdate!", Toast.LENGTH_SHORT).show();
                     return;
@@ -264,10 +263,7 @@ public class body_info_input extends AppCompatActivity
                 }
 
 
-                //Start an activity and pass the EditText string to it.
                 Intent messageIntent = new Intent(this, location_input.class);
-                //String outStr = mFullNameReceived + " " + age + " " + weight + " " + height + " " + sex;
-                //messageIntent.putExtra("ET_STRING", outStr);
                 this.startActivity(messageIntent);
                 break;
         }

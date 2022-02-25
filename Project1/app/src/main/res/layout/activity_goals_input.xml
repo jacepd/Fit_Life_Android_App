@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="130dp"
         android:background="@drawable/info_background"
         android:orientation="vertical"
         android:layout_weight="1">
@@ -17,50 +17,52 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text="We need some information for your fitness goals" />
+            android:text="Fitness Goals"
+            android:textSize="30sp" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/info_outline"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal" android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="20sp"
-                android:gravity="center_horizontal"
-                android:text="Goal? " />
+                android:gravity="center_vertical"
+                android:text="Goal: " />
 
             <NumberPicker
                 android:id="@+id/goalNumberPicker"
                 android:layout_width="wrap_content"
-                android:layout_height="77dp"
+                android:layout_height="50dp"
                 android:scaleY="1" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:background="@drawable/info_outline"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal" android:layout_weight="1">
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="20sp"
-                android:gravity="center_horizontal"
-                android:text="Activity? " />
+                android:gravity="center_vertical"
+                android:text="Activity Level: " />
 
             <NumberPicker
                 android:id="@+id/activityLevelNumberPicker"
                 android:layout_width="wrap_content"
-                android:layout_height="77dp"
+                android:layout_height="50dp"
                 android:scaleY="1" />
         </LinearLayout>
 

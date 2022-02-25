@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_profile_pic_input.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_profile_pic_input.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_body_info_input.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_body_info_input.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_bmi_page.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_bmi_page.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_goals_input.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_goals_input.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_user_home.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_user_home.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_my_info_page.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_my_info_page.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_weather.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/fragment_weather.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_goals_display.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_goals_display.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_name_input.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_name_input.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_weather_output.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_weather_output.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_location_input.xml",
+        "source": "/Users/benvanhoose/Documents/GitHub/Spring-2022/cs4530/Project1/app/src/main/res/layout/activity_location_input.xml"
+    }
+]
