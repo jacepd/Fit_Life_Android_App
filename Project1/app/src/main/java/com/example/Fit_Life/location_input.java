@@ -70,7 +70,7 @@ public class location_input extends AppCompatActivity
         mButtonSubmit = (Button) findViewById(R.id.button_loc_submit);
         mButtonSubmit.setOnClickListener(this);
 
-        /*
+/*
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         if (ContextCompat.checkSelfPermission(
@@ -100,7 +100,7 @@ public class location_input extends AppCompatActivity
             }
         });
 
- */
+*/
     }
 
 

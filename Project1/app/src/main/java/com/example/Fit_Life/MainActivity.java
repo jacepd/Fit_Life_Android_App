@@ -138,8 +138,14 @@ public class MainActivity extends AppCompatActivity
                 Uri searchUri = Uri.parse("geo:40.767778,-111.845205?q=" + "hikes");
 
                 //Create the implicit intent
-                messageIntent = new Intent(Intent.ACTION_VIEW, searchUri);
-                startActivity(messageIntent);
+               // messageIntent = new Intent(Intent.ACTION_VIEW, searchUri);
+                //startActivity(messageIntent);
+
+
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("geo:0,0?q=Los+Angeles+CA+hikes"));
+                startActivity(intent);
+
                 break;
             case R.id.button_weather:
 
