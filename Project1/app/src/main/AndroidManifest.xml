@@ -20,9 +20,6 @@
             android:name="com.example.Fit_Life.myInfo_page"
             android:exported="false" />
         <activity
-            android:name="com.example.Fit_Life.weather_output"
-            tools:targetApi="n" />
-        <activity
             android:name="com.example.Fit_Life.goalsDisplay"
             android:exported="false" />
         <activity
