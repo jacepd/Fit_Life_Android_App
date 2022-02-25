@@ -139,5 +139,4 @@ public class location_input extends AppCompatActivity
                 this.startActivity(messageIntent);
         }
     }
-
 }
