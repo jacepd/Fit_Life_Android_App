@@ -39,6 +39,8 @@ public class myInfo_page extends AppCompatActivity
     private EditText mActLvl;
     private EditText mAge;
     private EditText mSex;
+    private EditText mCity;
+    private EditText mState;
     private int dataSize;
     private String[] datas;
     private ImageView mProfilePic;
@@ -105,17 +107,22 @@ public class myInfo_page extends AppCompatActivity
         mGoal = (EditText) findViewById(R.id.goal_input);
         mActLvl = (EditText) findViewById(R.id.actLvL_input);
         mSex = (EditText) findViewById(R.id.sex_input);
-        //mAge = (EditText) findViewById(R.id.age_input);
+        mAge = (EditText) findViewById(R.id.age_input);
+        mCity = (EditText) findViewById(R.id.city_input);
+        mState = (EditText) findViewById(R.id.state_input);
+
 
         String allDataStr = helperMethods.readData(this);
         datas = allDataStr.split(",");
         mFirstName.setText(datas[0]);
         mLastName.setText(datas[1]);
-        //mAge.setText(datas[2]);
+        mAge.setText(datas[2]);
         mWeight.setText(datas[3]);
         mHeightFt.setText(datas[4]);
         mHeightIn.setText(datas[5]);
         mSex.setText(datas[6]);
+        mCity.setText(datas[7]);
+        mState.setText(datas[8]);
         mGoal.setText(datas[9]);
         mActLvl.setText(datas[10]);
 
@@ -127,7 +134,6 @@ public class myInfo_page extends AppCompatActivity
         File imagefile = new File(myDir, imFilename);
         Bitmap bMap = BitmapFactory.decodeFile(imagefile.toString());
         mProfilePic.setImageBitmap(bMap);
-
     }
 
     @Override
@@ -143,13 +149,13 @@ public class myInfo_page extends AppCompatActivity
                 String[] newDatas = new String[dataSize];
                 newDatas[0] = mFirstName.getText().toString();
                 newDatas[1] = mLastName.getText().toString();
-                newDatas[2] = datas[2]; //age
+                newDatas[2] = mAge.getText().toString(); //age
                 newDatas[3] = mWeight.getText().toString();
                 newDatas[4] = mHeightFt.getText().toString();
                 newDatas[5] = mHeightIn.getText().toString();
                 newDatas[6] = mSex.getText().toString();
-                newDatas[7] = datas[7]; //lat
-                newDatas[8] = datas[8]; //long
+                newDatas[7] = mCity.getText().toString();
+                newDatas[8] = mState.getText().toString();
                 newDatas[9] = mGoal.getText().toString();
                 newDatas[10] = mActLvl.getText().toString();
 
