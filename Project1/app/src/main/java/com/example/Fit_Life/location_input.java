@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.example.basicinfoname.R;
@@ -39,10 +40,11 @@ public class location_input extends AppCompatActivity
     private Button mButtonSubmit;
     private FusedLocationProviderClient fusedLocationClient;
     private ActivityResultLauncher<String[]> locationPermissionRequest;
-    private double mlongitude = -111.8421;
-    private double mlatitude = 40.7649;
-
+    private EditText mCity;
+    private String mState;
+    private String selectedState;
     private boolean cameFromBackButton;
+    private NumberPicker mStatesNumberPicker;
 
 
     @Override
@@ -50,8 +52,7 @@ public class location_input extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_input);
-        setTitle("Fit Life App");
-
+        setTitle("Fit Life App - Location");
 
         Intent receivedIntent = getIntent();
         if (receivedIntent.hasExtra("BackButtonPressed")) {
@@ -63,46 +64,28 @@ public class location_input extends AppCompatActivity
             cameFromBackButton = false;
         }
 
-        //eventually add option to enter zip code or ask user to pull current location from phones
-        mZipcode = (EditText) findViewById(R.id.zipcode_input);
-
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_loc_submit);
         mButtonSubmit.setOnClickListener(this);
 
-        /*
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mCity = (EditText) findViewById(R.id.city_input);
 
-        if (ContextCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED) {
-            // You can use the API that requires the permission.
-            Toast.makeText(this, "PERMISSION ALREADY GRANTED", Toast.LENGTH_SHORT).show();
+        String[] stateArray = getResources().getStringArray(R.array.us_states);
 
-        }
-        else {
-            // You can directly ask for the permission.
-            requestPermissions(new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-            Toast.makeText(this, "ASKING FOR PERMISSION", Toast.LENGTH_SHORT).show();
-        }
-
-        LocationRequest mLocationRequest = LocationRequest.create();
-        mLocationRequest.setInterval(60000);
-        mLocationRequest.setFastestInterval(5000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        LocationServices.getFusedLocationProviderClient(this).getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+        //state number picker
+        mStatesNumberPicker = (NumberPicker) findViewById(R.id.stateNumberPicker);
+        mStatesNumberPicker.setMinValue(0);
+        mStatesNumberPicker.setMaxValue(49);
+        mStatesNumberPicker.setDisplayedValues(stateArray);
+        mStatesNumberPicker.setValue(43);
+        selectedState = stateArray[mStatesNumberPicker.getValue()];
+        mStatesNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onSuccess(Location location) {
-                //TODO: UI updates.
-                location_input.this.mlongitude = location.getLongitude();
-                location_input.this.mlatitude = location.getLatitude();
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                selectedState = stateArray[newVal];
             }
         });
-
- */
     }
-
 
     @Override
     public void onBackPressed() {
@@ -112,46 +95,11 @@ public class location_input extends AppCompatActivity
         finish();
     }
 
-
-
-/*
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 44:
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 &&
-                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission is granted. Continue the action or workflow
-                    // in your app.
-
-
-
-                } else {
-                    Toast.makeText(this, "no permis :(", Toast.LENGTH_SHORT).show();
-                    // Explain to the user that the feature is unavailable because
-                    // the features requires a permission that the user has denied.
-                    // At the same time, respect the user's decision. Don't link to
-                    // system settings in an effort to convince the user to change
-                    // their decision.
-                }
-                return;
-        }
-    }
-*/
-
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_loc_submit:
 
-                Toast.makeText(this, mlatitude + " " + mlongitude, Toast.LENGTH_SHORT).show();
-
-                String slat = Double.toString(mlatitude);
-                String slong = Double.toString(mlongitude);
                 ArrayList<String> myList = new ArrayList<>();
 
                 String allDataStr = helperMethods.readData(this);
@@ -174,8 +122,8 @@ public class location_input extends AppCompatActivity
                     myList.add(sex);
                 }
 
-                myList.add(slat);
-                myList.add(slong);
+                myList.add(mCity.getText().toString());
+                myList.add(selectedState);
 
                 if(cameFromBackButton){
                     String goal = old_data[9];
@@ -190,18 +138,8 @@ public class location_input extends AppCompatActivity
                     helperMethods.saveData(myList, this, true);
                 }
 
-
-                //tony was here
-                String zipcode = mZipcode.getText().toString();
-                //String outStr = mProfileStr + " " + zipcode;
-
-                //Start an activity and pass the EditText string to it.
                 Intent messageIntent = new Intent(this, profile_pic_input.class);
-                //messageIntent.putExtra("ET_STRING", outStr);
                 this.startActivity(messageIntent);
-
-
-
         }
     }
 

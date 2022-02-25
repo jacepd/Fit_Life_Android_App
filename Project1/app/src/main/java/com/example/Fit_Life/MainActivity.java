@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity
     private int heightFeet;
     private int heightInches;
     private String sex;
-    private float latitude;
-    private float longitude;
+    private String city;
+    private String state;
     private String goal;
     private String activityLevel;
 
@@ -106,8 +106,8 @@ public class MainActivity extends AppCompatActivity
         heightFeet = Integer.parseInt(datas[4]);
         heightInches = Integer.parseInt(datas[5]);
         sex = datas[6];
-        latitude = Float.parseFloat(datas[7]);
-        longitude = Float.parseFloat(datas[8]);
+        city = datas[7];
+        state = datas[8];
         goal = datas[9];
         activityLevel = datas[10];
         mProfilePic.setImageBitmap(bMap);

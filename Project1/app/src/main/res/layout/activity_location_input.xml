@@ -35,21 +35,38 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:gravity="center_horizontal"
-                android:text="Zipcode: " />
+                android:text="City: " />
 
             <EditText
-                android:id="@+id/zipcode_input"
+                android:id="@+id/city_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="84102" />
+                android:text="Salt Lake City"
+                />
+            <!--android:hint="Salt Lake City"-->
 
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/info_outline"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" android:layout_weight="1">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="10dp"
-            android:gravity="center_horizontal"
-            android:text="TO DO: get location from maps " />
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:gravity="center_vertical"
+            android:text="State: " />
+
+        <NumberPicker
+            android:id="@+id/stateNumberPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:scaleY="1" />
+    </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_loc_submit"
             android:layout_width="wrap_content"

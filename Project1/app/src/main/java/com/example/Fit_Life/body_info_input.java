@@ -53,22 +53,7 @@ public class body_info_input extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_body_info_input);
 
-        setTitle("Fit Life App");
-
-
-
-        //Get the string data
-//        mFullNameReceived = receivedIntent.getStringExtra("ET_STRING");
-//
-//        if(mFullNameReceived.matches("")){
-//            Toast.makeText(body_info_input.this, "Empty string received", Toast.LENGTH_SHORT).show();
-//        }
-//        else{
-//            Toast.makeText(body_info_input.this, mFullNameReceived, Toast.LENGTH_SHORT).show();
-//        }
-
-        //change to number picker later with date of birth instead of age input
-
+        setTitle("Fit Life App - Body Info");
 
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_submit);
@@ -77,8 +62,6 @@ public class body_info_input extends AppCompatActivity
         mDatePicker = (EditText) findViewById(R.id.datePicker);
         mDatePicker.setInputType(InputType.TYPE_NULL);
         mDatePicker.setOnClickListener(this);
-
-
 
         //weight number picker
         mWeightNumberPicker = (NumberPicker) findViewById(R.id.weightNumberPicker);
@@ -175,10 +158,6 @@ public class body_info_input extends AppCompatActivity
             cameFromBackButton = false;
         }
 
-
-
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -205,8 +184,6 @@ public class body_info_input extends AppCompatActivity
                 picker.show();
 
                 break;
-
-
 
 
             case R.id.button_submit:
