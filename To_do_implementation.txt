@@ -1,23 +1,24 @@
 To Do:
 
+For Tuesday:
+Jack: weather
+Tony and ben: Goals
+Tony: Lifecycle aware
+Tony: Back button on second half of modules.
+Jace: Testing
+	Both documents
+
 
 -life cycle aware
 
--read/write to existing file for change info page
-
-
--zipcode page --> instead of entering zip code get current location or user search on map 
 
 https://www.geeksforgeeks.org/how-to-get-user-location-in-android/
 
+-Change back to hints
+
+-Spawn correct hike
+
 -weather page
-
--drop downs instead of spin wheels
-	-sex
-	-goal
-	-activity level
-
--add age to change info page
 
 -goals page (partial)
 
@@ -31,4 +32,4 @@ Required Docs:
 
 -layout sketch
 
--test documentation (see project description)	
+-test documentation (see project description)

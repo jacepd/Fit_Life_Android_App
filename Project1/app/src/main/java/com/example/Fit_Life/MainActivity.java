@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity
                 tHeight += heightInches;
                 double result = (weight / (tHeight * tHeight)) * 703;
                 result = helperMethods.round(result,1);
-                Toast.makeText(this, "BMI: " + result, Toast.LENGTH_SHORT).show();
 
                 messageIntent = new Intent(this, bmi_page.class);
                 this.startActivity(messageIntent);
