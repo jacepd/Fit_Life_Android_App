@@ -190,4 +190,12 @@ public class myInfo_page extends AppCompatActivity
         }
         return false;
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
+    }
 }
