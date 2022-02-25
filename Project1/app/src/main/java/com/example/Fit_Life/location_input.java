@@ -36,12 +36,8 @@ import java.util.List;
 public class location_input extends AppCompatActivity
         implements View.OnClickListener {
 
-    private EditText mZipcode;
     private Button mButtonSubmit;
-    private FusedLocationProviderClient fusedLocationClient;
-    private ActivityResultLauncher<String[]> locationPermissionRequest;
     private EditText mCity;
-    private String mState;
     private String selectedState;
     private boolean cameFromBackButton;
     private NumberPicker mStatesNumberPicker;
@@ -85,6 +81,7 @@ public class location_input extends AppCompatActivity
                 selectedState = stateArray[newVal];
             }
         });
+
     }
 
     @Override
