@@ -1,8 +1,5 @@
 To Do:
 
--Error checking 
-	- valid name inputs (numbers symbols ect)
-	- 
 
 -life cycle aware
 
@@ -24,6 +21,7 @@ https://www.geeksforgeeks.org/how-to-get-user-location-in-android/
 
 -goals page (partial)
 
+-look good on tablet
 
 -"make tests"
 

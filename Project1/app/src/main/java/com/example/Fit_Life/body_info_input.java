@@ -48,6 +48,8 @@ public class body_info_input extends AppCompatActivity
 
     private String [] sexArray;
 
+    private boolean cameFromBackButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +58,6 @@ public class body_info_input extends AppCompatActivity
         setTitle("Fit Life App");
 
 
-        //Get the intent that created this activity.
-        //Intent receivedIntent = getIntent();
 
         //Get the string data
 //        mFullNameReceived = receivedIntent.getStringExtra("ET_STRING");
@@ -81,20 +81,6 @@ public class body_info_input extends AppCompatActivity
         mDatePicker.setOnClickListener(this);
 
 
-
-
-//        //age number picker
-//        mAgeNumberPicker = (NumberPicker) findViewById(R.id.ageNumberPicker);
-//        mAgeNumberPicker.setMinValue(1);
-//        mAgeNumberPicker.setMaxValue(150);
-//        mAgeNumberPicker.setValue(22);
-//        selectedAge = mAgeNumberPicker.getValue();
-//        mAgeNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-//            @Override
-//            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
-//                selectedAge = newVal;
-//            }
-//        });
 
         //weight number picker
         mWeightNumberPicker = (NumberPicker) findViewById(R.id.weightNumberPicker);
@@ -139,12 +125,12 @@ public class body_info_input extends AppCompatActivity
 
         sexArray = getResources().getStringArray(R.array.sex);
 
-        //sex feet number picker
+        //sexnumber picker
         mSexNumberPicker = (NumberPicker) findViewById(R.id.sexNumberPicker);
         mSexNumberPicker.setMinValue(0);
         mSexNumberPicker.setMaxValue(1);
         mSexNumberPicker.setDisplayedValues(sexArray);
-        mSexNumberPicker.setValue(6);
+        mSexNumberPicker.setValue(0);
         selectedSex = sexArray[mSexNumberPicker.getValue()];
         mSexNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -152,6 +138,46 @@ public class body_info_input extends AppCompatActivity
                 selectedSex = sexArray[newVal];
             }
         });
+
+
+
+        //deal with back button being pressed
+        //Get the intent that created this activity.
+        Intent receivedIntent = getIntent();
+        if (receivedIntent.hasExtra("BackButtonPressed")) {
+            cameFromBackButton = true;
+            Toast.makeText(this, "WAHHHOOOOO", Toast.LENGTH_SHORT).show();
+
+            //set the contents with previously loaded values
+            String allDataStr = helperMethods.readData(this);
+            String[] old_data = allDataStr.split(",");
+            //old_data[2]; //age
+            mWeightNumberPicker.setValue(Integer.parseInt(old_data[3]));//weight
+            selectedWeight = mWeightNumberPicker.getValue();
+
+            mHeightFeetNumberPicker.setValue(Integer.parseInt(old_data[4]));
+            selectedHeightFeet = mHeightFeetNumberPicker.getValue();
+
+            mHeightInchesNumberPicker.setValue(Integer.parseInt(old_data[5]));
+            selectedHeightInches = mHeightInchesNumberPicker.getValue();
+
+            String old_sex = old_data[6];
+            int old_sex_num;
+            if(old_sex.equals("Male")){
+                old_sex_num = 0;
+            }
+            else{
+                old_sex_num = 1;
+            }
+            mSexNumberPicker.setValue(old_sex_num);
+            selectedSex = sexArray[mSexNumberPicker.getValue()];
+
+        }
+        else{
+            cameFromBackButton = false;
+        }
+
+
 
 
 
@@ -212,14 +238,31 @@ public class body_info_input extends AppCompatActivity
                 String sex = selectedSex;
 
 
-
                 ArrayList<String> myList = new ArrayList<String>();
+
+                if(cameFromBackButton){
+                    Toast.makeText(this, "WOOOOHOOOOO", Toast.LENGTH_SHORT).show();
+                    String allDataStr = helperMethods.readData(this);
+                    String[] old_data = allDataStr.split(",");
+                    String firstName = old_data[0];
+                    String lastName = old_data[1];
+                    myList.add(firstName);
+                    myList.add(lastName);
+                }
+
                 myList.add(age);
                 myList.add(weight);
                 myList.add(heightFeet);
                 myList.add(heightInches);
                 myList.add(sex);
-                helperMethods.saveData(myList, this, true);
+
+                if(cameFromBackButton){
+                    helperMethods.saveData(myList, this, false);
+                }
+                else{
+                    helperMethods.saveData(myList, this, true);
+                }
+
 
                 //Start an activity and pass the EditText string to it.
                 Intent messageIntent = new Intent(this, location_input.class);
@@ -228,5 +271,13 @@ public class body_info_input extends AppCompatActivity
                 this.startActivity(messageIntent);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, name_input.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
     }
 }

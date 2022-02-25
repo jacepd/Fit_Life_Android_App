@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -90,6 +91,18 @@ public class location_input extends AppCompatActivity
 
  */
     }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, body_info_input.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
+    }
+
+
+
 /*
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
