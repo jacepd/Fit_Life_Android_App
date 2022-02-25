@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.basicinfoname.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.URL;
 
@@ -42,8 +46,25 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
             e.printStackTrace();
         }
 
+        try {
+            WeatherData weatherData = JSONWeatherUtils.getWeatherData(jsonWeatherData);
+            int i = 0;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         mButtonReturn = (Button) findViewById(R.id.button_return);
         mButtonReturn.setOnClickListener(this);
+
+        TextView mLoc_val = (TextView) findViewById(R.id.tv_loc_val);
+        TextView mTemp_val = (TextView) findViewById(R.id.tv_temp_val);
+        TextView mRainAmount_val = (TextView) findViewById(R.id.tv_amount_of_rain);
+
+
+
+
+
     }
 
     @Override

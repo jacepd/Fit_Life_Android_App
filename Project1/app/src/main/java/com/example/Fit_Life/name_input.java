@@ -99,6 +99,6 @@ public class name_input extends AppCompatActivity
         this.startActivity(intent);
         finish();
     }
-    
+
 
 }

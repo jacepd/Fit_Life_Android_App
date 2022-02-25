@@ -34,7 +34,6 @@ public class bmi_page extends AppCompatActivity
         TextView mBMI_val = (TextView) findViewById(R.id.bmi_val);
         TextView mBMI_type = (TextView) findViewById(R.id.bmi_type);
 
-
         String allDataStr = helperMethods.readData(this);
         String[] datas = allDataStr.split(",");
         double weight = Double.parseDouble(datas[3]);

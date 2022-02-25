@@ -8,9 +8,9 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class NetworkUtils {
-    private static String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private static String BASE_URL = "https://api.openweathermap.org/data/2.5/weather?q=";
     private static String APPIDQUERY = "&app_id=";
-    private static final String app_id="01ff6680aad0a6ca59af4f7a60f42b04";
+    private static final String app_id="dea49d627fea00ba2da57ad036b9b61a";
 
     public static URL buildURLFromString(String location){
         URL myURL = null;

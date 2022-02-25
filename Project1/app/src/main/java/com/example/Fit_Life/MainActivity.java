@@ -169,4 +169,12 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
+    }
 }

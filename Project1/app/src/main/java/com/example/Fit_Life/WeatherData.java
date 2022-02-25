@@ -148,7 +148,7 @@ public class WeatherData {
 
     }
 
-    //Setters and Getters
+    // Setters and Getters
     public void setLocationData(LocationData locationData){
         mLocationData = locationData;
     }
