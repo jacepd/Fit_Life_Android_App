@@ -12,11 +12,7 @@ Jace: Testing
 -life cycle aware
 
 
-https://www.geeksforgeeks.org/how-to-get-user-location-in-android/
-
 -Change back to hints
-
--Spawn correct hike
 
 -weather page
 
