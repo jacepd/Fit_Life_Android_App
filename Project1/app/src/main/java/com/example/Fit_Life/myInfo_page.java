@@ -145,26 +145,46 @@ public class myInfo_page extends AppCompatActivity
                 break;
             case R.id.button_return:
 
-                //save info to file
-                String[] newDatas = new String[dataSize];
-                newDatas[0] = mFirstName.getText().toString();
-                newDatas[1] = mLastName.getText().toString();
-                newDatas[2] = mAge.getText().toString(); //age
-                newDatas[3] = mWeight.getText().toString();
-                newDatas[4] = mHeightFt.getText().toString();
-                newDatas[5] = mHeightIn.getText().toString();
-                newDatas[6] = mSex.getText().toString();
-                newDatas[7] = mCity.getText().toString();
-                newDatas[8] = mState.getText().toString();
-                newDatas[9] = mGoal.getText().toString();
-                newDatas[10] = mActLvl.getText().toString();
+                //Parsing the inputted data
+                String theGoal = mGoal.getText().toString();
+                String theActivityLevel = mActLvl.getText().toString();
+                String theSex = mSex.getText().toString();
+                String theState = mState.getText().toString();
+                if(!(theGoal.equals("Gain") || theGoal.equals("Lose") || theGoal.equals("Maintain") || theGoal.equals("NoGoalSelected"))){
+                    Toast.makeText(myInfo_page.this, "Enter Valid Goal:\nGain, Lose, or Maintain", Toast.LENGTH_LONG).show();
+                }
+                else if(!(theActivityLevel.equals("Sedentary") || theActivityLevel.equals("Active") || theActivityLevel.equals("NoActivityLevelSelected"))){
+                    Toast.makeText(myInfo_page.this, "Enter Valid Activity Level:\nSedentary or Active", Toast.LENGTH_LONG).show();
+                }
+                else if(!(theSex.equals("Male") || theSex.equals("Female"))){
+                    Toast.makeText(myInfo_page.this, "Enter Valid Sex:\nMale or Female", Toast.LENGTH_LONG).show();
+                }
+                else if(theState.length() != 2){
+                    Toast.makeText(myInfo_page.this, "Enter Valid State Abbreviation:\n2 uppercase characters", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    //save info to file
+                    String[] newDatas = new String[dataSize];
+                    newDatas[0] = mFirstName.getText().toString();
+                    newDatas[1] = mLastName.getText().toString();
+                    newDatas[2] = mAge.getText().toString(); //age
+                    newDatas[3] = mWeight.getText().toString();
+                    newDatas[4] = mHeightFt.getText().toString();
+                    newDatas[5] = mHeightIn.getText().toString();
+                    newDatas[6] = theSex;
+                    newDatas[7] = mCity.getText().toString();
+                    newDatas[8] = theState;
+                    newDatas[9] = theGoal;
+                    newDatas[10] = theActivityLevel;
 
-                helperMethods.saveData(newDatas,this,false);
-                Toast.makeText(myInfo_page.this, "Information Updated", Toast.LENGTH_SHORT).show();
+                    helperMethods.saveData(newDatas,this,false);
+                    Toast.makeText(myInfo_page.this, "Information Updated", Toast.LENGTH_SHORT).show();
 
-                Intent messageIntent = new Intent(this, MainActivity.class);
-                this.startActivity(messageIntent);
-                break;
+                    Intent messageIntent = new Intent(this, MainActivity.class);
+                    this.startActivity(messageIntent);
+                    break;
+                }
+
         }
     }
 
