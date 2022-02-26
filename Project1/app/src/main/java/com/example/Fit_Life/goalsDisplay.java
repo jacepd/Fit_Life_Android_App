@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.basicinfoname.R;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -26,9 +28,11 @@ public class goalsDisplay extends AppCompatActivity {
             fTrans.replace(R.id.fl_frag_ph_1, new goalsFragLose(),"Frag_Lose");
         }
         else{
-            fTrans.replace(R.id.fl_frag_ph_1, new goalsFragGain(),"Frag_Maintain");
+            fTrans.replace(R.id.fl_frag_ph_1, new goalsFragMaintain(),"Frag_Maintain");
         }
 
         fTrans.commit();
     }
+
+
 }

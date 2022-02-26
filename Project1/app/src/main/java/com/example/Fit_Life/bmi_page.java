@@ -80,4 +80,11 @@ public class bmi_page extends AppCompatActivity
                 this.startActivity(messageIntent);
         }
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
+    }
 }

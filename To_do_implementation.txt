@@ -1,8 +1,8 @@
+OUR TEAM NAME IS "life is good"
 To Do:
 
 For Tuesday:
 Jack: weather
-Tony and ben: Goals
 Tony: Lifecycle aware
 Tony: Back button on second half of modules.
 Jace: Testing
@@ -11,8 +11,15 @@ Jace: Testing
 
 -life cycle aware
 
+-main picture is too big on small phone
+
+-Keyboard covers what im trying to type in the change info tab
 
 -Change back to hints
+
+-Change how the date is displayed
+
+-Many toasts for goals... figure that out
 
 -weather page
 

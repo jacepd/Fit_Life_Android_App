@@ -49,7 +49,7 @@ public class goals_input extends AppCompatActivity
         mActivityLevelNumberPicker.setMinValue(0);
         mActivityLevelNumberPicker.setMaxValue(1);
         mActivityLevelNumberPicker.setDisplayedValues(activityLevelArray);
-        mActivityLevelNumberPicker.setValue(6);
+        mActivityLevelNumberPicker.setValue(0);
         selectedActivityLevel = activityLevelArray[mActivityLevelNumberPicker.getValue()];
         mActivityLevelNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -62,12 +62,11 @@ public class goals_input extends AppCompatActivity
         //Second number picker
         goalArray = getResources().getStringArray(R.array.weightGoals);
 
-        //sex feet number picker
         mGoalNumberPicker = (NumberPicker) findViewById(R.id.goalNumberPicker);
         mGoalNumberPicker.setMinValue(0);
         mGoalNumberPicker.setMaxValue(2);
         mGoalNumberPicker.setDisplayedValues(goalArray);
-        mGoalNumberPicker.setValue(6);
+        mGoalNumberPicker.setValue(0);
         selectedGoal = goalArray[mGoalNumberPicker.getValue()];
         mGoalNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -100,6 +99,14 @@ public class goals_input extends AppCompatActivity
 
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
     }
 
 }
