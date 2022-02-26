@@ -66,12 +66,10 @@
                 android:background="@drawable/bmi_result_field"
                 android:gravity="center_horizontal"
                 android:padding="10dp"
-                android:text="placeholder"
+                android:hint="1000"
                 android:textSize="25dp" />
 
-
         </LinearLayout>
-
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"

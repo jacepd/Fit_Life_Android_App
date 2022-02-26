@@ -1,5 +1,6 @@
 package com.example.Fit_Life;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import com.example.basicinfoname.R;
 
@@ -25,6 +28,7 @@ public class goalsFragGain extends Fragment {
 
     private NumberPicker mPoundsNumberPicker;
     private int selectedPounds;
+    private Button mButtonReturn;
 
 
     // TODO: Rename and change types of parameters
@@ -67,7 +71,19 @@ public class goalsFragGain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_goals_frag_gain, container, false);
+
+        TextView mCaloriesNeeded = (TextView) view.findViewById(R.id.calories);
+
+        mButtonReturn = (Button) view.findViewById(R.id.button_return);
+        mButtonReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mPoundsNumberPicker = (NumberPicker) view.findViewById(R.id.poundsNumberPicker);
         mPoundsNumberPicker.setMinValue(1);
@@ -78,7 +94,8 @@ public class goalsFragGain extends Fragment {
             @Override
             public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
                 selectedPounds = newVal;
-                double bmr = calculateBMR();
+                double myCalories = getCalories();
+                //mCaloriesNeeded.setText((int) myCalories);
             }
         });
         // Inflate the layout for this fragment
@@ -86,7 +103,7 @@ public class goalsFragGain extends Fragment {
     }
 
 
-    private double calculateBMR(){
+    private double getCalories(){
         String allDataStr = helperMethods.readData(getContext());
 
         String[] datas = allDataStr.split(",");
@@ -98,6 +115,13 @@ public class goalsFragGain extends Fragment {
         String sex = datas[6];
         String activityLevel = datas[10];
 
+        double multiplayer;
+        if(activityLevel.equals("Sedentary")){
+            multiplayer = 1;
+        }
+        else{
+            multiplayer = 1.4;
+        }
 
 
         int totalHeight = (heightFeet * 12) + heightInches;
@@ -110,7 +134,9 @@ public class goalsFragGain extends Fragment {
             myBMR = 655 + (4.35 * weight) + (4.7 * totalHeight) -(4.7 * age);
         }
 
-        return myBMR;
+        double calories = myBMR * multiplayer;
+
+        return calories;
 
     }
 }
