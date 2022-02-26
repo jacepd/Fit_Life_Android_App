@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.basicinfoname.R;
 
@@ -23,8 +24,8 @@ public class goalsFragGain extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+//    private static final String ARG_PARAM1 = "param1";
+//    private static final String ARG_PARAM2 = "param2";
 
     private NumberPicker mPoundsNumberPicker;
     private int selectedPounds;
@@ -32,8 +33,8 @@ public class goalsFragGain extends Fragment {
 
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+//    private String mParam1;
+//    private String mParam2;
 
     public goalsFragGain() {
         // Required empty public constructor
@@ -50,20 +51,20 @@ public class goalsFragGain extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static goalsFragGain newInstance(String param1, String param2) {
         goalsFragGain fragment = new goalsFragGain();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
 
 
     }
@@ -87,15 +88,20 @@ public class goalsFragGain extends Fragment {
 
         mPoundsNumberPicker = (NumberPicker) view.findViewById(R.id.poundsNumberPicker);
         mPoundsNumberPicker.setMinValue(1);
-        mPoundsNumberPicker.setMaxValue(10);
-        mPoundsNumberPicker.setValue(2);
+        mPoundsNumberPicker.setMaxValue(4);
+        mPoundsNumberPicker.setValue(1);
         selectedPounds = mPoundsNumberPicker.getValue();
+        mCaloriesNeeded.setText(String.valueOf((int) getCalories()));
         mPoundsNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
                 selectedPounds = newVal;
-                double myCalories = getCalories();
-                //mCaloriesNeeded.setText((int) myCalories);
+                int myCalories =(int) getCalories();
+                mCaloriesNeeded.setText(String.valueOf(myCalories));
+
+                if (newVal > 2) {
+                    Toast.makeText(getActivity(), "Careful, you're trying to gain more than 2 lbs this week", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         // Inflate the layout for this fragment
@@ -123,7 +129,6 @@ public class goalsFragGain extends Fragment {
             multiplayer = 1.4;
         }
 
-
         int totalHeight = (heightFeet * 12) + heightInches;
 
         double myBMR;
@@ -135,8 +140,8 @@ public class goalsFragGain extends Fragment {
         }
 
         double calories = myBMR * multiplayer;
+        calories += (500 * selectedPounds);
 
         return calories;
-
     }
 }
