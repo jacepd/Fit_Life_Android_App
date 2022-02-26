@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:layout_margin="16dp">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginTop="100dp"
         android:background="@drawable/info_background"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -16,16 +18,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:gravity="center_horizontal"
             android:text="Your Weather is:"
             android:textSize="28sp" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="154dp"
-            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:background="@drawable/info_background"
             android:gravity="left"
@@ -48,16 +50,16 @@
                 android:background="@drawable/weather_result_field"
                 android:gravity="right"
                 android:padding="10dp"
-                android:text="City, Country"
+                android:hint="City, Country"
                 android:textSize="25dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
-            android:layout_height="155dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
+            android:layout_margin="20dp"
             android:layout_weight="1"
             android:background="@drawable/info_background"
             android:gravity="left"
@@ -80,7 +82,7 @@
                 android:background="@drawable/weather_result_field"
                 android:gravity="right"
                 android:padding="10dp"
-                android:text=""
+                android:hint="10 F"
                 android:textSize="25dp" />
 
         </LinearLayout>
@@ -88,8 +90,9 @@
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
-            android:layout_height="161dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/info_background"
             android:gravity="left"
@@ -107,12 +110,10 @@
                 android:id="@+id/tv_chance_of_rain_val"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
                 android:background="@drawable/weather_result_field"
                 android:gravity="right"
                 android:padding="10dp"
-                android:text="Ex: 40%"
+                android:hint="40%"
                 android:textSize="25dp" />
 
         </LinearLayout>

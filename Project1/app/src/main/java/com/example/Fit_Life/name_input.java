@@ -37,8 +37,8 @@ public class name_input extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name_input);
 
+        setContentView(R.layout.activity_name_input);
         setTitle("Fit Life - User Set Up");
 
         //Get the button

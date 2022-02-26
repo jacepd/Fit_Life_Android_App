@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
+import com.example.basicinfoname.R;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -95,5 +97,9 @@ public class helperMethods {
             e.printStackTrace();
         }
         return str;
+    }
+
+    public static boolean isTablet(Context c) {
+        return c.getResources().getBoolean(R.bool.isTablet);
     }
 }
