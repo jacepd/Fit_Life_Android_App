@@ -18,7 +18,7 @@ Jace: Testing
 
 -goals page (partial)
 
--look good on tablet
+-look good on tablet (Ben finish main activity)
 
 -"make tests"
 
