@@ -22,6 +22,18 @@ import java.net.URL;
 public class weather_output extends AppCompatActivity implements View.OnClickListener {
 
     private Button mButtonReturn;
+    private String allDataStr;
+    private String firstName;
+    private String lastName;
+    private int age;
+    private int weight;
+    private int heightFeet;
+    private int heightInches;
+    private String sex;
+    private float latitude;
+    private float longitude;
+    private String goal;
+    private String activityLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +73,18 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         TextView mTemp_val = (TextView) findViewById(R.id.tv_temp_val);
         TextView mRainAmount_val = (TextView) findViewById(R.id.tv_amount_of_rain);
 
+        allDataStr = helperMethods.readData(this);
 
-
-
+        String[] datas = allDataStr.split(",");
+        firstName = datas[0];
+        lastName = datas[1];
+        age = Integer.parseInt(datas[2]);
+        weight = Integer.parseInt(datas[3]);
+        heightFeet = Integer.parseInt(datas[4]);
+        heightInches = Integer.parseInt(datas[5]);
+        sex = datas[6];
+        goal = datas[9];
+        activityLevel = datas[10];
 
     }
 
