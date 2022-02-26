@@ -119,8 +119,7 @@ public class MainActivity extends AppCompatActivity
         Intent messageIntent;
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
-                double tHeight = heightFeet * 12;
-                tHeight += heightInches;
+                double tHeight = (heightFeet * 12) + heightInches;
                 double result = (weight / (tHeight * tHeight)) * 703;
                 result = helperMethods.round(result,1);
 
@@ -158,7 +157,8 @@ public class MainActivity extends AppCompatActivity
                     this.startActivity(messageIntent);
                 }
                 else{
-
+                    messageIntent = new Intent(this, goalsDisplay.class);
+                    this.startActivity(messageIntent);
                 }
 
                 break;

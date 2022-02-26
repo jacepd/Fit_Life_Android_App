@@ -17,18 +17,20 @@
         <entry key="app/src/main/res/drawable-v24/info_button.xml" value="0.126" />
         <entry key="app/src/main/res/layout/activity_bmi_page.xml" value="0.24395760825272556" />
         <entry key="app/src/main/res/layout/activity_body_info_input.xml" value="0.247455739166777" />
-        <entry key="app/src/main/res/layout/activity_goals_display.xml" value="0.32979440024491313" />
+        <entry key="app/src/main/res/layout/activity_goals_display.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_goals_input.xml" value="0.25329165024449557" />
         <entry key="app/src/main/res/layout/activity_heightweightinput.xml" value="0.28372497558593757" />
         <entry key="app/src/main/res/layout/activity_location_input.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_location_picture.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.4608200073242188" />
-        <entry key="app/src/main/res/layout/activity_my_info_page.xml" value="0.47161254882812503" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1022491455078125" />
+        <entry key="app/src/main/res/layout/activity_my_info_page.xml" value="0.337469482421875" />
         <entry key="app/src/main/res/layout/activity_name_input.xml" value="0.18571428571428572" />
         <entry key="app/src/main/res/layout/activity_profilePic_input.xml" value="0.1484375" />
         <entry key="app/src/main/res/layout/activity_profile_pic_input.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_profilepic_input.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_user_home.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_goals_frag_gain.xml" value="0.13825929283771532" />
+        <entry key="app/src/main/res/layout/fragment_goals_frag_lose.xml" value="0.1569390402075227" />
       </map>
     </option>
   </component>
