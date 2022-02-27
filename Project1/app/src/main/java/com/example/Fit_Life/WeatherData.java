@@ -26,30 +26,35 @@ public class WeatherData {
         public void setWeatherId(long weatherId) {
             mWeatherId = weatherId;
         }
+
         public String getCondition() {
             return mCondition;
         }
         public void setCondition(String condition) {
             mCondition = condition;
         }
+
         public String getDescr() {
             return mDescr;
         }
         public void setDescr(String descr) {
             mDescr = descr;
         }
+
         public String getIcon() {
             return mIcon;
         }
         public void setIcon(String icon) {
             mIcon = icon;
         }
+
         public double getPressure() {
             return mPressure;
         }
         public void setPressure(double pressure) {
             mPressure = pressure;
         }
+
         public double getHumidity() {
             return mHumidity;
         }
@@ -58,7 +63,7 @@ public class WeatherData {
         }
     }
 
-    public class Temperature {
+    public static class Temperature {
         private double mTemp;
         private double mMinTemp;
         private double mMaxTemp;
@@ -69,12 +74,14 @@ public class WeatherData {
         public void setTemp(double temp) {
             mTemp = temp;
         }
+
         public double getMinTemp() {
             return mMinTemp;
         }
         public void setMinTemp(double minTemp) {
             mMinTemp = minTemp;
         }
+
         public double getMaxTemp() {
             return mMaxTemp;
         }
@@ -87,12 +94,14 @@ public class WeatherData {
     public class Wind {
         private double mSpeed;
         private double mDeg;
+
         public double getSpeed() {
             return mSpeed;
         }
         public void setSpeed(double speed) {
             mSpeed = speed;
         }
+
         public double getDeg() {
             return mDeg;
         }
@@ -104,12 +113,14 @@ public class WeatherData {
     public class Rain {
         private String mTime;
         private double mAmount;
+
         public String getTime() {
             return mTime;
         }
         public void setTime(String time) {
             mTime = time;
         }
+
         public double getAmount() {
             return mAmount;
         }
@@ -121,12 +132,14 @@ public class WeatherData {
     public class Snow {
         private String mTime;
         private double mAmount;
+
         public String getTime() {
             return mTime;
         }
         public void setTime(String time) {
             mTime = time;
         }
+
         public double getAmount() {
             return mAmount;
         }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -19,9 +20,13 @@ import org.json.JSONObject;
 
 import java.net.URL;
 
-public class weather_output extends AppCompatActivity implements View.OnClickListener {
+public class weather_output extends AppCompatActivity implements View.OnClickListener{
 
     private Button mButtonReturn;
+    private WeatherData mWeatherData;
+    private WeatherData.Temperature mTemp;
+    private double mMaxTemp;
+    private WeatherData.CurrentCondition mCurrentCondition;
     private String allDataStr;
     private String firstName;
     private String lastName;
@@ -30,8 +35,8 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
     private int heightFeet;
     private int heightInches;
     private String sex;
-    private float latitude;
-    private float longitude;
+    private String city;
+    private String state;
     private String goal;
     private String activityLevel;
 
@@ -48,43 +53,23 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_output);
 
-        String location = "Salt&Lake&City,us";
-        URL weatherDataURL = NetworkUtils.buildURLFromString(location);
-
-        String jsonWeatherData = null;
-        try {jsonWeatherData = NetworkUtils.getDataFromURL(weatherDataURL);}
-
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            WeatherData weatherData = JSONWeatherUtils.getWeatherData(jsonWeatherData);
-            int i = 0;
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         mButtonReturn = (Button) findViewById(R.id.button_return);
         mButtonReturn.setOnClickListener(this);
 
         TextView mLoc_val = (TextView) findViewById(R.id.tv_loc_val);
-        TextView mTemp_val = (TextView) findViewById(R.id.tv_temp_val);
+
+        TextView mMaxTemp_val = (TextView) findViewById(R.id.tv_temp_val);
+        // TextView mMinTemp_val = (TextView) findViewById(R.id.tv_temp_val);
+
         TextView mRainAmount_val = (TextView) findViewById(R.id.tv_amount_of_rain);
 
         allDataStr = helperMethods.readData(this);
+        String[] data = allDataStr.split(",");
 
-        String[] datas = allDataStr.split(",");
-        firstName = datas[0];
-        lastName = datas[1];
-        age = Integer.parseInt(datas[2]);
-        weight = Integer.parseInt(datas[3]);
-        heightFeet = Integer.parseInt(datas[4]);
-        heightInches = Integer.parseInt(datas[5]);
-        sex = datas[6];
-        goal = datas[9];
-        activityLevel = datas[10];
+        mTemp = mWeatherData.getTemperature();
+        mMaxTemp = mTemp.getMaxTemp();
+
+        mMaxTemp_val.setText((int) mMaxTemp);
 
     }
 
@@ -96,6 +81,43 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
                 Intent messageIntent = new Intent(this, MainActivity.class);
                 this.startActivity(messageIntent);
                 break;
+        }
+    }
+
+    private class FetchWeatherTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... data) {
+
+            // Get City/State from user file.
+            city = data[11];
+            state = data[12];
+
+            String location = "Salt&Lake&City,us";
+            URL weatherDataURL = NetworkUtils.buildURLFromString(location);
+
+            String jsonWeatherData = null;
+            try {
+                jsonWeatherData = NetworkUtils.getDataFromURL(weatherDataURL);
+                return jsonWeatherData;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String jsonWeatherData) {
+            if (jsonWeatherData != null){
+                try {
+                    mWeatherData = JSONWeatherUtils.getWeatherData(jsonWeatherData);
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                    return;
+                }
+            }
         }
     }
 }
