@@ -19,7 +19,6 @@ import java.io.File;
 public class bmi_page extends AppCompatActivity{
     private Button mButtonReturn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +30,6 @@ public class bmi_page extends AppCompatActivity{
         fTrans.replace(R.id.bmi_activity, new bmi_Frag(),"bmi_frag");
         fTrans.commit();
     }
-
 
     @Override
     public void onBackPressed() {

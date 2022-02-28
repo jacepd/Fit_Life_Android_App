@@ -129,13 +129,6 @@
                     android:text="Go to My Goals!"
                     android:textColor="@color/colorAccent" />
             </LinearLayout>
-
         </LinearLayout>
-
-
-
     </LinearLayout>
-
-
-
 </RelativeLayout>

@@ -84,7 +84,7 @@ public class myInfo_frag extends Fragment {
                         Toast.makeText(getContext(), "External storage not writable.", Toast.LENGTH_SHORT).show();
                     }
 
-                    Intent messageIntent = new Intent(getContext(), myInfo_page.class);
+                    Intent messageIntent = new Intent(getContext(), MainActivity.class);
                     startActivity(messageIntent);
                 }
             });
