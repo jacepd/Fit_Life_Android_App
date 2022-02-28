@@ -103,7 +103,7 @@ public class goals_input extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, profile_pic_input.class);
         intent.putExtra("BackButtonPressed", true);
         this.startActivity(intent);
         finish();

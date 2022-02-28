@@ -3,8 +3,6 @@ package com.example.Fit_Life;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.os.HandlerCompat;
 import androidx.fragment.app.Fragment;
 
@@ -21,13 +19,25 @@ import com.example.basicinfoname.R;
 
 import org.json.JSONException;
 
-import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link weather_frag_good#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class weather_frag_good extends Fragment {
 
-public class WeatherFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
     private EditText mEtLocation;
     private TextView mTvTemp;
@@ -46,20 +56,46 @@ public class WeatherFragment extends Fragment {
     private String city;
     private String state;
 
-    private FetchWeatherTask mFetchWeatherTask = new FetchWeatherTask();
+    private weather_frag_good.FetchWeatherTask mFetchWeatherTask = new weather_frag_good.FetchWeatherTask();
 
-    public WeatherFragment() {
+    public weather_frag_good() {
         // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment weather_frag_good.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static weather_frag_good newInstance(String param1, String param2) {
+        weather_frag_good fragment = new weather_frag_good();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_weather, container, false);
+        View view = inflater.inflate(R.layout.fragment_weather_frag_good, container, false);
 
-        mButtonReturn = view.findViewById(R.id.button_return);
-
+        mButtonReturn = view.findViewById(R.id.button_return_weather);
         mButtonReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,36 +129,24 @@ public class WeatherFragment extends Fragment {
                 if (i > 0){
                     location= location + "+" + fullCity[i];
                 }
-
                 else {
                     location= location + fullCity[i];
                 }
             }
         }
-
-        else{ location = city; }
+        else{
+            location = city;
+        }
 
         location = location + ",us";
 
         // Begin thread here
         loadWeatherData(location);
 
-        int i = 0;
-
         return view;
     }
-
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("tvTemp",mTvTemp.getText().toString());
-        outState.putString("tvHum",mTvHum.getText().toString());
-        outState.putString("tvPress",mTvPress.getText().toString());
-    }
-
     private void loadWeatherData(String location){
-      mFetchWeatherTask.execute(location);
+        mFetchWeatherTask.execute(location);
     }
     private class FetchWeatherTask {
 
@@ -151,6 +175,7 @@ public class WeatherFragment extends Fragment {
 
             });
         }
+
 
         public void postToMainThread(String jsonWeatherData) {
 

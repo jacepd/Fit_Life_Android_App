@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         tablet = helperMethods.isTablet(this);
         if (tablet){
             setContentView(R.layout.activity_main_tablet);
@@ -172,7 +171,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_weather:
-                fTrans.replace(R.id.displayActivity, new WeatherFragment(),"weather_frag");
+                fTrans.replace(R.id.displayActivity, new weather_frag_good(),"weather_frag");
                 fTrans.commit();
                 break;
 

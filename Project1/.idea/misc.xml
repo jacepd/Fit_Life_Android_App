@@ -35,8 +35,11 @@
         <entry key="app/src/main/res/layout/activity_weather_output.xml" value="0.11" />
         <entry key="app/src/main/res/layout/fragment_bmi.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_goals_frag_gain.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_goals_frag_lose.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_goals_frag_maintain.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_my_info_frag.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.231722958529286" />
+        <entry key="app/src/main/res/layout/fragment_weather_frag_good.xml" value="0.1414324569356301" />
       </map>
     </option>
   </component>

@@ -34,7 +34,7 @@ public class weather_output extends AppCompatActivity{
         setContentView(R.layout.activity_weather_output);
 
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
-        fTrans.replace(R.id.weather_activity, new WeatherFragment(),"weather_frag");
+        fTrans.replace(R.id.weather_activity, new weather_frag_good(),"weather_frag");
         fTrans.commit();
 
     }
