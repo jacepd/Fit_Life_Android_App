@@ -33,12 +33,11 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
     private WeatherData mWeatherData;
     private EditText mEtLocation;
 
-    private TextView mTvTemp = (TextView) findViewById(R.id.tv_temp_val);
-    private TextView mTvMaxTemp = (TextView) findViewById(R.id.tv_temp_val);
-    private TextView mTvMinTemp = (TextView) findViewById(R.id.tv_temp_val);
+    private TextView mTvTemp;
+    private TextView mTvMaxTemp;
+    private TextView mTvMinTemp;
 
-    private TextView mLoc_val = (TextView) findViewById(R.id.et_location);
-    private TextView mRainAmount_val = (TextView) findViewById(R.id.tv_amount_of_rain);
+    private TextView mTvRainAmount;
 
     private double mTemp;
     private double mMaxTemp;
@@ -65,6 +64,13 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
 
         mButtonReturn.setOnClickListener(this);
         mButtonUpdate.setOnClickListener(this);
+
+        mTvTemp = (TextView) findViewById(R.id.tv_temp_val);
+        mTvMaxTemp = (TextView) findViewById(R.id.tv_temp_val);
+        mTvMinTemp = (TextView) findViewById(R.id.tv_temp_val);
+        mTvRainAmount = (TextView) findViewById(R.id.tv_amount_of_rain);
+
+        mEtLocation = (EditText) findViewById(R.id.et_location);
 
         allDataStr = helperMethods.readData(this);
         String[] data = allDataStr.split(",");
