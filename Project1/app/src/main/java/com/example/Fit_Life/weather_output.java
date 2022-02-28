@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +29,17 @@ import java.util.concurrent.Executors;
 public class weather_output extends AppCompatActivity implements View.OnClickListener{
 
     private Button mButtonReturn;
+    private Button mButtonUpdate;
     private WeatherData mWeatherData;
+    private EditText mEtLocation;
+
+    private TextView mTvTemp = (TextView) findViewById(R.id.tv_temp_val);
     private TextView mTvMaxTemp = (TextView) findViewById(R.id.tv_temp_val);
     private TextView mTvMinTemp = (TextView) findViewById(R.id.tv_temp_val);
+
+    private TextView mLoc_val = (TextView) findViewById(R.id.et_location);
+    private TextView mRainAmount_val = (TextView) findViewById(R.id.tv_amount_of_rain);
+
     private double mTemp;
     private double mMaxTemp;
     private double mMinTemp;
@@ -52,12 +61,10 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_weather_output);
 
         mButtonReturn = (Button) findViewById(R.id.button_return);
+        mButtonUpdate = (Button) findViewById(R.id.button_update);
+
         mButtonReturn.setOnClickListener(this);
-
-        TextView mLoc_val = (TextView) findViewById(R.id.tv_loc_val);
-
-
-        TextView mRainAmount_val = (TextView) findViewById(R.id.tv_amount_of_rain);
+        mButtonUpdate.setOnClickListener(this);
 
         allDataStr = helperMethods.readData(this);
         String[] data = allDataStr.split(",");
@@ -74,10 +81,14 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_return:
-
                 Intent messageIntent = new Intent(this, MainActivity.class);
                 this.startActivity(messageIntent);
                 break;
+
+            case R.id.button_submit:
+                String inputFromEt = mEtLocation.getText().toString().replace(
+                        ' ', '&');
+                loadWeatherData(inputFromEt);
         }
     }
 
@@ -126,7 +137,7 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         public void postToMainThread(String jsonWeatherData) {
 
             mainThreadHandler.post(() -> {
-                
+
                 if (jsonWeatherData != null) {
 
                     try { mWeatherData = JSONWeatherUtils.getWeatherData(jsonWeatherData); }
@@ -137,7 +148,7 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
                         mMaxTemp = mWeatherData.getTemperature().getMaxTemp();
                         mMinTemp = mWeatherData.getTemperature().getMinTemp();
 
-                        mTvMaxTemp.setText((int) mMaxTemp);
+                        mTvTemp.setText((int) mTemp);
                     }
                 }
             });
