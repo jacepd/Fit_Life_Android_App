@@ -51,18 +51,18 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_output);
 
-        mButtonReturn = (Button) findViewById(R.id.button_return);
-        mButtonUpdate = (Button) findViewById(R.id.button_update);
+        mButtonReturn = findViewById(R.id.button_return);
+        mButtonUpdate = findViewById(R.id.button_update);
 
         mButtonReturn.setOnClickListener(this);
         mButtonUpdate.setOnClickListener(this);
 
-        mTvTemp = (TextView) findViewById(R.id.tv_temp_val);
-        // mTvMaxTemp = (TextView) findViewById(R.id.tv_temp_val);
-        // mTvMinTemp = (TextView) findViewById(R.id.tv_temp_val);
-        mTvRainAmount = (TextView) findViewById(R.id.tv_amount_of_rain);
+        mTvTemp = findViewById(R.id.tv_temp_val);
+        mTvMaxTemp = findViewById(R.id.tv_max_temp_val);
+        mTvMinTemp = findViewById(R.id.tv_min_temp_val);
+        // mTvRainAmount = (TextView) findViewById(R.id.tv_amount_of_rain);
 
-        mEtLocation = (EditText) findViewById(R.id.et_location);
+        mEtLocation = findViewById(R.id.et_location);
 
         allDataStr = helperMethods.readData(this);
 
@@ -72,7 +72,7 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         state = split_data[8];
 
         String[] fullCity = null;
-        StringBuilder location = new StringBuilder();
+        String location = "";
 
         if (city.contains(" ")) {
             fullCity = city.split(" ");
@@ -80,21 +80,21 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
             for(int i = 0; i < fullCity.length; i++){
 
                 if (i > 0){
-                    location.append("&").append(fullCity[i]);
+                    location= location + "+" + fullCity[i];
                 }
 
                 else {
-                    location.append(fullCity[i]);
+                    location= location + fullCity[i];
                 }
             }
         }
 
-        else{ location = new StringBuilder(city); }
+        else{ location = city; }
 
-        location.append(",us");
+        location = location + ",us";
 
         // Begin thread here
-        loadWeatherData(location.toString());
+        loadWeatherData(location);
 
         int i = 0;
     }
@@ -130,7 +130,7 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         public ExecutorService executorService = Executors.newSingleThreadExecutor();
         public Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
 
-        public void execute(String... location) {
+        public void execute(String location) {
 
             executorService.execute(() -> {
 
@@ -145,7 +145,9 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
                     jsonWeatherData = NetworkUtils.getDataFromURL(weatherDataURL);
                     postToMainThread(jsonWeatherData);
                 }
-                catch (Exception e) { e.printStackTrace(); }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
             });
@@ -165,7 +167,11 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
                         mMaxTemp = mWeatherData.getTemperature().getMaxTemp();
                         mMinTemp = mWeatherData.getTemperature().getMinTemp();
 
-                        mTvTemp.setText((int) mTemp);
+                        mTvTemp.setText(new StringBuilder().append(mTemp).append("F°").toString());
+                        mTvMaxTemp.setText(new StringBuilder().append(mMaxTemp).append("F°").toString());
+                        mTvMinTemp.setText(new StringBuilder().append(mMinTemp).append("F°").toString());
+
+
                     }
                 }
             });

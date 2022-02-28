@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.button_BMI_Calculator:
                 messageIntent = new Intent(this, bmi_page.class);
                 this.startActivity(messageIntent);
-
                 break;
 
             case R.id.button_hikes:
@@ -116,8 +115,8 @@ public class MainActivity extends AppCompatActivity
                         Uri.parse("geo:0,0?q=" + city + " " + state + " " + "hikes"));
 
                 startActivity(intent);
-
                 break;
+
             case R.id.button_weather:
                 messageIntent = new Intent(this, weather_output.class);
                 this.startActivity(messageIntent);

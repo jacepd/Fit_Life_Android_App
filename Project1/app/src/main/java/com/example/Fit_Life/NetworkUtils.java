@@ -9,13 +9,15 @@ import java.util.Scanner;
 
 public class NetworkUtils {
     private static String BASE_URL = "https://api.openweathermap.org/data/2.5/weather?q=";
-    private static String APPIDQUERY = "&app_id=";
+    private static String UNITS = "&units=imperial";
+    private static String APPIDQUERY = "&appid=";
     private static final String app_id="dea49d627fea00ba2da57ad036b9b61a";
 
     public static URL buildURLFromString(String location){
         URL myURL = null;
 
-        try {myURL = new URL(BASE_URL + location + APPIDQUERY + app_id);}
+        try {
+            myURL = new URL(BASE_URL + location + UNITS + APPIDQUERY + app_id);}
 
         catch(MalformedURLException e){
             e.printStackTrace();
@@ -44,6 +46,11 @@ public class NetworkUtils {
             else{
                 return null;
             }
+        }
+
+        catch(Exception e){
+            e.printStackTrace();
+            return null;
         }
 
         finally {

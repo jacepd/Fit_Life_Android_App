@@ -16,7 +16,7 @@ public class JSONWeatherUtils {
         // Get location data
         JSONObject jsonCoords = jsonObject.getJSONObject("coord");
         locationData.setLatitude(jsonCoords.getDouble("lat"));
-        locationData.setLongitude(jsonCoords.getDouble("long"));
+        locationData.setLongitude(jsonCoords.getDouble("lon"));
 
         JSONObject jsonSys = jsonObject.getJSONObject("sys");
         locationData.setCountry(jsonSys.getString("country"));
