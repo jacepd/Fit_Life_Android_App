@@ -71,6 +71,8 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         city = split_data[7];
         state = split_data[8];
 
+        // https://api.openweathermap.org/data/2.5/weather?zip=84025&appid=dea49d627fea00ba2da57ad036b9b61a
+
         String[] fullCity = null;
         StringBuilder location = new StringBuilder();
 
