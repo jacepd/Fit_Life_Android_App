@@ -51,18 +51,18 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_output);
 
-        mButtonReturn = (Button) findViewById(R.id.button_return);
-        mButtonUpdate = (Button) findViewById(R.id.button_update);
+        mButtonReturn = findViewById(R.id.button_return);
+        mButtonUpdate = findViewById(R.id.button_update);
 
         mButtonReturn.setOnClickListener(this);
         mButtonUpdate.setOnClickListener(this);
 
-        mTvTemp = (TextView) findViewById(R.id.tv_temp_val);
-        // mTvMaxTemp = (TextView) findViewById(R.id.tv_temp_val);
-        // mTvMinTemp = (TextView) findViewById(R.id.tv_temp_val);
-        mTvRainAmount = (TextView) findViewById(R.id.tv_amount_of_rain);
+        mTvTemp = findViewById(R.id.tv_temp_val);
+        mTvMaxTemp = findViewById(R.id.tv_max_temp_val);
+        mTvMinTemp = findViewById(R.id.tv_min_temp_val);
+        // mTvRainAmount = (TextView) findViewById(R.id.tv_amount_of_rain);
 
-        mEtLocation = (EditText) findViewById(R.id.et_location);
+        mEtLocation = findViewById(R.id.et_location);
 
         allDataStr = helperMethods.readData(this);
 
@@ -70,8 +70,6 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
 
         city = split_data[7];
         state = split_data[8];
-
-        // https://api.openweathermap.org/data/2.5/weather?zip=84025&appid=dea49d627fea00ba2da57ad036b9b61a
 
         String[] fullCity = null;
         String location = "";
@@ -169,7 +167,11 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
                         mMaxTemp = mWeatherData.getTemperature().getMaxTemp();
                         mMinTemp = mWeatherData.getTemperature().getMinTemp();
 
-                        mTvTemp.setText(String.valueOf((int) mTemp));
+                        mTvTemp.setText(new StringBuilder().append(mTemp).append("F°").toString());
+                        mTvMaxTemp.setText(new StringBuilder().append(mMaxTemp).append("F°").toString());
+                        mTvMinTemp.setText(new StringBuilder().append(mMinTemp).append("F°").toString());
+
+
                     }
                 }
             });
