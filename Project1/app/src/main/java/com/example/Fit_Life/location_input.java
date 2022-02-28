@@ -43,8 +43,6 @@ public class location_input extends AppCompatActivity
         Intent receivedIntent = getIntent();
         if (receivedIntent.hasExtra("BackButtonPressed")) {
             cameFromBackButton = true;
-            Toast.makeText(this, "WAHHHOOOOO", Toast.LENGTH_SHORT).show();
-
         }
         else{
             cameFromBackButton = false;
@@ -92,7 +90,6 @@ public class location_input extends AppCompatActivity
                 String allDataStr = helperMethods.readData(this);
                 String[] old_data = allDataStr.split(",");
                 if(cameFromBackButton){
-                    Toast.makeText(this, "WOOOOHOOOOO", Toast.LENGTH_SHORT).show();
                     String firstName = old_data[0];
                     String lastName = old_data[1];
                     String age = old_data[2];

@@ -2,12 +2,8 @@ package com.example.Fit_Life;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.basicinfoname.R;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 public class goalsDisplay extends AppCompatActivity {
 

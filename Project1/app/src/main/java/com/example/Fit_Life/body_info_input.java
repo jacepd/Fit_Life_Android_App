@@ -217,7 +217,6 @@ public class body_info_input extends AppCompatActivity
                 ArrayList<String> myList = new ArrayList<String>();
 
                 if(cameFromBackButton){
-                    Toast.makeText(this, "WOOOOHOOOOO", Toast.LENGTH_SHORT).show();
                     String allDataStr = helperMethods.readData(this);
                     String[] old_data = allDataStr.split(",");
                     String firstName = old_data[0];

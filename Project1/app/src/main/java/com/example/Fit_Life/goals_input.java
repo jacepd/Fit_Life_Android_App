@@ -34,7 +34,7 @@ public class goals_input extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals_input);
-
+        setTitle("Fit Life - Goal");
 
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_submit);

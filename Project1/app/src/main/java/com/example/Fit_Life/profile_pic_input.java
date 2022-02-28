@@ -4,47 +4,30 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.basicinfoname.R;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.EventListener;
 
 public class profile_pic_input extends AppCompatActivity
         implements View.OnClickListener {
 
     private Button mButtonSubmit;
-    private String mProfileStr;
 
     ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-//                    if (result.getResultCode() == Activity.RESULT_OK) {
                         Intent intent = result.getData();
-                        // Handle the Intent
-
                         //Get the bitmap
                         Bundle extras = intent.getExtras();
                         mThumbnailImage = (Bitmap) extras.get("data");
@@ -72,9 +55,6 @@ public class profile_pic_input extends AppCompatActivity
 
     Bitmap mThumbnailImage;
     //Define a global intent variable
-    Intent mDisplayIntent;
-    //Define a request code for the camera
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +89,9 @@ public class profile_pic_input extends AppCompatActivity
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
-            Toast.makeText(this,"file saved!",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"File saved!",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(this,"Failed!",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Failed!",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
 

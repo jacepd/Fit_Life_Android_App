@@ -1,36 +1,19 @@
 package com.example.Fit_Life;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.basicinfoname.R;
-import com.google.android.gms.common.util.IOUtils;
-
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Dictionary;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
@@ -43,7 +26,6 @@ public class MainActivity extends AppCompatActivity
     private ImageView mProfilePic;
 
     private String allDataStr;
-
     private String firstName;
     private String lastName;
     private int age;
@@ -160,6 +142,7 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
+                setTitle("Fit Life - BMI");
                 fTrans.replace(R.id.displayActivity, new bmi_Frag(),"bmi_frag");
                 fTrans.commit();
                 break;
@@ -171,16 +154,19 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_weather:
+                setTitle("Fit Life - Weather");
                 fTrans.replace(R.id.displayActivity, new weather_frag_good(),"weather_frag");
                 fTrans.commit();
                 break;
 
             case R.id.button_view_my_info:
+                setTitle("Fit Life - User Info");
                 fTrans.replace(R.id.displayActivity, new myInfo_frag(),"info_frag");
                 fTrans.commit();
                 break;
 
             case R.id.button_Fitness_Goals:
+                setTitle("Fit Life - Goals");
                 if(goal.equals("Gain")){
                     fTrans.replace(R.id.displayActivity, new goalsFragGain(),"Frag_Gain");
                 }

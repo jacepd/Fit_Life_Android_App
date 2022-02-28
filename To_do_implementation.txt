@@ -11,8 +11,6 @@ Jace: Testing
 
 -life cycle aware
 
--main picture is too big on small phone
-
 -Keyboard covers what im trying to type in the change info tab
 
 -Change back to hints
@@ -20,6 +18,8 @@ Jace: Testing
 -Change how the date is displayed
 
 -Many toasts for goals... figure that out
+
+-remove excess toasts
 
 -"make tests"
 
@@ -31,8 +31,3 @@ Required Docs:
 
 -test documentation (see project description)
 
-
-
--add 15 padding to get profile pic input 
--set title in the switch statement for ipad
--remove toast
