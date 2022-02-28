@@ -74,7 +74,7 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         // https://api.openweathermap.org/data/2.5/weather?zip=84025&appid=dea49d627fea00ba2da57ad036b9b61a
 
         String[] fullCity = null;
-        StringBuilder location = new StringBuilder();
+        String location = "";
 
         if (city.contains(" ")) {
             fullCity = city.split(" ");
@@ -82,21 +82,21 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
             for(int i = 0; i < fullCity.length; i++){
 
                 if (i > 0){
-                    location.append("&").append(fullCity[i]);
+                    location= location + "+" + fullCity[i];
                 }
 
                 else {
-                    location.append(fullCity[i]);
+                    location= location + fullCity[i];
                 }
             }
         }
 
-        else{ location = new StringBuilder(city); }
+        else{ location = city; }
 
-        location.append(",us");
+        location = location + ",us";
 
         // Begin thread here
-        loadWeatherData(location.toString());
+        loadWeatherData(location);
 
         int i = 0;
     }
@@ -132,7 +132,7 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
         public ExecutorService executorService = Executors.newSingleThreadExecutor();
         public Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
 
-        public void execute(String... location) {
+        public void execute(String location) {
 
             executorService.execute(() -> {
 
@@ -147,7 +147,9 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
                     jsonWeatherData = NetworkUtils.getDataFromURL(weatherDataURL);
                     postToMainThread(jsonWeatherData);
                 }
-                catch (Exception e) { e.printStackTrace(); }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
             });
@@ -167,7 +169,7 @@ public class weather_output extends AppCompatActivity implements View.OnClickLis
                         mMaxTemp = mWeatherData.getTemperature().getMaxTemp();
                         mMinTemp = mWeatherData.getTemperature().getMinTemp();
 
-                        mTvTemp.setText((int) mTemp);
+                        mTvTemp.setText(String.valueOf((int) mTemp));
                     }
                 }
             });
