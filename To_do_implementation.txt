@@ -1,10 +1,9 @@
 OUR TEAM NAME IS "life is good"
+
 To Do:
 
 For Tuesday:
-Jack: weather
 Tony: Lifecycle aware
-Tony: Back button on second half of modules.
 Jace: Testing
 	Both documents
 
@@ -22,12 +21,6 @@ Jace: Testing
 
 -Many toasts for goals... figure that out
 
--weather page
-
--goals page (partial)
-
--look good on tablet (Ben finish main activity)
-
 -"make tests"
 
 Required Docs:
@@ -37,3 +30,9 @@ Required Docs:
 -layout sketch
 
 -test documentation (see project description)
+
+
+
+-add 15 padding to get profile pic input 
+-set title in the switch statement for ipad
+-remove toast

@@ -24,20 +24,20 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="155dp"
-                android:layout_height="155dp"
-                card_view:cardCornerRadius="250dp"
+                android:layout_width="135dp"
+                android:layout_height="135dp"
+                card_view:cardCornerRadius="230dp"
                 card_view:cardBackgroundColor="@color/colorAccent">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    card_view:cardCornerRadius="250dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    card_view:cardCornerRadius="230dp"
                     android:layout_gravity="center">
 
                     <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
                         android:id="@+id/profile_photo"
                         android:scaleType="centerCrop"/>
 
