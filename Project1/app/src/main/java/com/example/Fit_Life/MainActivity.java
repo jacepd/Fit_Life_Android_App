@@ -158,7 +158,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void tabletSwitchStatement(View view) {
-        Intent messageIntent;
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
@@ -173,13 +172,12 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_weather:
-                //To do
-                messageIntent = new Intent(this, weather_output.class);
-                this.startActivity(messageIntent);
+                fTrans.replace(R.id.displayActivity, new WeatherFragment(),"weather_frag");
+                fTrans.commit();
                 break;
 
             case R.id.button_view_my_info:
-                fTrans.replace(R.id.displayActivity, new myInfo_frag(),"bmi_frag");
+                fTrans.replace(R.id.displayActivity, new myInfo_frag(),"info_frag");
                 fTrans.commit();
                 break;
 
