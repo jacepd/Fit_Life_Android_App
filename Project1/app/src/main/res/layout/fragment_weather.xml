@@ -137,15 +137,5 @@
                 android:text="home"
                 android:textColor="@color/colorAccent" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_update"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/info_button"
-                android:text="update"
-                android:textColor="@color/colorAccent" />
-
         </LinearLayout>
     </RelativeLayout>
