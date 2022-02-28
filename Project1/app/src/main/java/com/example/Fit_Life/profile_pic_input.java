@@ -49,15 +49,6 @@ public class profile_pic_input extends AppCompatActivity
                         Bundle extras = intent.getExtras();
                         mThumbnailImage = (Bitmap) extras.get("data");
 
-                    //Open a file and write to it
-                    if(isExternalStorageWritable()){
-                        // String filePathString = saveImage(mThumbnailImage);
-                        // mDisplayIntent.putExtra("imagePath",filePathString);
-                    }
-                    else{
-                        Toast.makeText(profile_pic_input.this,"External storage not writable.",Toast.LENGTH_SHORT).show();
-                    }
-
 
                     ByteArrayOutputStream bStream = new ByteArrayOutputStream();
                     mThumbnailImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
@@ -72,9 +63,7 @@ public class profile_pic_input extends AppCompatActivity
                             Toast.makeText(profile_pic_input.this, "External storage not writable.", Toast.LENGTH_SHORT).show();
                         }
 
-                        Intent messageIntent = new Intent(profile_pic_input.this, MainActivity.class);
-                        //messageIntent.putExtra("ET_STRING", mProfileStr);
-                        //messageIntent.putExtra("ET_IMAGE", byteArray);
+                        Intent messageIntent = new Intent(profile_pic_input.this, goals_input.class);
                         startActivity(messageIntent);
 //                    }
                 }
@@ -91,23 +80,7 @@ public class profile_pic_input extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_pic_input);
-
         setTitle("Fit Life App");
-
-        //commenting out intent bundle stuff. No need for it because now we save to files
-        /*
-        //Get the intent that created this activity.
-        Intent receivedIntent = getIntent();
-        //Get the string data
-        mProfileStr = receivedIntent.getStringExtra("ET_STRING");
-
-        if(mProfileStr.matches("")){
-            Toast.makeText(profile_pic_input.this, "Empty string received", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(profile_pic_input.this, mProfileStr, Toast.LENGTH_SHORT).show();
-        }
-        */
 
         //Get the button
         mButtonSubmit = (Button) findViewById(R.id.button_submit);

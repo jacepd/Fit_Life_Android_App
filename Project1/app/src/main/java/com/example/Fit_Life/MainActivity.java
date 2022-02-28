@@ -78,26 +78,13 @@ public class MainActivity extends AppCompatActivity
 
         mProfilePic = (ImageView) findViewById(R.id.profile_photo);
 
-        //This takes the picture from the recieved intent, but now commented out. Now it and takes
-        //the picture from the saved file.
-
-        // Get the intent that created this activity.
-        //Intent receivedIntent = getIntent();
-        //allDatastr = receivedIntent.getStringExtra("ET_STRING");
-        //byte[] byteArray = getIntent().getByteArrayExtra("ET_IMAGE");
-        //image = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        //mProfilePic.setImageBitmap(image);
-
         File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         String imFilename = "profilePic.jpg";
 
         File imagefile = new File(myDir, imFilename);
         Bitmap bMap = BitmapFactory.decodeFile(imagefile.toString());
 
-
-
         allDataStr = helperMethods.readData(this);
-
         String[] datas = allDataStr.split(",");
         firstName = datas[0];
         lastName = datas[1];
@@ -119,10 +106,6 @@ public class MainActivity extends AppCompatActivity
         Intent messageIntent;
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
-                double tHeight = (heightFeet * 12) + heightInches;
-                double result = (weight / (tHeight * tHeight)) * 703;
-                result = helperMethods.round(result,1);
-
                 messageIntent = new Intent(this, bmi_page.class);
                 this.startActivity(messageIntent);
                 break;
@@ -135,29 +118,18 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.button_weather:
-
                 messageIntent = new Intent(this, weather_output.class);
                 this.startActivity(messageIntent);
                 break;
 
             case R.id.button_view_my_info:
-
                 messageIntent = new Intent(this, myInfo_page.class);
                 this.startActivity(messageIntent);
                 break;
 
-
             case R.id.button_Fitness_Goals:
-
-                if(goal.equals("NoGoalSelected") || activityLevel.equals("NoActivityLevelSelected")){
-                    messageIntent = new Intent(this, goals_input.class);
-                    this.startActivity(messageIntent);
-                }
-                else{
-                    messageIntent = new Intent(this, goalsDisplay.class);
-                    this.startActivity(messageIntent);
-                }
-
+                messageIntent = new Intent(this, goalsDisplay.class);
+                this.startActivity(messageIntent);
                 break;
         }
     }
