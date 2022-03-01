@@ -48,9 +48,3 @@ public class weather_output extends AppCompatActivity{
     }
 }
 
-
-
-
-
-
-

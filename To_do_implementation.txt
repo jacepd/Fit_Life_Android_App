@@ -7,8 +7,6 @@ Tony: Lifecycle aware
 Jace: Testing
 	Both documents
 
--Back button from the goals input
-
 -life cycle aware
 
 -Keyboard covers what im trying to type in the change info tab
@@ -18,8 +16,6 @@ Jace: Testing
 -Change how the date is displayed
 
 -Many toasts for goals... figure that out
-
--remove excess toasts
 
 -"make tests"
 

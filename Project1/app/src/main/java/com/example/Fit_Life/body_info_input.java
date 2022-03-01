@@ -127,7 +127,6 @@ public class body_info_input extends AppCompatActivity
         Intent receivedIntent = getIntent();
         if (receivedIntent.hasExtra("BackButtonPressed")) {
             cameFromBackButton = true;
-            Toast.makeText(this, "WAHHHOOOOO", Toast.LENGTH_SHORT).show();
 
             //set the contents with previously loaded values
             String allDataStr = helperMethods.readData(this);

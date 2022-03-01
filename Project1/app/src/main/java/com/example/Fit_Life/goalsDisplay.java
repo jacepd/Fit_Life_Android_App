@@ -3,6 +3,8 @@ package com.example.Fit_Life;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import com.example.basicinfoname.R;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 public class goalsDisplay extends AppCompatActivity {
@@ -30,5 +32,12 @@ public class goalsDisplay extends AppCompatActivity {
         fTrans.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("BackButtonPressed", true);
+        this.startActivity(intent);
+        finish();
+    }
 
 }
