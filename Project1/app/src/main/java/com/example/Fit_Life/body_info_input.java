@@ -63,6 +63,8 @@ public class body_info_input extends AppCompatActivity
         mDatePicker.setInputType(InputType.TYPE_NULL);
         mDatePicker.setOnClickListener(this);
 
+
+
         //weight number picker
         mWeightNumberPicker = (NumberPicker) findViewById(R.id.weightNumberPicker);
         mWeightNumberPicker.setMinValue(10);
@@ -176,7 +178,7 @@ public class body_info_input extends AppCompatActivity
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                mDatePicker.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                mDatePicker.setText((monthOfYear + 1)+ "/" + dayOfMonth + "/" + year);
                             }
                         }, year, month, day);
                 picker.updateDate(1996, 11, 25);
@@ -196,8 +198,8 @@ public class body_info_input extends AppCompatActivity
                 }
 
                 String[] datas = mDatePicker.getText().toString().split("/");
-                int xday = Integer.parseInt(datas[0]);
-                int xmonth = Integer.parseInt(datas[1]);
+                int xday = Integer.parseInt(datas[1]);
+                int xmonth = Integer.parseInt(datas[0]);
                 int xyear = Integer.parseInt(datas[2]);
 
                 LocalDate today = LocalDate.now(); // Today's date is 10th Jan 2022
