@@ -71,6 +71,7 @@ public class bmi_Frag extends Fragment {
         double tHeight = heightFeet * 12;
         tHeight += heightInches;
         double result = (weight / (tHeight * tHeight)) * 703;
+        // Tested the BMI output from the round helper method
         result = helperMethods.round(result, 1);
 
         mBMI_val.setText(Double.toString(result));
