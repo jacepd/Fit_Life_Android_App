@@ -47,11 +47,13 @@ public class weather_frag_good extends Fragment {
     private Button mButtonReturn;
     private TextView mTvMaxTemp;
     private TextView mTvMinTemp;
+    private TextView mTvCondition;
     private TextView mTvRainAmount;
 
     private double mTemp;
     private double mMaxTemp;
     private double mMinTemp;
+    private String mCondition;
     private String allDataStr;
     private String city;
     private String state;
@@ -107,6 +109,7 @@ public class weather_frag_good extends Fragment {
         mTvTemp = view.findViewById(R.id.tv_temp_val);
         mTvMaxTemp = view.findViewById(R.id.tv_max_temp_val);
         mTvMinTemp = view.findViewById(R.id.tv_min_temp_val);
+        mTvCondition = view.findViewById(R.id.tv_condition_val);
         // mTvRainAmount = (TextView) findViewById(R.id.tv_amount_of_rain);
 
         mEtLocation = view.findViewById(R.id.et_location);
@@ -190,11 +193,12 @@ public class weather_frag_good extends Fragment {
                         mTemp = mWeatherData.getTemperature().getTemp();
                         mMaxTemp = mWeatherData.getTemperature().getMaxTemp();
                         mMinTemp = mWeatherData.getTemperature().getMinTemp();
+                        mCondition = mWeatherData.getCurrentCondition().getCondition();
 
                         mTvTemp.setText(new StringBuilder().append(mTemp).append("F°").toString());
                         mTvMaxTemp.setText(new StringBuilder().append(mMaxTemp).append("F°").toString());
                         mTvMinTemp.setText(new StringBuilder().append(mMinTemp).append("F°").toString());
-
+                        mTvCondition.setText(new StringBuilder().append(mCondition).toString());
 
                     }
                 }
