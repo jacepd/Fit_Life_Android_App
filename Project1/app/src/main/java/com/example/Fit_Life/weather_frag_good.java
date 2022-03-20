@@ -20,6 +20,7 @@ import com.example.basicinfoname.R;
 
 import org.json.JSONException;
 
+import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -93,12 +94,9 @@ public class weather_frag_good extends Fragment {
         View view = inflater.inflate(R.layout.fragment_weather_frag_good, container, false);
 
         mButtonReturn = view.findViewById(R.id.button_return_weather);
-        mButtonReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
+        mButtonReturn.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
         });
 
         mTvTemp = view.findViewById(R.id.tv_temp_val);
@@ -137,6 +135,8 @@ public class weather_frag_good extends Fragment {
 
         location = location + ",us";
 
+        mFetchWeatherTask.setWeakReference(this);
+
         // Begin thread here
         loadWeatherData(location);
 
@@ -164,11 +164,11 @@ public class weather_frag_good extends Fragment {
         public ExecutorService executorService = Executors.newSingleThreadExecutor();
         public Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
 
+        WeakReference<weather_frag_good> weatherFragGoodWeakReference;
+
         public void execute(String location) {
 
             executorService.execute(() -> {
-
-                // Toast.makeText(weather_output.this, "" + location, Toast.LENGTH_SHORT).show();
 
                 // location = "Salt&Lake&City,us";
                 URL weatherDataURL = NetworkUtils.buildURLFromString("" + location);
@@ -210,6 +210,10 @@ public class weather_frag_good extends Fragment {
                     }
                 }
             });
+        }
+
+        public void setWeakReference(weather_frag_good weather_frag_good) {
+            weatherFragGoodWeakReference = new WeakReference<weather_frag_good>(weather_frag_good);
         }
     }
 }
