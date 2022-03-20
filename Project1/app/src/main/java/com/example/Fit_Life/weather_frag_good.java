@@ -1,5 +1,6 @@
 package com.example.Fit_Life;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -39,26 +40,20 @@ public class weather_frag_good extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private EditText mEtLocation;
     private TextView mTvTemp;
-    private TextView mTvPress;
-    private TextView mTvHum;
-    private WeatherData mWeatherData;
-    private Button mButtonReturn;
     private TextView mTvMaxTemp;
     private TextView mTvMinTemp;
     private TextView mTvCondition;
     private TextView mTvRainAmount;
-
-    private double mTemp;
-    private double mMaxTemp;
-    private double mMinTemp;
-    private String mCondition;
+    private TextView mTvPress;
+    private TextView mTvHum;
+    private EditText mEtLocation;
+    private Button mButtonReturn;
     private String allDataStr;
     private String city;
     private String state;
 
-    private weather_frag_good.FetchWeatherTask mFetchWeatherTask = new weather_frag_good.FetchWeatherTask();
+    private static weather_frag_good.FetchWeatherTask mFetchWeatherTask = new weather_frag_good.FetchWeatherTask();
 
     public weather_frag_good() {
         // Required empty public constructor
@@ -111,7 +106,6 @@ public class weather_frag_good extends Fragment {
         mTvMinTemp = view.findViewById(R.id.tv_min_temp_val);
         mTvCondition = view.findViewById(R.id.tv_condition_val);
         // mTvRainAmount = (TextView) findViewById(R.id.tv_amount_of_rain);
-
         mEtLocation = view.findViewById(R.id.et_location);
 
         allDataStr = helperMethods.readData(getContext());
@@ -151,7 +145,21 @@ public class weather_frag_good extends Fragment {
     private void loadWeatherData(String location){
         mFetchWeatherTask.execute(location);
     }
-    private class FetchWeatherTask {
+
+    private static class FetchWeatherTask {
+
+        private WeatherData mWeatherData;
+        private double mTemp;
+        private double mMaxTemp;
+        private double mMinTemp;
+        private String mCondition;
+        private TextView mTvTemp;
+        private TextView mTvMaxTemp;
+        private TextView mTvMinTemp;
+        private TextView mTvCondition;
+        private TextView mTvRainAmount;
+        private TextView mTvPress;
+        private TextView mTvHum;
 
         public ExecutorService executorService = Executors.newSingleThreadExecutor();
         public Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
@@ -174,7 +182,6 @@ public class weather_frag_good extends Fragment {
                 catch (Exception e) {
                     e.printStackTrace();
                 }
-
 
             });
         }
