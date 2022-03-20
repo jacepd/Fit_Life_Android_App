@@ -128,7 +128,7 @@ public class myInfo_frag extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_my_info_frag, container, false);
 
 
-        mButtonSaveReturn = (Button) view.findViewById(R.id.button_return);
+        mButtonSaveReturn = view.findViewById(R.id.button_return);
         mButtonSaveReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,7 +173,7 @@ public class myInfo_frag extends Fragment {
             }
         });
 
-        mProfilePic = (ImageView) view.findViewById(R.id.profile_photo);
+        mProfilePic = view.findViewById(R.id.profile_photo);
         mProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,17 +182,17 @@ public class myInfo_frag extends Fragment {
             }
         });
 
-        mFirstName = (EditText) view.findViewById(R.id.firstName_input);
-        mLastName = (EditText) view.findViewById(R.id.lastName_input);
-        mHeightFt = (EditText) view.findViewById(R.id.heightFt_input);
-        mHeightIn = (EditText) view.findViewById(R.id.heightIn_input);
-        mWeight = (EditText) view.findViewById(R.id.weight_input);
-        mGoal = (EditText) view.findViewById(R.id.goal_input);
-        mActLvl = (EditText) view.findViewById(R.id.actLvL_input);
-        mSex = (EditText) view.findViewById(R.id.sex_input);
-        mAge = (EditText) view.findViewById(R.id.age_input);
-        mCity = (EditText) view.findViewById(R.id.city_input);
-        mState = (EditText) view.findViewById(R.id.state_input);
+        mFirstName = view.findViewById(R.id.firstName_input);
+        mLastName = view.findViewById(R.id.lastName_input);
+        mHeightFt = view.findViewById(R.id.heightFt_input);
+        mHeightIn = view.findViewById(R.id.heightIn_input);
+        mWeight = view.findViewById(R.id.weight_input);
+        mGoal = view.findViewById(R.id.goal_input);
+        mActLvl = view.findViewById(R.id.actLvL_input);
+        mSex = view.findViewById(R.id.sex_input);
+        mAge = view.findViewById(R.id.age_input);
+        mCity = view.findViewById(R.id.city_input);
+        mState = view.findViewById(R.id.state_input);
 
         String allDataStr = helperMethods.readData(getContext());
         datas = allDataStr.split(",");
@@ -243,9 +243,6 @@ public class myInfo_frag extends Fragment {
 
     private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 }

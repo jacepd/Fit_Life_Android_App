@@ -62,7 +62,7 @@ public class weather_frag_good extends Fragment {
     private WeatherData mWeatherData;
 
     private static weather_frag_good.FetchWeatherTask mFetchWeatherTask = new weather_frag_good.FetchWeatherTask();
-    
+
     public weather_frag_good() {
         // Required empty public constructor
     }
