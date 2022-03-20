@@ -48,14 +48,21 @@ public class weather_frag_good extends Fragment {
     private TextView mTvRainAmount;
     private TextView mTvPress;
     private TextView mTvHum;
+
+    private double mTemp;
+    private double mMaxTemp;
+    private double mMinTemp;
+    private String mCondition;
+
     private EditText mEtLocation;
     private Button mButtonReturn;
     private String allDataStr;
     private String city;
     private String state;
+    private WeatherData mWeatherData;
 
     private static weather_frag_good.FetchWeatherTask mFetchWeatherTask = new weather_frag_good.FetchWeatherTask();
-
+    
     public weather_frag_good() {
         // Required empty public constructor
     }
@@ -121,12 +128,8 @@ public class weather_frag_good extends Fragment {
 
             for(int i = 0; i < fullCity.length; i++){
 
-                if (i > 0){
-                    location= location + "+" + fullCity[i];
-                }
-                else {
-                    location= location + fullCity[i];
-                }
+                if (i > 0) location = location + "+" + fullCity[i];
+                else location = location + fullCity[i];
             }
         }
         else{
@@ -147,19 +150,6 @@ public class weather_frag_good extends Fragment {
     }
 
     private static class FetchWeatherTask {
-
-        private WeatherData mWeatherData;
-        private double mTemp;
-        private double mMaxTemp;
-        private double mMinTemp;
-        private String mCondition;
-        private TextView mTvTemp;
-        private TextView mTvMaxTemp;
-        private TextView mTvMinTemp;
-        private TextView mTvCondition;
-        private TextView mTvRainAmount;
-        private TextView mTvPress;
-        private TextView mTvHum;
 
         public ExecutorService executorService = Executors.newSingleThreadExecutor();
         public Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
@@ -189,31 +179,32 @@ public class weather_frag_good extends Fragment {
 
         public void postToMainThread(String jsonWeatherData) {
 
+            weather_frag_good localRef = weatherFragGoodWeakReference.get();
             mainThreadHandler.post(() -> {
 
                 if (jsonWeatherData != null) {
 
-                    try { mWeatherData = JSONWeatherUtils.getWeatherData(jsonWeatherData); }
+                    try { localRef.mWeatherData = JSONWeatherUtils.getWeatherData(jsonWeatherData); }
                     catch (JSONException e) { e.printStackTrace(); }
 
-                    if (mWeatherData != null) {
-                        mTemp = mWeatherData.getTemperature().getTemp();
-                        mMaxTemp = mWeatherData.getTemperature().getMaxTemp();
-                        mMinTemp = mWeatherData.getTemperature().getMinTemp();
-                        mCondition = mWeatherData.getCurrentCondition().getCondition();
+                    if (localRef.mWeatherData != null) {
+                        localRef.mTemp = localRef.mWeatherData.getTemperature().getTemp();
+                        localRef.mMaxTemp = localRef.mWeatherData.getTemperature().getMaxTemp();
+                        localRef.mMinTemp = localRef.mWeatherData.getTemperature().getMinTemp();
+                        localRef.mCondition = localRef.mWeatherData.getCurrentCondition().getCondition();
 
-                        mTvTemp.setText(new StringBuilder().append(mTemp).append("F°").toString());
-                        mTvMaxTemp.setText(new StringBuilder().append(mMaxTemp).append("F°").toString());
-                        mTvMinTemp.setText(new StringBuilder().append(mMinTemp).append("F°").toString());
-                        mTvCondition.setText(new StringBuilder().append(mCondition).toString());
+                        localRef.mTvTemp.setText(new StringBuilder().append(localRef.mTemp).append("F°").toString());
+                        localRef.mTvMaxTemp.setText(new StringBuilder().append(localRef.mMaxTemp).append("F°").toString());
+                        localRef.mTvMinTemp.setText(new StringBuilder().append(localRef.mMinTemp).append("F°").toString());
+                        localRef.mTvCondition.setText(new StringBuilder().append(localRef.mCondition).toString());
 
                     }
                 }
             });
         }
 
-        public void setWeakReference(weather_frag_good weather_frag_good) {
-            weatherFragGoodWeakReference = new WeakReference<weather_frag_good>(weather_frag_good);
+        public void setWeakReference(weather_frag_good ref) {
+            weatherFragGoodWeakReference = new WeakReference<weather_frag_good>(ref);
         }
     }
 }
