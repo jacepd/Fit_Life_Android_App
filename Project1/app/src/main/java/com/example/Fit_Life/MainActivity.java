@@ -44,12 +44,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         tablet = helperMethods.isTablet(this);
-        if (tablet){
-            setContentView(R.layout.activity_main_tablet);
-        }
-        else{
-            setContentView(R.layout.activity_main);
-        }
+
+        if (tablet) setContentView(R.layout.activity_main_tablet);
+        else setContentView(R.layout.activity_main);
 
         setTitle("Fit Life - Home");
 
@@ -76,12 +73,8 @@ public class MainActivity extends AppCompatActivity
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        if (tablet){
-            tabletSwitchStatement(view);
-        }
-        else{
-            phoneSwitchStatement(view);
-        }
+        if (tablet) tabletSwitchStatement(view);
+        else phoneSwitchStatement(view);
     }
 
     private void reloadData() {
@@ -140,6 +133,7 @@ public class MainActivity extends AppCompatActivity
 
     private void tabletSwitchStatement(View view) {
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();
+
         switch (view.getId()) {
             case R.id.button_BMI_Calculator:
                 setTitle("Fit Life - BMI");

@@ -102,8 +102,8 @@ public class weather_frag_good extends Fragment {
 
         mButtonReturn = view.findViewById(R.id.button_return_weather);
         mButtonReturn.setOnClickListener(view1 -> {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
+            Intent intent = new Intent(weather_frag_good.this.getActivity(), MainActivity.class);
+            weather_frag_good.this.startActivity(intent);
         });
 
         mTvTemp = view.findViewById(R.id.tv_temp_val);
@@ -175,7 +175,6 @@ public class weather_frag_good extends Fragment {
 
             });
         }
-
 
         public void postToMainThread(String jsonWeatherData) {
 
