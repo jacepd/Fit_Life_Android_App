@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.basicinfoname.R;
 
@@ -101,10 +103,7 @@ public class weather_frag_good extends Fragment {
         View view = inflater.inflate(R.layout.fragment_weather_frag_good, container, false);
 
         mButtonReturn = view.findViewById(R.id.button_return_weather);
-        mButtonReturn.setOnClickListener(view1 -> {
-            Intent intent = new Intent(weather_frag_good.this.getActivity(), MainActivity.class);
-            weather_frag_good.this.startActivity(intent);
-        });
+        //the onClick is hardcoded in the XML, and taken care of the activity
 
         mTvTemp = view.findViewById(R.id.tv_temp_val);
         mTvMaxTemp = view.findViewById(R.id.tv_max_temp_val);
@@ -205,5 +204,30 @@ public class weather_frag_good extends Fragment {
         public void setWeakReference(weather_frag_good ref) {
             weatherFragGoodWeakReference = new WeakReference<weather_frag_good>(ref);
         }
+    }
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    // handle back button's click listener
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("nextFrag", "ahh");
+                    startActivity(intent);
+                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 }

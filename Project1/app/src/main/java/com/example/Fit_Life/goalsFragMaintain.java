@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,13 +79,13 @@ public class goalsFragMaintain extends Fragment {
         mCaloriesNeeded.setText(String.valueOf(myCalories));
 
         mButtonReturn = (Button) view.findViewById(R.id.button_return);
-        mButtonReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
+//        mButtonReturn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         // Inflate the layout for this fragment
         return view;
@@ -124,5 +125,28 @@ public class goalsFragMaintain extends Fragment {
         double calories = myBMR * multiplayer;
 
         return calories;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    // handle back button's click listener
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("nextFrag", "ahh");
+                    startActivity(intent);
+                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 }

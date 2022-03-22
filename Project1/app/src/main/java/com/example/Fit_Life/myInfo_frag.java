@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,49 +130,53 @@ public class myInfo_frag extends Fragment {
 
 
         mButtonSaveReturn = view.findViewById(R.id.button_return);
-        mButtonSaveReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Parsing the inputted data
-                String theGoal = mGoal.getText().toString();
-                String theActivityLevel = mActLvl.getText().toString();
-                String theSex = mSex.getText().toString();
-                String theState = mState.getText().toString();
-                if(!(theGoal.equals("Gain") || theGoal.equals("Lose") || theGoal.equals("Maintain") || theGoal.equals("NoGoalSelected"))){
-                    Toast.makeText(getContext(), "Enter Valid Goal:\nGain, Lose, or Maintain", Toast.LENGTH_LONG).show();
-                }
-                else if(!(theActivityLevel.equals("Sedentary") || theActivityLevel.equals("Active") || theActivityLevel.equals("NoActivityLevelSelected"))){
-                    Toast.makeText(getContext(), "Enter Valid Activity Level:\nSedentary or Active", Toast.LENGTH_LONG).show();
-                }
-                else if(!(theSex.equals("Male") || theSex.equals("Female"))){
-                    Toast.makeText(getContext(), "Enter Valid Sex:\nMale or Female", Toast.LENGTH_LONG).show();
-                }
-                else if(theState.length() != 2){
-                    Toast.makeText(getContext(), "Enter Valid State Abbreviation:\n2 uppercase characters", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    //save info to file
-                    String[] newDatas = new String[dataSize];
-                    newDatas[0] = mFirstName.getText().toString();
-                    newDatas[1] = mLastName.getText().toString();
-                    newDatas[2] = mAge.getText().toString(); //age
-                    newDatas[3] = mWeight.getText().toString();
-                    newDatas[4] = mHeightFt.getText().toString();
-                    newDatas[5] = mHeightIn.getText().toString();
-                    newDatas[6] = theSex;
-                    newDatas[7] = mCity.getText().toString();
-                    newDatas[8] = theState;
-                    newDatas[9] = theGoal;
-                    newDatas[10] = theActivityLevel;
+        //the onClick is hardcoded in the XML, and taken care of the activity
+        //Right now nothing gets saved!!!!!!
+        //In order to save info, we need to update the view model every time a change happens
 
-                    helperMethods.saveData(newDatas,getContext(),false);
-                    Toast.makeText(getContext(), "Information Updated", Toast.LENGTH_SHORT).show();
-
-                    Intent messageIntent = new Intent(getContext(), MainActivity.class);
-                    getContext().startActivity(messageIntent);
-                }
-            }
-        });
+//        mButtonSaveReturn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //Parsing the inputted data
+//                String theGoal = mGoal.getText().toString();
+//                String theActivityLevel = mActLvl.getText().toString();
+//                String theSex = mSex.getText().toString();
+//                String theState = mState.getText().toString();
+//                if(!(theGoal.equals("Gain") || theGoal.equals("Lose") || theGoal.equals("Maintain") || theGoal.equals("NoGoalSelected"))){
+//                    Toast.makeText(getContext(), "Enter Valid Goal:\nGain, Lose, or Maintain", Toast.LENGTH_LONG).show();
+//                }
+//                else if(!(theActivityLevel.equals("Sedentary") || theActivityLevel.equals("Active") || theActivityLevel.equals("NoActivityLevelSelected"))){
+//                    Toast.makeText(getContext(), "Enter Valid Activity Level:\nSedentary or Active", Toast.LENGTH_LONG).show();
+//                }
+//                else if(!(theSex.equals("Male") || theSex.equals("Female"))){
+//                    Toast.makeText(getContext(), "Enter Valid Sex:\nMale or Female", Toast.LENGTH_LONG).show();
+//                }
+//                else if(theState.length() != 2){
+//                    Toast.makeText(getContext(), "Enter Valid State Abbreviation:\n2 uppercase characters", Toast.LENGTH_LONG).show();
+//                }
+//                else{
+//                    //save info to file
+//                    String[] newDatas = new String[dataSize];
+//                    newDatas[0] = mFirstName.getText().toString();
+//                    newDatas[1] = mLastName.getText().toString();
+//                    newDatas[2] = mAge.getText().toString(); //age
+//                    newDatas[3] = mWeight.getText().toString();
+//                    newDatas[4] = mHeightFt.getText().toString();
+//                    newDatas[5] = mHeightIn.getText().toString();
+//                    newDatas[6] = theSex;
+//                    newDatas[7] = mCity.getText().toString();
+//                    newDatas[8] = theState;
+//                    newDatas[9] = theGoal;
+//                    newDatas[10] = theActivityLevel;
+//
+//                    helperMethods.saveData(newDatas,getContext(),false);
+//                    Toast.makeText(getContext(), "Information Updated", Toast.LENGTH_SHORT).show();
+//
+//                    Intent messageIntent = new Intent(getContext(), MainActivity.class);
+//                    getContext().startActivity(messageIntent);
+//                }
+//            }
+//        });
 
         mProfilePic = view.findViewById(R.id.profile_photo);
         mProfilePic.setOnClickListener(new View.OnClickListener() {
@@ -245,4 +250,31 @@ public class myInfo_frag extends Fragment {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
+
+
+    //for back button
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    // handle back button's click listener
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("nextFrag", "homePage");
+                    startActivity(intent);
+                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+
 }

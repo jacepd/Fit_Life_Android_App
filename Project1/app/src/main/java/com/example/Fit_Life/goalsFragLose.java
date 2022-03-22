@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,13 +69,13 @@ public class goalsFragLose extends Fragment {
         TextView mCaloriesNeeded = (TextView) view.findViewById(R.id.calories);
 
         mButtonReturn = (Button) view.findViewById(R.id.button_return);
-        mButtonReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
+//        mButtonReturn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         mPoundsNumberPicker = (NumberPicker) view.findViewById(R.id.poundsNumberPicker);
         mPoundsNumberPicker.setMinValue(1);
@@ -97,6 +98,7 @@ public class goalsFragLose extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+
 
 
     private double getCalories(){
@@ -133,5 +135,28 @@ public class goalsFragLose extends Fragment {
         calories -= (500 * selectedPounds);
 
         return calories;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    // handle back button's click listener
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("nextFrag", "ahh");
+                    startActivity(intent);
+                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 }
