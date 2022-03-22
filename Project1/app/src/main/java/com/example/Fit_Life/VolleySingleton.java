@@ -20,23 +20,19 @@ public class VolleySingleton {
 
     public VolleySingleton(Context context) {
         mContext = context.getApplicationContext();
-        mImageLoader = new ImageLoader(mRequestQueue,
-                new ImageLoader.ImageCache() {
-                    private final LruCache<String, Bitmap>
-                    cache = new LruCache<>(40);
+        mRequestQueue = getRequestQueue();
+        mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
+            private final LruCache<String, Bitmap> cache = new LruCache<>(40);
 
-                    @Nullable
-                    @Override
-                    public Bitmap getBitmap(String url) {
-                        final Bitmap bitmap = cache.get(url);
-                        return bitmap;
-                    }
+            @Override
+            public Bitmap getBitmap(String url) {
+                final Bitmap bitmap = cache.get(url);
+                return bitmap;
+            }
 
-                    @Override
-                    public void putBitmap(String url, Bitmap bitmap) {
-                        cache.put(url, bitmap);
-                    }
-                });
+            @Override
+            public void putBitmap(String url, Bitmap bitmap) { cache.put(url, bitmap); }
+        });
     }
 
     // Factory method to get the Singleton instance.
