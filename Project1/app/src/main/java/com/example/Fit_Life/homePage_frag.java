@@ -148,8 +148,6 @@ public class homePage_frag extends Fragment {
         mProfilePic = (ImageView) view.findViewById(R.id.profile_photo);
 
         reloadData();
-
-
         return view;
     }
 

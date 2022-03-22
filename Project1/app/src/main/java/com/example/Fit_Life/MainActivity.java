@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         temp_loadSomeData();
         setTitle("Fit Life - Home");
 
@@ -48,7 +46,8 @@ public class MainActivity extends AppCompatActivity
         //we do this because intents that come back from google maps or camera don't have the intent, so it crashes
         if (intent.hasExtra("nextFrag")) {
             fragID = intent.getStringExtra("nextFrag");
-        } else {
+        }
+        else {
             fragID = "homePage";
         }
 
@@ -93,7 +92,6 @@ public class MainActivity extends AppCompatActivity
             phoneSwitchStatement();
         }
     }
-
 
 
     private void phoneSwitchStatement() {
@@ -183,6 +181,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
@@ -190,27 +189,6 @@ public class MainActivity extends AppCompatActivity
         this.startActivity(intent);
         finish();
     }
-
-//    @Override
-//    public void onBackPressed() {
-//
-//        int count = getSupportFragmentManager().getBackStackEntryCount();
-//
-//        if (count == 0) {
-//            super.onBackPressed();
-//            //additional code\
-//
-//            Intent intent = new Intent(this, MainActivity.class);
-//            intent.putExtra("BackButtonPressed", true);
-//            this.startActivity(intent);
-//            finish();
-//
-//        } else {
-//            getSupportFragmentManager().popBackStack();
-//        }
-//
-//    }
-
 
 
 
@@ -252,6 +230,9 @@ public class MainActivity extends AppCompatActivity
         mProfilePic.setImageBitmap(bMap);
     }
 
+
+    //This is the function that gets called when any of the activity's fragments push the
+    //home button. This is hardcoded in the Fragment's XML
     public void HomeButtonClicked(View v) {
         //Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);

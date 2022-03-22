@@ -76,7 +76,6 @@ public class myInfo_frag extends Fragment {
                     mThumbnailImage.compress(Bitmap.CompressFormat.PNG, 100, bStream);
                     byte[] byteArray = bStream.toByteArray();
 
-
                     //Open a file and write to it
                     if(isExternalStorageWritable()){
                         String filePathString = saveImage(mThumbnailImage);
