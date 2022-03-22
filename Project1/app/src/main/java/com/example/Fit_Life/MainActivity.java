@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
     private String city ;
     private String state;
     private String goal ;
-    
+
     private Button mViewMyInfo;
     private Button mViewWeather;
     private Button mViewHikes;
