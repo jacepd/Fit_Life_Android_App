@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.basicinfoname" >
+    package="com.example.basicinfoname">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -16,11 +16,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BasicInfoName" >
+        android:theme="@style/Theme.BasicInfoName">
+        <activity
+            android:name="com.example.Fit_Life.VolleySingleton"
+            android:exported="false" />
         <activity
             android:name="com.example.Fit_Life.myInfo_page"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.example.Fit_Life.goalsDisplay"
             android:exported="false" />
@@ -37,8 +40,8 @@
         <!-- android:maxSdkVersion="Version code" /> -->
         <activity
             android:name="com.example.Fit_Life.MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".user_home"
             android:exported="false" />
@@ -47,15 +50,15 @@
             android:exported="false" />
         <activity
             android:name="com.example.Fit_Life.location_input"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.example.Fit_Life.body_info_input"
             android:exported="false" />
         <activity
             android:name="com.example.Fit_Life.name_input"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true" >
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
