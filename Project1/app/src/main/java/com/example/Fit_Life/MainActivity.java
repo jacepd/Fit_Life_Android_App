@@ -1,7 +1,11 @@
 package com.example.Fit_Life;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.basicinfoname.R;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity
     private Button mBMICalculator;
     private ImageView mProfilePic;
 
+    private UserDataViewModel mUserDataViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,15 @@ public class MainActivity extends AppCompatActivity
         else {
             fragID = "homePage";
         }
+
+
+        //Create the view model
+        mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
+
+        //Set the observer
+        (mUserDataViewModel.getData()).observe(this,nameObserver);
+
+
 
         tablet = helperMethods.isTablet(this);
         if (tablet) {
@@ -80,6 +95,18 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    //create an observer that watches the LiveData<WeatherData> object
+    final Observer<User> nameObserver  = new Observer<User>() {
+        @Override
+        public void onChanged(@Nullable final User myUser) {
+            // Update the UI if this data variable changes
+            if(myUser!=null) {
+                mTvTemp.setText("" + Math.round(weatherData.getTemperature().getTemp() - 273.15) + " C");
+                mTvHum.setText("" + weatherData.getCurrentCondition().getHumidity() + "%");
+                mTvPress.setText("" + weatherData.getCurrentCondition().getPressure() + " hPa");
+            }
+        }
+    };
 
 
     @SuppressLint("NonConstantResourceId")
@@ -181,7 +208,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
