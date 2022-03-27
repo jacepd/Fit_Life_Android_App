@@ -21,8 +21,6 @@ public class UserDataRepository {
     private static UserDataRepository instance;
     private final MutableLiveData<User> myUserData =
             new MutableLiveData<User>();
-    //private String mLocation;
-    private String mJsonString;
     private UserDao mUserDao;
 
 
@@ -30,9 +28,9 @@ public class UserDataRepository {
     private UserDataRepository(Application application){
         UserRoomDatabase db = UserRoomDatabase.getDatabase(application);
         mUserDao = db.userDao();
-        if(mLocation!=null) {
-            loadData();
-        }
+//        if(myUserData!=null) {
+//            loadData();
+//        }
     }
     public static synchronized UserDataRepository getInstance(Application application){
         if(instance==null){
@@ -41,15 +39,16 @@ public class UserDataRepository {
         return instance;
     }
 
-    public void setUserData(String location){
-        mLocation = location;
-        loadData();
+    public void setUserData(User user){
+        myUserData.setValue(user);
+//        loadData();
         insert();  //insert after the thread is finished
     }
 
     private void insert(){
-        if(mLocation!=null && mJsonString!=null) {
-            UserTable userTable = new UserTableBuilder().setLocation(mLocation).setWeatherJson(mJsonString).createWeatherTable();
+        if(myUserData!=null) {
+            //UserTable userTable = new UserTable(myUserData.getValue().getFirstName(), myUserData.getValue());
+            UserTable userTable = new UserTable(myUserData.getValue().getFirstName(), myUserData.getValue().getLastName());
             UserRoomDatabase.databaseExecutor.execute(() -> {
                 mUserDao.insert(userTable);
             });
@@ -60,40 +59,9 @@ public class UserDataRepository {
         return myUserData;
     }
 
-    private void loadData()
-    {
-        new FetchWeatherTask().execute(mLocation);
-    }
+//    private void loadData()
+//    {
+//        new FetchWeatherTask().execute(mLocation);
+//    }
 
-    private class FetchWeatherTask{
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
-        public void execute(String location)
-        {
-            executorService.execute(() -> {
-                String jsonWeatherData;
-                URL weatherDataURL = NetworkUtils.buildURLFromString(location);
-                jsonWeatherData = null;
-                try{
-                    jsonWeatherData = NetworkUtils.getDataFromURL(weatherDataURL);
-                    if(jsonWeatherData != null) {
-                        mJsonString = jsonWeatherData;
-                        postToMainThread(jsonWeatherData);
-                    }
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-            });
-        }
-
-        private void postToMainThread(String retrievedJsonData){
-            mainThreadHandler.post(() -> {
-                try {
-                    jsonData.setValue(JSONWeatherUtils.getWeatherData(retrievedJsonData));
-                }catch(JSONException e){
-                    e.printStackTrace();
-                }
-            });
-        }
-    }
 }

@@ -9,11 +9,12 @@ package com.example.Fit_Life;
 @Dao
 public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(UserTable weatherTable);
+    void insert(UserTable userTable);
 
-    @Query("DELETE FROM weather_table")
+    @Query("DELETE FROM user_table")
     void deleteAll();
 
-    @Query("SELECT * from weather_table ORDER BY weatherdata ASC")
+//    @Query("SELECT * from user_table ORDER BY weatherdata ASC")
+    @Query("SELECT * from user_table")
     LiveData<List<UserTable>> getAll();
 }

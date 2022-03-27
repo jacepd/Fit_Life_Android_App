@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity
 
     private boolean tablet;
     private String fragID;
-    private String city ;
-    private String state;
-    private String goal ;
 
     private Button mViewMyInfo;
     private Button mViewWeather;
@@ -37,6 +34,9 @@ public class MainActivity extends AppCompatActivity
     private Button mViewGoals;
     private Button mBMICalculator;
     private ImageView mProfilePic;
+    private String mCity;
+    private String mState;
+    private String mGoal;
 
     private UserDataViewModel mUserDataViewModel;
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        temp_loadSomeData();
+
         setTitle("Fit Life - Home");
 
         Intent intent = getIntent();
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity
             fragID = "homePage";
         }
 
+        if (intent.hasExtra("firstEntry")) {
+            mUserDataViewModel.setUserData(temp_loadSomeData());
+        }
 
         //Create the view model
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
@@ -101,9 +104,9 @@ public class MainActivity extends AppCompatActivity
         public void onChanged(@Nullable final User myUser) {
             // Update the UI if this data variable changes
             if(myUser!=null) {
-                mTvTemp.setText("" + Math.round(weatherData.getTemperature().getTemp() - 273.15) + " C");
-                mTvHum.setText("" + weatherData.getCurrentCondition().getHumidity() + "%");
-                mTvPress.setText("" + weatherData.getCurrentCondition().getPressure() + " hPa");
+                mCity = myUser.getCity();
+                mGoal = myUser.getGoal();
+                mState = myUser.getState();
             }
         }
     };
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case "hikes":
                 Intent my_intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("geo:0,0?q=" + city + " " + state + " " + "hikes"));
+                        Uri.parse("geo:0,0?q=" + mCity + " " + mState + " " + "hikes"));
                 startActivity(my_intent);
                 break;
             case "weather":
@@ -146,10 +149,10 @@ public class MainActivity extends AppCompatActivity
                 break;
             case "goals":
                 setTitle("Fit Life - Goals");
-                if(goal.equals("Gain")){
+                if(mGoal.equals("Gain")){
                     fTrans.replace(R.id.main_activity, new goalsFragGain(),"Frag_Gain");
                 }
-                else if(goal.equals("Lose")){
+                else if(mGoal.equals("Lose")){
                     fTrans.replace(R.id.main_activity, new goalsFragLose(),"Frag_Lose");
                 }
                 else{
@@ -176,7 +179,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.button_hikes:
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("geo:0,0?q=" + city + " " + state + " " + "hikes"));
+                        Uri.parse("geo:0,0?q=" + mCity + " " + mState + " " + "hikes"));
                 startActivity(intent);
                 break;
 
@@ -194,10 +197,10 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.button_Fitness_Goals:
                 setTitle("Fit Life - Goals");
-                if(goal.equals("Gain")){
+                if(mGoal.equals("Gain")){
                     fTrans.replace(R.id.displayActivity, new goalsFragGain(),"Frag_Gain");
                 }
-                else if(goal.equals("Lose")){
+                else if(mGoal.equals("Lose")){
                     fTrans.replace(R.id.displayActivity, new goalsFragLose(),"Frag_Lose");
                 }
                 else{
@@ -219,30 +222,42 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void temp_loadSomeData() {
-        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-        String imFilename = "profilePic.jpg";
+    private User temp_loadSomeData() {
+//        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+//        String imFilename = "profilePic.jpg";
 
 //        File imagefile = new File(myDir, imFilename);
 //        Bitmap bMap = BitmapFactory.decodeFile(imagefile.toString());
 //
         String allDataStr = helperMethods.readData(this);
         String[] datas = allDataStr.split(",");
-//        firstName = datas[0];
-//        lastName = datas[1];
-//        age = Integer.parseInt(datas[2]);
-//        weight = Integer.parseInt(datas[3]);
-//        heightFeet = Integer.parseInt(datas[4]);
-//        heightInches = Integer.parseInt(datas[5]);
-//        sex = datas[6];
-//
-//
-//        activityLevel = datas[10];
-//        mProfilePic.setImageBitmap(bMap);
+        String firstName = datas[0];
+        String lastName = datas[1];
+        int age = Integer.parseInt(datas[2]);
+        int weight = Integer.parseInt(datas[3]);
+        int heightFeet = Integer.parseInt(datas[4]);
+        int heightInches = Integer.parseInt(datas[5]);
+        String sex = datas[6];
+        String city = datas[7];
+        String state = datas[8];
+        String goal = datas[9];
+        String activityLevel = datas[10];
+        //mProfilePic.setImageBitmap(bMap);
 
-        city = datas[7];
-        state = datas[8];
-        goal = datas[9];
+        User tempUser = new User();
+        tempUser.setFirstName(firstName);
+        tempUser.setLastName(lastName);
+        tempUser.setAge(age);
+        tempUser.setWeight(weight);
+        tempUser.setHeightFeet(heightFeet);
+        tempUser.setHeightInches(heightInches);
+        tempUser.setSex(sex);
+        tempUser.setCity(city);
+        tempUser.setState(state);
+        tempUser.setGoal(goal);
+        tempUser.setActivityLevel(activityLevel);
+
+        return tempUser;
     }
 
 

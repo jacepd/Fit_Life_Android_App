@@ -37,8 +37,8 @@ public abstract class UserRoomDatabase extends RoomDatabase {
             databaseExecutor.execute(()->{
                 UserDao dao = mInstance.userDao();
                 dao.deleteAll();
-                UserTable weatherTable = new UserTableBuilder().setLocation("dummy_loc").setWeatherJson("dummy_data").createWeatherTable();
-                dao.insert(weatherTable);
+//                UserTable weatherTable = new UserTableBuilder().setLocation("dummy_loc").setWeatherJson("dummy_data").createWeatherTable();
+//                dao.insert(weatherTable);
             });
         }
     };
@@ -64,8 +64,8 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 @Override
                 public void run(){
                     mDao.deleteAll();
-                    UserTable weatherTable = new UserTableBuilder().setLocation("dummy_loc").setWeatherJson("dummy_data").createUserTable();
-                    mDao.insert(weatherTable);
+//                    UserTable weatherTable = new UserTableBuilder().setLocation("dummy_loc").setWeatherJson("dummy_data").createUserTable();
+//                    mDao.insert(weatherTable);
                 }
             });
         }
