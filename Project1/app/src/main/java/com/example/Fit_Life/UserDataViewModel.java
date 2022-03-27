@@ -10,15 +10,16 @@ import android.app.Application;
 
 public class UserDataViewModel extends AndroidViewModel {
     private MutableLiveData<User> myUserData;
-    private UserDataRepository mWeatherRepository;
+    private UserDataRepository mUserDataRepository;
 
     public UserDataViewModel(Application application){
         super(application);
-        mWeatherRepository = UserDataRepository.getInstance(application);
+        mUserDataRepository = UserDataRepository.getInstance(application);
         myUserData = UserDataRepository.getData();
     }
+
     public void setUserData(String location){
-        mWeatherRepository.setUserData(location);
+        mUserDataRepository.setUserData(location);
     }
 
     public LiveData<User> getData(){

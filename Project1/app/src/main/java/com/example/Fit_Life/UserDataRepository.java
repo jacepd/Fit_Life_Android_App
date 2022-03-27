@@ -1,22 +1,21 @@
 package com.example.Fit_Life;
 
 
+import android.app.Application;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 
-        import android.app.Application;
-        import android.os.AsyncTask;
-        import android.os.Handler;
-        import android.os.Looper;
+import androidx.core.os.HandlerCompat;
+import androidx.lifecycle.MutableLiveData;
 
-        import androidx.core.os.HandlerCompat;
-        import androidx.lifecycle.MutableLiveData;
+import org.json.JSONException;
 
-        import org.json.JSONException;
-
-        import java.io.IOException;
-        import java.lang.ref.WeakReference;
-        import java.net.URL;
-        import java.util.concurrent.ExecutorService;
-        import java.util.concurrent.Executors;
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class UserDataRepository {
     private static UserDataRepository instance;
@@ -31,8 +30,9 @@ public class UserDataRepository {
     private UserDataRepository(Application application){
         UserRoomDatabase db = UserRoomDatabase.getDatabase(application);
         mUserDao = db.userDao();
-        if(mLocation!=null)
+        if(mLocation!=null) {
             loadData();
+        }
     }
     public static synchronized UserDataRepository getInstance(Application application){
         if(instance==null){
