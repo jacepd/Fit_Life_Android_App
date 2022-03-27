@@ -48,7 +48,10 @@ public class UserDataRepository {
     private void insert(){
         if(myUserData!=null) {
             //UserTable userTable = new UserTable(myUserData.getValue().getFirstName(), myUserData.getValue());
-            UserTable userTable = new UserTable(myUserData.getValue().getFirstName(), myUserData.getValue().getLastName());
+            UserTable userTable = new UserTable(myUserData.getValue().getFirstName(), myUserData.getValue().getLastName(),
+                    myUserData.getValue().getAge(),myUserData.getValue().getWeight(),myUserData.getValue().getHeightFeet(),
+                    myUserData.getValue().getHeightInches(),myUserData.getValue().getSex(),myUserData.getValue().getCity(),
+                    myUserData.getValue().getState(),myUserData.getValue().getGoal(),myUserData.getValue().getActivityLevel());
             UserRoomDatabase.databaseExecutor.execute(() -> {
                 mUserDao.insert(userTable);
             });

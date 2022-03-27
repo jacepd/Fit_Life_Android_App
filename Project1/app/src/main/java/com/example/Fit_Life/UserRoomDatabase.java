@@ -15,8 +15,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
-@Database(entities = {UserTable.class}, version = 1, exportSchema = false)
+//You have to change the version number if you change the database!!!
+@Database(entities = {UserTable.class}, version = 4, exportSchema = false)
 public abstract class UserRoomDatabase extends RoomDatabase {
     private static volatile UserRoomDatabase mInstance;
     public abstract UserDao userDao();
@@ -26,7 +26,7 @@ public abstract class UserRoomDatabase extends RoomDatabase {
     static synchronized UserRoomDatabase getDatabase(final Context context){
         if(mInstance==null) {
             mInstance = Room.databaseBuilder(context.getApplicationContext(),
-                    UserRoomDatabase.class, "user.db").addCallback(sRoomDatabaseCallback).build();
+                    UserRoomDatabase.class, "user.db").addCallback(sRoomDatabaseCallback).fallbackToDestructiveMigration().build();
         }
         return mInstance;
     }
