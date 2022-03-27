@@ -15,7 +15,7 @@ public class UserDataViewModel extends AndroidViewModel {
     public UserDataViewModel(Application application){
         super(application);
         mUserDataRepository = UserDataRepository.getInstance(application);
-        //myUserData = UserDataRepository.getData();
+        myUserData = UserDataRepository.getData();
     }
 
     public void setUserData(User user){

@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 
 public class UserDataRepository {
     private static UserDataRepository instance;
-    private final MutableLiveData<User> myUserData =
+    private static final MutableLiveData<User> myUserData =
             new MutableLiveData<User>();
     private UserDao mUserDao;
 
@@ -55,7 +55,7 @@ public class UserDataRepository {
         }
     }
 
-    public MutableLiveData<User> getData() {
+    public static MutableLiveData<User> getData() {
         return myUserData;
     }
 

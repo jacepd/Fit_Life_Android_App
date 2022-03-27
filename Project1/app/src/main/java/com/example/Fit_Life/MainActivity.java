@@ -57,15 +57,18 @@ public class MainActivity extends AppCompatActivity
             fragID = "homePage";
         }
 
-        if (intent.hasExtra("firstEntry")) {
-            mUserDataViewModel.setUserData(temp_loadSomeData());
-        }
-
         //Create the view model
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
 
         //Set the observer
         (mUserDataViewModel.getData()).observe(this,nameObserver);
+
+        
+        if (intent.hasExtra("firstEntry")) {
+            User tUser = temp_loadSomeData();
+            mUserDataViewModel.setUserData(tUser);
+        }
+
 
 
 

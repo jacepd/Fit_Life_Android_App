@@ -95,7 +95,7 @@ public class goals_input extends AppCompatActivity
                 helperMethods.saveData(datas, goals_input.this, false);
 
                 Intent messageIntent = new Intent(goals_input.this, MainActivity.class);
-                messageIntent.putExtra("firstEntry", "blank");
+                messageIntent.putExtra("firstEntry", "firstEntry");
                 this.startActivity(messageIntent);
 
             }
