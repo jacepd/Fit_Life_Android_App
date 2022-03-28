@@ -25,7 +25,7 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
 
-    private boolean tablet;
+    private boolean tablet; 
     private String fragID;
 
     private Button mViewMyInfo;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         //Set the observer
         (mUserDataViewModel.getData()).observe(this,nameObserver);
 
-        
+
         if (intent.hasExtra("firstEntry")) {
             User tUser = temp_loadSomeData();
             mUserDataViewModel.setUserData(tUser);
