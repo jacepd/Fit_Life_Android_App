@@ -41,7 +41,7 @@
         <entry key="app/src/main/res/layout/fragment_home_page_frag.xml" value="0.11324697033012955" />
         <entry key="app/src/main/res/layout/fragment_my_info_frag.xml" value="0.3083941605839416" />
         <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.231722958529286" />
-        <entry key="app/src/main/res/layout/fragment_weather_frag_good.xml" value="0.1414324569356301" />
+        <entry key="app/src/main/res/layout/fragment_weather_frag_good.xml" value="0.165" />
       </map>
     </option>
   </component>

@@ -53,6 +53,7 @@ public class UserDataRepository {
                     myUserData.getValue().getHeightInches(),myUserData.getValue().getSex(),myUserData.getValue().getCity(),
                     myUserData.getValue().getState(),myUserData.getValue().getGoal(),myUserData.getValue().getActivityLevel());
             UserRoomDatabase.databaseExecutor.execute(() -> {
+                mUserDao.deleteAll();
                 mUserDao.insert(userTable);
             });
         }

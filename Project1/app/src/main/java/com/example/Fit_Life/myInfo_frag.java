@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -51,10 +52,11 @@ public class myInfo_frag extends Fragment {
     private EditText mSex;
     private EditText mCity;
     private EditText mState;
-    private int dataSize;
-    private String[] datas;
+
     private ImageView mProfilePic;
     Bitmap mThumbnailImage;
+
+    private UserDataViewModel mUserDataViewModel;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -129,6 +131,10 @@ public class myInfo_frag extends Fragment {
 
 
         mButtonSaveReturn = view.findViewById(R.id.button_return);
+
+        //Create the view model
+        mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
+
         //the onClick is hardcoded in the XML, and taken care of the activity
         //Right now nothing gets saved!!!!!!
         //In order to save info, we need to update the view model every time a change happens
@@ -198,21 +204,21 @@ public class myInfo_frag extends Fragment {
         mCity = view.findViewById(R.id.city_input);
         mState = view.findViewById(R.id.state_input);
 
-        String allDataStr = helperMethods.readData(getContext());
-        datas = allDataStr.split(",");
-        mFirstName.setText(datas[0]);
-        mLastName.setText(datas[1]);
-        mAge.setText(datas[2]);
-        mWeight.setText(datas[3]);
-        mHeightFt.setText(datas[4]);
-        mHeightIn.setText(datas[5]);
-        mSex.setText(datas[6]);
-        mCity.setText(datas[7]);
-        mState.setText(datas[8]);
-        mGoal.setText(datas[9]);
-        mActLvl.setText(datas[10]);
 
-        dataSize = datas.length;
+
+        mFirstName.setText(mUserDataViewModel.getData().getValue().getFirstName());
+        mLastName.setText(mUserDataViewModel.getData().getValue().getLastName() );
+        mAge.setText(Integer.toString(mUserDataViewModel.getData().getValue().getAge()));
+        mWeight.setText(Integer.toString(mUserDataViewModel.getData().getValue().getWeight()));
+        mHeightFt.setText(Integer.toString(mUserDataViewModel.getData().getValue().getHeightFeet()));
+        mHeightIn.setText(Integer.toString(mUserDataViewModel.getData().getValue().getHeightInches()));
+        mSex.setText(mUserDataViewModel.getData().getValue().getSex() );
+        mCity.setText(mUserDataViewModel.getData().getValue().getCity() );
+        mState.setText(mUserDataViewModel.getData().getValue().getState() );
+        mGoal.setText(mUserDataViewModel.getData().getValue().getGoal() );
+        mActLvl.setText(mUserDataViewModel.getData().getValue().getActivityLevel() );
+
+
 
         File myDir = getContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
         String imFilename = "profilePic.jpg";

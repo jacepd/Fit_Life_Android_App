@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.basicinfoname.R;
 import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,7 +16,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -25,7 +28,7 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
 
-    private boolean tablet; 
+    private boolean tablet;
     private String fragID;
 
     private Button mViewMyInfo;
@@ -59,7 +62,6 @@ public class MainActivity extends AppCompatActivity
 
         //Create the view model
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
-
         //Set the observer
         (mUserDataViewModel.getData()).observe(this,nameObserver);
 
@@ -107,9 +109,9 @@ public class MainActivity extends AppCompatActivity
         public void onChanged(@Nullable final User myUser) {
             // Update the UI if this data variable changes
             if(myUser!=null) {
-                mCity = myUser.getCity();
-                mGoal = myUser.getGoal();
-                mState = myUser.getState();
+//                mCity = myUser.getCity();
+//                mGoal = myUser.getGoal();
+//                mState = myUser.getState();
             }
         }
     };
@@ -137,7 +139,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             case "hikes":
                 Intent my_intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("geo:0,0?q=" + mCity + " " + mState + " " + "hikes"));
+                        Uri.parse("geo:0,0?q=" + mUserDataViewModel.getData().getValue().getCity() + " "
+                                + mUserDataViewModel.getData().getValue().getState() + " " + "hikes"));
                 startActivity(my_intent);
                 break;
             case "weather":
@@ -152,10 +155,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case "goals":
                 setTitle("Fit Life - Goals");
-                if(mGoal.equals("Gain")){
+
+                String goal = mUserDataViewModel.getData().getValue().getGoal();
+                if(goal.equals("Gain")){
                     fTrans.replace(R.id.main_activity, new goalsFragGain(),"Frag_Gain");
                 }
-                else if(mGoal.equals("Lose")){
+                else if(goal.equals("Lose")){
                     fTrans.replace(R.id.main_activity, new goalsFragLose(),"Frag_Lose");
                 }
                 else{
@@ -182,7 +187,8 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.button_hikes:
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("geo:0,0?q=" + mCity + " " + mState + " " + "hikes"));
+                        Uri.parse("geo:0,0?q=" + mUserDataViewModel.getData().getValue().getCity() + " "
+                                + mUserDataViewModel.getData().getValue().getState() + " " + "hikes"));
                 startActivity(intent);
                 break;
 
@@ -200,10 +206,11 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.button_Fitness_Goals:
                 setTitle("Fit Life - Goals");
-                if(mGoal.equals("Gain")){
+                String goal = mUserDataViewModel.getData().getValue().getGoal();
+                if(goal.equals("Gain")){
                     fTrans.replace(R.id.displayActivity, new goalsFragGain(),"Frag_Gain");
                 }
-                else if(mGoal.equals("Lose")){
+                else if(goal.equals("Lose")){
                     fTrans.replace(R.id.displayActivity, new goalsFragLose(),"Frag_Lose");
                 }
                 else{
@@ -280,8 +287,49 @@ public class MainActivity extends AppCompatActivity
     //home button. This is hardcoded in the Fragment's XML
     public void HomeButtonClicked(View v) {
         //Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("nextFrag", "homePage");
         startActivity(intent);
     }
+
+
+    //This one comes from the "my_info_page"
+    public void HomeAndSaveButtonClicked(View v) {
+        //Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
+        LinearLayout parent = (LinearLayout) v.getParent();
+        String firstName = ((EditText) parent.findViewById(R.id.firstName_input)).getText().toString();
+        String lastName = ((EditText) parent.findViewById(R.id.lastName_input)).getText().toString();
+        int age = Integer.parseInt(((EditText) parent.findViewById(R.id.age_input)).getText().toString());
+        int weight = Integer.parseInt(((EditText) parent.findViewById(R.id.weight_input)).getText().toString());
+        int heightFeet = Integer.parseInt(((EditText) parent.findViewById(R.id.heightFt_input)).getText().toString());
+        int heightInches = Integer.parseInt(((EditText) parent.findViewById(R.id.heightIn_input)).getText().toString());
+        String sex = ((EditText) parent.findViewById(R.id.sex_input)).getText().toString();
+        String city = ((EditText) parent.findViewById(R.id.city_input)).getText().toString();
+        String state = ((EditText) parent.findViewById(R.id.state_input)).getText().toString();
+        String goal = ((EditText) parent.findViewById(R.id.goal_input)).getText().toString();
+        String activityLevel = ((EditText) parent.findViewById(R.id.actLvL_input)).getText().toString();
+
+
+        User tempUser = new User();
+        tempUser.setFirstName(firstName);
+        tempUser.setLastName(lastName);
+        tempUser.setAge(age);
+        tempUser.setWeight(weight);
+        tempUser.setHeightFeet(heightFeet);
+        tempUser.setHeightInches(heightInches);
+        tempUser.setSex(sex);
+        tempUser.setCity(city);
+        tempUser.setState(state);
+        tempUser.setGoal(goal);
+        tempUser.setActivityLevel(activityLevel);
+
+        mUserDataViewModel.setUserData(tempUser);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("nextFrag", "homePage");
+        startActivity(intent);
+    }
+
+
 }

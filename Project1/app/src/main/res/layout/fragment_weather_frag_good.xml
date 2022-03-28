@@ -11,7 +11,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="353dp"
         android:layout_height="564dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:layout_weight="1"
         android:background="@drawable/info_background"
         android:gravity="center_horizontal"
@@ -25,13 +25,13 @@
             android:text="Your Weather Location is:"
             android:textSize="28sp" />
 
-        <EditText
+
+        <TextView
             android:id="@+id/et_location"
-            android:layout_width="186dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:focusable="false"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:text="Salt Lake City, Utah" />
+            android:gravity="left"
+            android:textSize="25sp" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"

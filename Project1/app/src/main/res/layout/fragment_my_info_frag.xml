@@ -260,7 +260,7 @@
                                 android:id="@+id/city_input"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                                 android:hint="Doug Town" />
                         </LinearLayout>
 
@@ -344,7 +344,7 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/info_button"
                     android:text="Save and return home"
-                    android:onClick="HomeButtonClicked"
+                    android:onClick="HomeAndSaveButtonClicked"
                     android:textColor="@color/colorAccent" />
 
 

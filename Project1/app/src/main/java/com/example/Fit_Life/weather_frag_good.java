@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.core.os.HandlerCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -56,12 +59,13 @@ public class weather_frag_good extends Fragment {
     private double mMinTemp;
     private String mCondition;
 
-    private EditText mEtLocation;
+    private TextView mEtLocation;
     private Button mButtonReturn;
     private String allDataStr;
     private String city;
-    private String state;
     private WeatherData mWeatherData;
+
+    private UserDataViewModel mUserDataViewModel;
 
     private static weather_frag_good.FetchWeatherTask mFetchWeatherTask = new weather_frag_good.FetchWeatherTask();
 
@@ -103,6 +107,11 @@ public class weather_frag_good extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_weather_frag_good, container, false);
 
+        //Create the view model
+        mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
+        //Set the observer
+        (mUserDataViewModel.getData()).observe(getViewLifecycleOwner(),weatherObserver);
+
         mButtonReturn = view.findViewById(R.id.button_return_weather);
         //the onClick is hardcoded in the XML, and taken care of the activity
 
@@ -112,13 +121,13 @@ public class weather_frag_good extends Fragment {
         mTvCondition = view.findViewById(R.id.tv_condition_val);
         // mTvRainAmount = (TextView) findViewById(R.id.tv_amount_of_rain);
         mEtLocation = view.findViewById(R.id.et_location);
+        //mEtLocation.setText(UserDataViewModel.getData().getValue().getCity());
 
         allDataStr = helperMethods.readData(getContext());
 
         String[] split_data = allDataStr.split(",");
 
-        city = split_data[7];
-        state = split_data[8];
+        city = mUserDataViewModel.getData().getValue().getCity();
 
         String[] fullCity = null;
         String location = "";
@@ -145,9 +154,26 @@ public class weather_frag_good extends Fragment {
 
         return view;
     }
+
+
+    //create an observer that watches the LiveData<WeatherData> object
+    final Observer<User> weatherObserver  = new Observer<User>() {
+        @Override
+        public void onChanged(@Nullable final User myUser) {
+            // Update the UI if this data variable changes
+            if(myUser!=null) {
+                mEtLocation.setText(myUser.getCity());
+            }
+        }
+    };
+
+
     private void loadWeatherData(String location){
         mFetchWeatherTask.execute(location);
     }
+
+
+
 
     private static class FetchWeatherTask {
 

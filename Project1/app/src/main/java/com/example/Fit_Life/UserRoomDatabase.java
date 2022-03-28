@@ -27,6 +27,10 @@ public abstract class UserRoomDatabase extends RoomDatabase {
         if(mInstance==null) {
             mInstance = Room.databaseBuilder(context.getApplicationContext(),
                     UserRoomDatabase.class, "user.db").addCallback(sRoomDatabaseCallback).fallbackToDestructiveMigration().build();
+//            databaseExecutor.execute(()->{
+//                UserDao dao= mInstance.userDao();
+//                dao.deleteAll();
+//            });
         }
         return mInstance;
     }
@@ -41,6 +45,8 @@ public abstract class UserRoomDatabase extends RoomDatabase {
 //                dao.insert(weatherTable);
             });
         }
+
+
     };
 
     private static RoomDatabase.Callback sRoomDatabaseCallback2 = new RoomDatabase.Callback(){
