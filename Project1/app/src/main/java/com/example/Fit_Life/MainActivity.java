@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity
     private Button mViewGoals;
     private Button mBMICalculator;
     private ImageView mProfilePic;
-    private String mCity;
-    private String mState;
-    private String mGoal;
 
     private UserDataViewModel mUserDataViewModel;
 
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
 
         if (intent.hasExtra("firstEntry")) {
-            User tUser = temp_loadSomeData();
+            User tUser = loadDataToRepo();
             mUserDataViewModel.setUserData(tUser);
         }
 
@@ -109,9 +106,7 @@ public class MainActivity extends AppCompatActivity
         public void onChanged(@Nullable final User myUser) {
             // Update the UI if this data variable changes
             if(myUser!=null) {
-//                mCity = myUser.getCity();
-//                mGoal = myUser.getGoal();
-//                mState = myUser.getState();
+
             }
         }
     };
@@ -232,13 +227,8 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private User temp_loadSomeData() {
-//        File myDir = this.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-//        String imFilename = "profilePic.jpg";
+    private User loadDataToRepo() {
 
-//        File imagefile = new File(myDir, imFilename);
-//        Bitmap bMap = BitmapFactory.decodeFile(imagefile.toString());
-//
         String allDataStr = helperMethods.readData(this);
         String[] datas = allDataStr.split(",");
         String firstName = datas[0];

@@ -36,8 +36,6 @@ import java.io.FileOutputStream;
  */
 public class myInfo_frag extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private Button mButtonSaveReturn;
@@ -58,9 +56,6 @@ public class myInfo_frag extends Fragment {
 
     private UserDataViewModel mUserDataViewModel;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     ActivityResultLauncher<Intent> mStartForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -117,10 +112,6 @@ public class myInfo_frag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -129,59 +120,10 @@ public class myInfo_frag extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_my_info_frag, container, false);
 
-
         mButtonSaveReturn = view.findViewById(R.id.button_return);
 
         //Create the view model
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
-
-        //the onClick is hardcoded in the XML, and taken care of the activity
-        //Right now nothing gets saved!!!!!!
-        //In order to save info, we need to update the view model every time a change happens
-
-//        mButtonSaveReturn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //Parsing the inputted data
-//                String theGoal = mGoal.getText().toString();
-//                String theActivityLevel = mActLvl.getText().toString();
-//                String theSex = mSex.getText().toString();
-//                String theState = mState.getText().toString();
-//                if(!(theGoal.equals("Gain") || theGoal.equals("Lose") || theGoal.equals("Maintain") || theGoal.equals("NoGoalSelected"))){
-//                    Toast.makeText(getContext(), "Enter Valid Goal:\nGain, Lose, or Maintain", Toast.LENGTH_LONG).show();
-//                }
-//                else if(!(theActivityLevel.equals("Sedentary") || theActivityLevel.equals("Active") || theActivityLevel.equals("NoActivityLevelSelected"))){
-//                    Toast.makeText(getContext(), "Enter Valid Activity Level:\nSedentary or Active", Toast.LENGTH_LONG).show();
-//                }
-//                else if(!(theSex.equals("Male") || theSex.equals("Female"))){
-//                    Toast.makeText(getContext(), "Enter Valid Sex:\nMale or Female", Toast.LENGTH_LONG).show();
-//                }
-//                else if(theState.length() != 2){
-//                    Toast.makeText(getContext(), "Enter Valid State Abbreviation:\n2 uppercase characters", Toast.LENGTH_LONG).show();
-//                }
-//                else{
-//                    //save info to file
-//                    String[] newDatas = new String[dataSize];
-//                    newDatas[0] = mFirstName.getText().toString();
-//                    newDatas[1] = mLastName.getText().toString();
-//                    newDatas[2] = mAge.getText().toString(); //age
-//                    newDatas[3] = mWeight.getText().toString();
-//                    newDatas[4] = mHeightFt.getText().toString();
-//                    newDatas[5] = mHeightIn.getText().toString();
-//                    newDatas[6] = theSex;
-//                    newDatas[7] = mCity.getText().toString();
-//                    newDatas[8] = theState;
-//                    newDatas[9] = theGoal;
-//                    newDatas[10] = theActivityLevel;
-//
-//                    helperMethods.saveData(newDatas,getContext(),false);
-//                    Toast.makeText(getContext(), "Information Updated", Toast.LENGTH_SHORT).show();
-//
-//                    Intent messageIntent = new Intent(getContext(), MainActivity.class);
-//                    getContext().startActivity(messageIntent);
-//                }
-//            }
-//        });
 
         mProfilePic = view.findViewById(R.id.profile_photo);
         mProfilePic.setOnClickListener(new View.OnClickListener() {
@@ -278,8 +220,5 @@ public class myInfo_frag extends Fragment {
                 return false;
             }
         });
-
     }
-
-
 }
