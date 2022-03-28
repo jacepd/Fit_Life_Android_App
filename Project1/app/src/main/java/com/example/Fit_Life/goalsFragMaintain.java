@@ -3,7 +3,10 @@ package com.example.Fit_Life;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -23,17 +26,16 @@ import com.example.basicinfoname.R;
  */
 public class goalsFragMaintain extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-
     private Button mButtonReturn;
+    private UserDataViewModel mUserDataViewModel;
+    private int mAge;
+    private int mWeight;
+    private int mHeightFeet;
+    private int mHeightInches;
+    private String mSex;
+    private String mActivityLevel;
+    private TextView mCaloriesNeeded;
 
-
-    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
 
     public goalsFragMaintain() {
         // Required empty public constructor
@@ -74,52 +76,55 @@ public class goalsFragMaintain extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_goals_frag_maintain, container, false);
 
-        TextView mCaloriesNeeded = (TextView) view.findViewById(R.id.calories);
-        int myCalories =(int) getCalories();
-        mCaloriesNeeded.setText(String.valueOf(myCalories));
+        mCaloriesNeeded = (TextView) view.findViewById(R.id.calories);
 
         mButtonReturn = (Button) view.findViewById(R.id.button_return);
-//        mButtonReturn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
+        //Create the view model
+        mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
+
+        //Set the observer
+        (mUserDataViewModel.getData()).observe(getViewLifecycleOwner(),goalsObserver);
 
         // Inflate the layout for this fragment
         return view;
     }
 
+    final Observer<User> goalsObserver  = new Observer<User>() {
+        @Override
+        public void onChanged(@Nullable final User myUser) {
+            // Update the UI if this data variable changes
+            if(myUser!=null) {
+                mAge = myUser.getAge();
+                mWeight = myUser.getWeight();
+                mHeightFeet = myUser.getHeightFeet();
+                mHeightInches = myUser.getHeightInches();
+                mSex = myUser.getSex();
+                mActivityLevel = myUser.getActivityLevel();
+                mCaloriesNeeded.setText(String.valueOf((int) getCalories()));
+            }
+        }
+    };
+
 
     private double getCalories(){
-        String allDataStr = helperMethods.readData(getContext());
-
-        String[] datas = allDataStr.split(",");
-
-        int age = Integer.parseInt(datas[2]);
-        int weight = Integer.parseInt(datas[3]);
-        int heightFeet = Integer.parseInt(datas[4]);
-        int heightInches = Integer.parseInt(datas[5]);
-        String sex = datas[6];
-        String activityLevel = datas[10];
 
         double multiplayer;
-        if(activityLevel.equals("Sedentary")){
+        if(mActivityLevel.equals("Sedentary")){
             multiplayer = 1;
         }
         else{
             multiplayer = 1.4;
         }
 
-        int totalHeight = (heightFeet * 12) + heightInches;
+        int totalHeight = (mHeightFeet * 12) + mHeightInches;
 
         double myBMR;
-        if (sex.equals("Male")){
-            myBMR = 66 + (6.23 * weight) + (12.7 * totalHeight) - (6.8 * age);
+        if (mSex.equals("Male")){
+            myBMR = 66 + (6.23 * mWeight) + (12.7 * totalHeight) - (6.8 * mAge);
         }
         else{
-            myBMR = 655 + (4.35 * weight) + (4.7 * totalHeight) -(4.7 * age);
+            myBMR = 655 + (4.35 * mWeight) + (4.7 * totalHeight) -(4.7 * mAge);
         }
 
         double calories = myBMR * multiplayer;

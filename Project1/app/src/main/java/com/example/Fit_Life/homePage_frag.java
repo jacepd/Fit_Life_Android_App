@@ -28,10 +28,6 @@ import java.io.File;
  */
 public class homePage_frag extends Fragment {
 
-
-
-
-
     private Button mViewMyInfo;
     private Button mViewWeather;
     private Button mViewHikes;
