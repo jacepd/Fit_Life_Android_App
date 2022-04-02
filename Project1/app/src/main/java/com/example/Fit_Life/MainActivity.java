@@ -44,22 +44,17 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setTitle("Fit Life - Home");
 
         Intent intent = getIntent();
 
-        //we do this because intents that come back from google maps or camera don't have the intent, so it crashes
-        if (intent.hasExtra("nextFrag")) {
-            fragID = intent.getStringExtra("nextFrag");
-        }
-        else {
-            fragID = "homePage";
-        }
+        // We do this because intents that come back from google maps or camera don't have the intent, so it crashes
+        if (intent.hasExtra("nextFrag")) fragID = intent.getStringExtra("nextFrag");
+        else fragID = "homePage";
 
-        //Create the view model
+        // Create the view model
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
-        //Set the observer
+        // Set the observer
         (mUserDataViewModel.getData()).observe(this,nameObserver);
 
 
@@ -67,9 +62,6 @@ public class MainActivity extends AppCompatActivity
             User tUser = loadDataToRepo();
             mUserDataViewModel.setUserData(tUser);
         }
-
-
-
 
         tablet = helperMethods.isTablet(this);
         if (tablet) {
@@ -90,7 +82,6 @@ public class MainActivity extends AppCompatActivity
             mViewGoals = (Button) findViewById(R.id.button_Fitness_Goals);
             mViewGoals.setOnClickListener(this);
 
-
             mProfilePic = (ImageView) findViewById(R.id.profile_photo);
             temp_loadProfilePic();
         }
@@ -100,7 +91,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    //create an observer that watches the LiveData<WeatherData> object
+    // Create an observer that watches the LiveData<WeatherData> object
     final Observer<User> nameObserver  = new Observer<User>() {
         @Override
         public void onChanged(@Nullable final User myUser) {
@@ -110,7 +101,6 @@ public class MainActivity extends AppCompatActivity
             }
         }
     };
-
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -122,7 +112,6 @@ public class MainActivity extends AppCompatActivity
             phoneSwitchStatement();
         }
     }
-
 
     private void phoneSwitchStatement() {
         FragmentTransaction fTrans = getSupportFragmentManager().beginTransaction();

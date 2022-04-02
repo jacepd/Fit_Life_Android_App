@@ -1,10 +1,9 @@
 package com.example.Fit_Life;
 
+import androidx.lifecycle.LiveData;
+import androidx.room.*;
 
-        import androidx.lifecycle.LiveData;
-        import androidx.room.*;
-
-        import java.util.List;
+import java.util.List;
 
 @Dao
 public interface UserDao {

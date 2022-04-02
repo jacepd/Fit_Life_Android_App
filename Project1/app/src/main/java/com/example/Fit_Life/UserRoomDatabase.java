@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.os.HandlerCompat;
 import androidx.room.*;
 import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
@@ -27,10 +28,6 @@ public abstract class UserRoomDatabase extends RoomDatabase {
         if(mInstance==null) {
             mInstance = Room.databaseBuilder(context.getApplicationContext(),
                     UserRoomDatabase.class, "user.db").addCallback(sRoomDatabaseCallback).fallbackToDestructiveMigration().build();
-//            databaseExecutor.execute(()->{
-//                UserDao dao= mInstance.userDao();
-//                dao.deleteAll();
-//            });
         }
         return mInstance;
     }

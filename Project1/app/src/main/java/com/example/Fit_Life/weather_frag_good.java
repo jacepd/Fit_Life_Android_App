@@ -136,22 +136,17 @@ public class weather_frag_good extends Fragment {
             fullCity = city.split(" ");
 
             for(int i = 0; i < fullCity.length; i++){
-
                 if (i > 0) location = location + "+" + fullCity[i];
                 else location = location + fullCity[i];
             }
         }
-        else{
-            location = city;
-        }
-
+        else location = city;
         location = location + ",us";
 
         mFetchWeatherTask.setWeakReference(this);
 
         // Begin thread here
         loadWeatherData(location);
-
         return view;
     }
 
@@ -167,13 +162,9 @@ public class weather_frag_good extends Fragment {
         }
     };
 
-
     private void loadWeatherData(String location){
         mFetchWeatherTask.execute(location);
     }
-
-
-
 
     private static class FetchWeatherTask {
 
@@ -232,9 +223,7 @@ public class weather_frag_good extends Fragment {
             weatherFragGoodWeakReference = new WeakReference<weather_frag_good>(ref);
         }
     }
-
-
-
+    
     @Override
     public void onResume() {
         super.onResume();
