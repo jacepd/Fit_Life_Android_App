@@ -33,6 +33,7 @@
         <entry key="app/src/main/res/layout/activity_profile_pic_input.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profilepic_input.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_user_home.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/activity_volley_singleton.xml" value="0.11442542787286064" />
         <entry key="app/src/main/res/layout/activity_weather_output.xml" value="0.11" />
         <entry key="app/src/main/res/layout/fragment_bmi.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_goals_frag_gain.xml" value="0.1" />
