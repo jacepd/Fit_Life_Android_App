@@ -6,6 +6,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.basicinfoname.R;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -15,6 +19,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,7 +28,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
@@ -45,6 +52,21 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setTitle("Fit Life - Home");
+
+        try {
+            // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("MainActivity", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MainActivity", "ERROR Could not initialize Amplify", error);
+        }
+
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db");
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-shm");
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-wal");
 
         Intent intent = getIntent();
 
@@ -310,5 +332,24 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+
+    private void uploadFile(String filename) {
+        File exampleFile = new File(filename);
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
+            writer.append("Example file contents");
+            writer.close();
+        } catch (Exception exception) {
+            Log.e("MyAmplifyApp", "Upload failed", exception);
+        }
+
+        Amplify.Storage.uploadFile(
+                "ExampleKey",
+                exampleFile,
+                result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
+                storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
+        );
+    }
 
 }
