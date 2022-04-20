@@ -13,9 +13,15 @@ import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.example.basicinfoname.R;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,11 +32,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
@@ -46,6 +54,15 @@ public class MainActivity extends AppCompatActivity
     private ImageView mProfilePic;
 
     private UserDataViewModel mUserDataViewModel;
+
+    private SensorManager mSensorManager;
+    private Sensor mLinearAccelerometer;
+    private final double mThreshold = 2.0;
+
+    //Previous positions
+    private double last_x, last_y, last_z;
+    private double now_x, now_y,now_z;
+    private boolean mNotFirstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +128,12 @@ public class MainActivity extends AppCompatActivity
             setContentView(R.layout.activity_main);
             phoneSwitchStatement();
         }
+
+        //Get sensor manager
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        //Get the default light sensor
+        mLinearAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
     }
 
     // Create an observer that watches the LiveData<WeatherData> object
@@ -350,6 +373,61 @@ public class MainActivity extends AppCompatActivity
                 result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
                 storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
         );
+    }
+
+
+    private SensorEventListener mListener = new SensorEventListener() {
+
+
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+
+            //Get the acceleration rates along the y and z axes
+            now_x = sensorEvent.values[0];
+            now_y = sensorEvent.values[1];
+            now_z = sensorEvent.values[2];
+
+            if(mNotFirstTime){
+                double dx = Math.abs(last_x - now_x);
+                double dy = Math.abs(last_y - now_y);
+                double dz = Math.abs(last_z - now_z);
+
+                //Check if the values of acceleration have changed on any pair of axes
+                if( (dx > mThreshold && dy > mThreshold) ||
+                        (dx > mThreshold && dz > mThreshold)||
+                        (dy > mThreshold && dz > mThreshold)){
+
+                    setContentView(R.layout.step_counter);
+                }
+            }
+            last_x = now_x;
+            last_y = now_y;
+            last_z = now_z;
+            mNotFirstTime = true;
+        }
+
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mLinearAccelerometer!=null){
+            mSensorManager.registerListener(mListener,mLinearAccelerometer,SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mLinearAccelerometer != null) {
+            mSensorManager.unregisterListener(mListener);
+        }
+
     }
 
 }
