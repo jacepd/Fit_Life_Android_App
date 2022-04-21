@@ -23,6 +23,7 @@ public class step_counter extends AppCompatActivity {
     private SensorManager mSensorManager;
     private TextView mTvData;
     private Sensor mStepCounter;
+    private int current_steps;
     private final double mThreshold = 2.0;
 
     //Previous positions
@@ -38,7 +39,7 @@ public class step_counter extends AppCompatActivity {
         mTvData = (TextView) findViewById(R.id.tv_data);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
     }
 
     private SensorEventListener mListener = new SensorEventListener() {
@@ -59,7 +60,8 @@ public class step_counter extends AppCompatActivity {
                         (dx > mThreshold && dz > mThreshold)||
                         (dy > mThreshold && dz > mThreshold)){
 
-                    mTvData.setText("" + String.valueOf(sensorEvent.values[0]));
+                    current_steps++;
+                    mTvData.setText(current_steps);
                 }
             }
             last_x = now_x;
