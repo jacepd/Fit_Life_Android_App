@@ -22,6 +22,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity
     private double last_x, last_y, last_z;
     private double now_x, now_y,now_z;
     private boolean mNotFirstTime;
+
+    private static boolean active = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -397,7 +401,15 @@ public class MainActivity extends AppCompatActivity
                         (dx > mThreshold && dz > mThreshold)||
                         (dy > mThreshold && dz > mThreshold)){
 
-                    setContentView(R.layout.step_counter);
+                    if (active)
+                    {
+                        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                        Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                        r.play();
+                    }
+
+                    onStop();
+                    setContentView(R.layout.fragment_step_counter);
                 }
             }
             last_x = now_x;
@@ -428,6 +440,18 @@ public class MainActivity extends AppCompatActivity
             mSensorManager.unregisterListener(mListener);
         }
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        active = false;
     }
 
 }
