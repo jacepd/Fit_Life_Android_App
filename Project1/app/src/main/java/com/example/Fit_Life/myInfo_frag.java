@@ -214,7 +214,7 @@ public class myInfo_frag extends Fragment {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.putExtra("nextFrag", "homePage");
                     startActivity(intent);
-                    Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Back press", Toast.LENGTH_SHORT).show();
                     return true;
                 }
                 return false;

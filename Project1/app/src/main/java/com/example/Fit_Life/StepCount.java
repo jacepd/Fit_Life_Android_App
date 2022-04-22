@@ -18,7 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.basicinfoname.R;
 
-public class step_counter extends AppCompatActivity {
+public class StepCount extends AppCompatActivity {
 
     private SensorManager mSensorManager;
     private TextView mTvData;
@@ -34,41 +34,30 @@ public class step_counter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_step_counter);
+        setContentView(R.layout.activity_step_count);
 
         mTvData = (TextView) findViewById(R.id.tv_data);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
+        finish();
+    }
+
 
     private SensorEventListener mListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
-            //Get the acceleration rates along the y and z axes
-            now_x = sensorEvent.values[0];
-            now_y = sensorEvent.values[1];
-            now_z = sensorEvent.values[2];
-
-            if(mNotFirstTime){
-                double dx = Math.abs(last_x - now_x);
-                double dy = Math.abs(last_y - now_y);
-                double dz = Math.abs(last_z - now_z);
-
-                //Check if the values of acceleration have changed on any pair of axes
-                if( (dx > mThreshold && dy > mThreshold) ||
-                        (dx > mThreshold && dz > mThreshold)||
-                        (dy > mThreshold && dz > mThreshold)){
-
-                    current_steps++;
-                    mTvData.setText(current_steps);
-                }
-            }
-            last_x = now_x;
-            last_y = now_y;
-            last_z = now_z;
-            mNotFirstTime = true;
+            mTvData.setText( Integer.toString( (int)sensorEvent.values[0]) );
         }
+
 
         @Override
         public void onAccuracyChanged(Sensor sensor, int i) {

@@ -316,8 +316,6 @@ public class MainActivity extends AppCompatActivity
     //This is the function that gets called when any of the activity's fragments push the
     //home button. This is hardcoded in the Fragment's XML
     public void HomeButtonClicked(View v) {
-        //Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("nextFrag", "homePage");
         startActivity(intent);
@@ -326,7 +324,6 @@ public class MainActivity extends AppCompatActivity
 
     //This one comes from the "my_info_page"
     public void HomeAndSaveButtonClicked(View v) {
-        //Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
         LinearLayout parent = (LinearLayout) v.getParent();
         String firstName = ((EditText) parent.findViewById(R.id.firstName_input)).getText().toString();
         String lastName = ((EditText) parent.findViewById(R.id.lastName_input)).getText().toString();
@@ -409,7 +406,8 @@ public class MainActivity extends AppCompatActivity
                     }
 
                     onStop();
-                    setContentView(R.layout.fragment_step_counter);
+                    Intent messageIntent = new Intent(getApplicationContext(), StepCount.class);
+                    startActivity(messageIntent);
                 }
             }
             last_x = now_x;
