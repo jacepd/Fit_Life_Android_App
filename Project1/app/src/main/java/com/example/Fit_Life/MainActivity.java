@@ -381,9 +381,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
     private SensorEventListener mListener = new SensorEventListener() {
-
-
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
 
