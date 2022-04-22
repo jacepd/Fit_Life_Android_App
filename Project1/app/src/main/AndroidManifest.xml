@@ -19,8 +19,7 @@
         android:theme="@style/Theme.BasicInfoName">
         <activity
             android:name="com.example.Fit_Life.goals_input"
-            android:exported="false" />
-        <!-- <uses-permission -->
+            android:exported="false" /> <!-- <uses-permission -->
         <!-- android:name="android.permission.WRITE_EXTERNAL_STORAGE" -->
         <!-- android:maxSdkVersion="Version code" /> -->
         <activity
