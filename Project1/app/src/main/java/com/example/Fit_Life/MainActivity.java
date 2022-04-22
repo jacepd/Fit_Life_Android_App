@@ -85,27 +85,33 @@ public class MainActivity extends AppCompatActivity
         // Set the observer
         (mUserDataViewModel.getData()).observe(this,nameObserver);
 
-        //This has to happen before uploading the files to the AWS server
+
+
+        //This is when the main activity is entered for the very first time
+        //in here, we load our local data into a room db, then we upload that db to AWS
         if (intent.hasExtra("firstEntry")) {
+            //load up the repo
             User tUser = loadDataToRepo();
             mUserDataViewModel.setUserData(tUser);
+
+
+            //connect to aws
+            try {
+                // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
+                Amplify.addPlugin(new AWSCognitoAuthPlugin());
+                Amplify.addPlugin(new AWSS3StoragePlugin());
+                Amplify.configure(getApplicationContext());
+
+                Log.i("MainActivity", "Initialized Amplify");
+            } catch (AmplifyException error) {
+                Log.e("MainActivity", "ERROR Could not initialize Amplify", error);
+            }
+
+            //upload our 3 db files
+            uploadFile("/data/data/com.example.basicinfoname/databases/user.db", "user_dbKey");
+            uploadFile("/data/data/com.example.basicinfoname/databases/user.db-shm", "user_dbshmKey");
+            uploadFile("/data/data/com.example.basicinfoname/databases/user.db-wal", "user_dbwalKey");
         }
-
-        try {
-            // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.configure(getApplicationContext());
-
-            Log.i("MainActivity", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MainActivity", "ERROR Could not initialize Amplify", error);
-        }
-
-        uploadFile("/data/data/com.example.basicinfoname/databases/user.db", "user_dbKey");
-        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-shm", "user_dbshmKey");
-        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-wal", "user_dbwalKey");
-
 
 
         tablet = helperMethods.isTablet(this);
@@ -353,6 +359,12 @@ public class MainActivity extends AppCompatActivity
 
         mUserDataViewModel.setUserData(tempUser);
 
+        //upload our 3 db files to AWS after we've made changes to our db
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db", "user_dbKey");
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-shm", "user_dbshmKey");
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-wal", "user_dbwalKey");
+
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("nextFrag", "homePage");
         startActivity(intent);
@@ -361,13 +373,6 @@ public class MainActivity extends AppCompatActivity
 
     private void uploadFile(String filename, String key) {
         File exampleFile = new File(filename);
-
-//        try {
-//            BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
-//            writer.close();
-//        } catch (Exception exception) {
-//            Log.e("MyAmplifyApp", "Upload failed", exception);
-//        }
 
         Amplify.Storage.uploadFile(
                 key,
