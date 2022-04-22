@@ -1,6 +1,6 @@
 {
   "auth": {
-    "project1d5f327b2": {
+    "project105fdc59d": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -26,7 +26,7 @@
     }
   },
   "storage": {
-    "s34aec0bc3": {
+    "s3friendlyName": {
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": []

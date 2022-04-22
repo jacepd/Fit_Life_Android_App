@@ -53,21 +53,6 @@ public class MainActivity extends AppCompatActivity
 
         setTitle("Fit Life - Home");
 
-        try {
-            // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.configure(getApplicationContext());
-
-            Log.i("MainActivity", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MainActivity", "ERROR Could not initialize Amplify", error);
-        }
-
-        uploadFile("/data/data/com.example.basicinfoname/databases/user.db");
-        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-shm");
-        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-wal");
-
         Intent intent = getIntent();
 
         // We do this because intents that come back from google maps or camera don't have the intent, so it crashes
@@ -79,11 +64,28 @@ public class MainActivity extends AppCompatActivity
         // Set the observer
         (mUserDataViewModel.getData()).observe(this,nameObserver);
 
-
+        //This has to happen before uploading the files to the AWS server
         if (intent.hasExtra("firstEntry")) {
             User tUser = loadDataToRepo();
             mUserDataViewModel.setUserData(tUser);
         }
+
+        try {
+            // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("MainActivity", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MainActivity", "ERROR Could not initialize Amplify", error);
+        }
+
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db", "user_dbKey");
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-shm", "user_dbshmKey");
+        uploadFile("/data/data/com.example.basicinfoname/databases/user.db-wal", "user_dbwalKey");
+
+
 
         tablet = helperMethods.isTablet(this);
         if (tablet) {
@@ -333,19 +335,18 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void uploadFile(String filename) {
+    private void uploadFile(String filename, String key) {
         File exampleFile = new File(filename);
 
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
-            writer.append("Example file contents");
-            writer.close();
-        } catch (Exception exception) {
-            Log.e("MyAmplifyApp", "Upload failed", exception);
-        }
+//        try {
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
+//            writer.close();
+//        } catch (Exception exception) {
+//            Log.e("MyAmplifyApp", "Upload failed", exception);
+//        }
 
         Amplify.Storage.uploadFile(
-                "ExampleKey",
+                key,
                 exampleFile,
                 result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
                 storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)

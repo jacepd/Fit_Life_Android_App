@@ -12,15 +12,15 @@
                 "CredentialsProvider": {
                     "CognitoIdentity": {
                         "Default": {
-                            "PoolId": "us-west-1:14a8742d-27cd-4953-8db5-2e36e1d68e82",
+                            "PoolId": "us-west-1:2d3736fa-2420-43da-b7da-19f367ab5243",
                             "Region": "us-west-1"
                         }
                     }
                 },
                 "CognitoUserPool": {
                     "Default": {
-                        "PoolId": "us-west-1_hCRPP3eYI",
-                        "AppClientId": "3bj3m4m4veo0ou8hm76hl5tq99",
+                        "PoolId": "us-west-1_ubrioMV5J",
+                        "AppClientId": "6las2ohdr6magnblqvp22a51oa",
                         "Region": "us-west-1"
                     }
                 },
@@ -47,7 +47,7 @@
                 },
                 "S3TransferUtility": {
                     "Default": {
-                        "Bucket": "project1b05816f6dec34a0894fcfa89c18b1dd5150229-dev",
+                        "Bucket": "storagebucketname120151-dev",
                         "Region": "us-west-1"
                     }
                 }
@@ -57,7 +57,7 @@
     "storage": {
         "plugins": {
             "awsS3StoragePlugin": {
-                "bucket": "project1b05816f6dec34a0894fcfa89c18b1dd5150229-dev",
+                "bucket": "storagebucketname120151-dev",
                 "region": "us-west-1",
                 "defaultAccessLevel": "guest"
             }
