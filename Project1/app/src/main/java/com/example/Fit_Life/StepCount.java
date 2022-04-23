@@ -12,24 +12,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.basicinfoname.R;
 
-public class StepCount extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class StepCount extends AppCompatActivity
+        implements View.OnClickListener{
 
     private SensorManager mSensorManager;
     private TextView mTvData;
     private Sensor mStepCounter;
-    private int current_steps;
-    private final double mThreshold = 2.0;
-
-    //Previous positions
-    private double last_x, last_y, last_z;
-    private double now_x, now_y,now_z;
-    private boolean mNotFirstTime;
+    private Button mButtonHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +38,9 @@ public class StepCount extends AppCompatActivity {
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+
+        mButtonHome = (Button) findViewById(R.id.button_home);
+        mButtonHome.setOnClickListener(this);
     }
 
 
@@ -78,6 +79,17 @@ public class StepCount extends AppCompatActivity {
         super.onPause();
         if(mStepCounter!=null){
             mSensorManager.unregisterListener(mListener);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button_home:
+
+                Intent intent = new Intent(this, MainActivity.class);
+                this.startActivity(intent);
+                finish();
         }
     }
 }
