@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+        //If we're coming from the step counter, we need to update the number of steps in the db
         if (intent.hasExtra("fromStepCount")) {
             int numSteps = intent.getIntExtra("fromStepCount", 0);
             User tempUsr = mUserDataViewModel.getData().getValue();
