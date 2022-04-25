@@ -14,6 +14,16 @@ public class User {
     private String goal;
     private String activityLevel;
 
+    public int getNumSteps() {
+        return numSteps;
+    }
+
+    public void setNumSteps(int numSteps) {
+        this.numSteps = numSteps;
+    }
+
+    private int numSteps;
+
     public String getFirstName() {
         return firstName;
     }

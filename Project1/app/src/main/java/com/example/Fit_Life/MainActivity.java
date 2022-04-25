@@ -114,6 +114,14 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+        if (intent.hasExtra("fromStepCount")) {
+            int numSteps = intent.getIntExtra("fromStepCount", 0);
+            User tempUsr = mUserDataViewModel.getData().getValue();
+            tempUsr.setNumSteps(numSteps);
+
+            mUserDataViewModel.setUserData(tempUsr);
+        }
+
         tablet = helperMethods.isTablet(this);
         if (tablet) {
             setContentView(R.layout.activity_main_tablet);
@@ -288,6 +296,7 @@ public class MainActivity extends AppCompatActivity
         String state = datas[8];
         String goal = datas[9];
         String activityLevel = datas[10];
+        int steps = 0;
         //mProfilePic.setImageBitmap(bMap);
 
         User tempUser = new User();
@@ -302,6 +311,7 @@ public class MainActivity extends AppCompatActivity
         tempUser.setState(state);
         tempUser.setGoal(goal);
         tempUser.setActivityLevel(activityLevel);
+        tempUser.setNumSteps(steps);
 
         return tempUser;
     }
@@ -343,6 +353,8 @@ public class MainActivity extends AppCompatActivity
         String goal = ((EditText) parent.findViewById(R.id.goal_input)).getText().toString();
         String activityLevel = ((EditText) parent.findViewById(R.id.actLvL_input)).getText().toString();
 
+        //get the previous amount of steps that we had. We don't update steps in here
+        int steps = mUserDataViewModel.getData().getValue().getNumSteps();
 
         User tempUser = new User();
         tempUser.setFirstName(firstName);
@@ -356,6 +368,7 @@ public class MainActivity extends AppCompatActivity
         tempUser.setState(state);
         tempUser.setGoal(goal);
         tempUser.setActivityLevel(activityLevel);
+        tempUser.setNumSteps(steps);
 
         mUserDataViewModel.setUserData(tempUser);
 

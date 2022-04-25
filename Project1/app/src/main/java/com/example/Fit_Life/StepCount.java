@@ -28,6 +28,7 @@ public class StepCount extends AppCompatActivity
     private TextView mTvData;
     private Sensor mStepCounter;
     private Button mButtonHome;
+    private int numSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,8 @@ public class StepCount extends AppCompatActivity
     private SensorEventListener mListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
-            mTvData.setText( Integer.toString( (int)sensorEvent.values[0]) );
+            numSteps = (int)sensorEvent.values[0];
+            mTvData.setText( Integer.toString(numSteps) );
         }
 
 
@@ -88,6 +90,7 @@ public class StepCount extends AppCompatActivity
             case R.id.button_home:
 
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("fromStepCount", numSteps);
                 this.startActivity(intent);
                 finish();
         }

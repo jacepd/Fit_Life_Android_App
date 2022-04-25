@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 //You have to change the version number if you change the database!!!
-@Database(entities = {UserTable.class}, version = 4, exportSchema = false)
+@Database(entities = {UserTable.class}, version = 5, exportSchema = false)
 public abstract class UserRoomDatabase extends RoomDatabase {
     private static volatile UserRoomDatabase mInstance;
     public abstract UserDao userDao();
@@ -38,8 +38,6 @@ public abstract class UserRoomDatabase extends RoomDatabase {
             databaseExecutor.execute(()->{
                 UserDao dao = mInstance.userDao();
                 dao.deleteAll();
-//                UserTable weatherTable = new UserTableBuilder().setLocation("dummy_loc").setWeatherJson("dummy_data").createWeatherTable();
-//                dao.insert(weatherTable);
             });
         }
 
@@ -67,8 +65,6 @@ public abstract class UserRoomDatabase extends RoomDatabase {
                 @Override
                 public void run(){
                     mDao.deleteAll();
-//                    UserTable weatherTable = new UserTableBuilder().setLocation("dummy_loc").setWeatherJson("dummy_data").createUserTable();
-//                    mDao.insert(weatherTable);
                 }
             });
         }

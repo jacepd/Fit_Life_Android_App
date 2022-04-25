@@ -53,11 +53,14 @@ public class UserTable {
     @ColumnInfo(name = "activityLevel")
     private String activityLevel;
 
+    @NonNull
+    @ColumnInfo(name = "numSteps")
+    private int numSteps;
 
 
     public UserTable(@NonNull String firstName, @NonNull String lastName, int age, int weight,
                      int heightFeet, int heightInches, @NonNull String sex,
-                     @NonNull String city, @NonNull String state, @NonNull String goal, @NonNull String activityLevel){
+                     @NonNull String city, @NonNull String state, @NonNull String goal, @NonNull String activityLevel, int numSteps){
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -69,15 +72,9 @@ public class UserTable {
         this.state = state;
         this.goal = goal;
         this.activityLevel = activityLevel;
+        this.numSteps = numSteps;
+
     }
-
-//    public UserTable(@NonNull String firstName, @NonNull String lastName, @NonNull String activityLevel){
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.activityLevel = activityLevel;
-//    }
-
-
 
 
     @NonNull
@@ -175,4 +172,11 @@ public class UserTable {
         this.activityLevel = activityLevel;
     }
 
+    public void setNumSteps(int numSteps) {
+        this.numSteps = numSteps;
+    }
+
+    public int getNumSteps() {
+        return numSteps;
+    }
 }
