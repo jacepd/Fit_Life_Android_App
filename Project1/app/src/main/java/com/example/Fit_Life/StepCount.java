@@ -38,7 +38,7 @@ public class StepCount extends AppCompatActivity
         mTvData = (TextView) findViewById(R.id.tv_data);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+        mStepCounter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
         mButtonHome = (Button) findViewById(R.id.button_home);
         mButtonHome.setOnClickListener(this);
