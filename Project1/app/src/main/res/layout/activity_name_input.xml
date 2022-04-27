@@ -52,7 +52,6 @@
                 android:layout_height="wrap_content"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
                 android:hint="John"
-                android:text="John"
                 />
 
         </LinearLayout>
@@ -75,7 +74,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
-                android:text="Cena"
                 android:hint="Cena"
                 />
         </LinearLayout>

@@ -184,7 +184,7 @@ public class myInfo_frag extends Fragment {
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
-            Toast.makeText(getContext(),"File saved!",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(),"File saved!",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(getContext(),"Failed!",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
@@ -197,6 +197,7 @@ public class myInfo_frag extends Fragment {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
     }
+
 
 
     //for back button
