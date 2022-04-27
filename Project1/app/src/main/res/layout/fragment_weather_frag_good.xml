@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="353dp"
-        android:layout_height="564dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:layout_weight="1"
         android:background="@drawable/info_background"
@@ -35,31 +35,28 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="320dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_marginTop="100dp"
-            android:layout_weight="1"
             android:background="@drawable/info_background"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_temp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="Temperature: "
                 android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tv_temp_val"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/weather_result_field"
-                android:gravity="right"
+                android:gravity="center_horizontal"
                 android:hint="10 F"
                 android:padding="10dp"
                 android:textSize="25dp" />
@@ -68,31 +65,28 @@
 
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_width="320dp"
-            android:layout_height="100dp"
-            android:layout_margin="20dp"
-            android:layout_marginTop="100dp"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/info_background"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_condition"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="Condition: "
                 android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tv_condition_val"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp"
                 android:background="@drawable/weather_result_field"
-                android:gravity="right"
+                android:gravity="center_vertical"
                 android:hint="Sunny"
                 android:padding="10dp"
                 android:textSize="25dp" />
@@ -101,11 +95,10 @@
 
         <LinearLayout
             android:id="@+id/linearLayout4"
-            android:layout_width="320dp"
-            android:layout_height="84dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginTop="100dp"
-            android:layout_weight="1"
             android:background="@drawable/info_background"
             android:gravity="center"
             android:orientation="horizontal">
@@ -113,17 +106,17 @@
             <TextView
                 android:id="@+id/tv_max_temp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="Max Temp: "
                 android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tv_max_temp_val"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/weather_result_field"
-                android:gravity="right"
+                android:gravity="center_vertical"
                 android:hint="100 F"
                 android:padding="10dp"
                 android:textSize="25dp" />
@@ -132,11 +125,10 @@
 
         <LinearLayout
             android:id="@+id/linearLayout5"
-            android:layout_width="320dp"
-            android:layout_height="83dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginTop="100dp"
-            android:layout_weight="1"
             android:background="@drawable/info_background"
             android:gravity="center"
             android:orientation="horizontal">
@@ -144,15 +136,16 @@
             <TextView
                 android:id="@+id/tv_min_temp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="Min Temp: "
+
                 android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/tv_min_temp_val"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/weather_result_field"
                 android:gravity="right"
                 android:hint="90 F"
@@ -168,8 +161,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/info_button"
-            android:text="home"
             android:onClick="HomeButtonClicked"
+            android:text="home"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>
